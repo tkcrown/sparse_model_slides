@@ -12,23 +12,23 @@
 
 /* Styles for Title Slide */
 .title-slide hgroup > h1{
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Times New Roman','Oswald', sans-serif;
 }
 
 .title-slide hgroup > h2{
-  font-family: 'Signika Negative', 'Calibri', sans-serif;
+  font-family: 'Times New Roman','Signika Negative', 'Calibri', sans-serif;
 }
 
 /* Fonts and Spacing */
 article p, article li, article li.build{
-  font-family: 'Helvetica', 'Crimson Text', 'Garamond',  'Palatino', sans-serif;
+  font-family: 'Times New Roman','Helvetica', 'Crimson Text', 'Garamond',  'Palatino', sans-serif;
   text-align: justify;
   font-size:22px;
   line-height: 1.5em;
 }
 
 slide:not(.segue) h2{
-  font-family: 'Signika Negative', 'Calibri', Arial, sans-serif;
+  font-family: 'Times New Roman','Signika Negative', 'Calibri', Arial, sans-serif;
   font-size: 52px;
   font-style: normal;
   font-weight: bold;
@@ -38,6 +38,13 @@ slide:not(.segue) h2{
 /*  color: #193441;*/
 /*  color: #02574D;*/
   color: #CC2904;
+  text-align: center;
+}
+
+slide:not(.segue) h3 {
+  font-family: 'Times New Roman','Signika Negative', 'Calibri', Arial, sans-serif;  
+  font-weight: bold;
+  color: #000000;
 }
 
 /* Reduce Space between Title and Body */
