@@ -1,7 +1,7 @@
 ---
-title       : 
+title       : Sparse Methods
 subtitle    : 
-author      : 
+author      : Ping Jin
 job         : 
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
@@ -18,8 +18,16 @@ mode        : selfcontained # {standalone, draft}
 
 --- .class #id 
 
-## Slide 2
+## Outline
 
-
+- Introduction to Dimension Reduction
+  - Feature Selection
+  - Feature Extraction
+- Subset Selection
+- Shrinkage Method
+  - Least Square Fit
+  - Ridge Regression
+  - Lasso Regression
+- Beyond Lasso
 
 
