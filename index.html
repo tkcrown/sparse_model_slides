@@ -244,7 +244,33 @@ which are important for prediction of lpsa.</p>
   <!-- Presenter Notes -->
 </slide>
 
-      NULL
+      <slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h2>Feature Extraction</h2>
+  </hgroup>
+  <article>
+      
+<div class='left' style='float:left;width:40%'>
+ <ul>
+<li><b>A graphical explanation</b>
+
+<ul>
+<li>Each data sample has two features</li>
+<li>Prefer the direction with larger variance</li>
+<li>Original features are transformed into new ones</li>
+</ul></li>
+</ul>
+
+
+</div>    
+<div class='right' style='float:right;width:60%'>
+ <p><img src="assets/img/pca.png" alt="alt text" title="Principle component analysis"></p>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
       <slide class="" id="slide-10" style="background:;">
   <hgroup>
     <h2>Part 2: Linear Regression and Least Squares (Review)</h2>
@@ -269,7 +295,45 @@ which are important for prediction of lpsa.</p>
   <!-- Presenter Notes -->
 </slide>
 
-      NULL
+      <slide class="" id="slide-11" style="background:;">
+  <hgroup>
+    <h2>Linear Regression and Least Squares (Review)</h2>
+  </hgroup>
+  <article>
+      
+<div class='left' style='float:left;width:58%'>
+ <h3>Least Squares Fit</h3>
+
+<p>\[
+\begin{equation}
+\begin{split}
+RSS(\beta) &= (\mathbf{y} - \mathbf{X}\beta)^T(\mathbf{y} - \mathbf{X}\beta)\\
+\frac{\partial RSS}{\partial \beta} &= -2 \mathbf{X}^T(\mathbf{y} - \mathbf{X}\beta)\\
+\hat{\beta} &= (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}
+\end{split}
+\end{equation}
+\]</p>
+
+<h3>Gauss Markov Theorem</h3>
+
+<p>The least squares estimates of the parameters β have the smallest variance among all linear unbiased estimates.</p>
+
+<h3>Question</h3>
+
+<p>Is unbiased assumption necessary?</p>
+
+
+</div>    
+<div class='right' style='float:right;width:38%'>
+ <p><img src="assets/img/lr.png" alt="Linear regression" title="Linear regression"></p>
+
+<p><img src="assets/img/ls.png" alt="Least Squares" title="Least squares"></p>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
       <slide class="" id="slide-12" style="background:;">
   <hgroup>
     <h2>Part 3: Subset Selection</h2>

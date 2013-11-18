@@ -128,7 +128,7 @@ Feature extraction applies.
 | Chance of Overfitting| High   | Low   | Mid|
 | Classifier-Independent | No   | Yes   | No  |
 
---- &twocol_portion w1:40% w2:60%
+--- &twocolportion w1:40% w2:60%
 
 ## Feature Extraction   
 
@@ -141,7 +141,7 @@ Feature extraction applies.
 
 *** right
 
-![alt text](./assets/img/pca.png "Principle component analysis")
+![alt text](assets/img/pca.png "Principle component analysis")
 
 
 ---
@@ -158,7 +158,7 @@ Feature extraction applies.
 - Shrinkage Method
 - Beyond Lasso
 
---- &twocol_portion w1:58% w2:38%
+--- &twocolportion w1:58% w2:38%
 
 ## Linear Regression and Least Squares (Review)
 
@@ -186,9 +186,9 @@ Is unbiased assumption necessary?
 
 *** right
 
-![alt text](./assets/img/lr.png "Linear regression")
+![Linear regression](assets/img/lr.png "Linear regression")
 
-![alt text](./assets/img/ls.png "Least squares")
+![Least Squares](assets/img/ls.png "Least squares")
 
 ---
 
@@ -241,3 +241,4 @@ where $\theta = \alpha^T \beta$. We can trade some bias for much less variance.
 ## .
 
 ## Thank you
+
