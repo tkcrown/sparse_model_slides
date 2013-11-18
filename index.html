@@ -165,17 +165,36 @@ which are important for prediction of lpsa.</p>
   <article>
     <h3>Example 3: classification with fMRI data</h3>
 
-<p>fMRI data are 4D images, with one dimension being the time slot. Imagining that one snapshot of it is a \(50 \times 50 \times 50\) image and we have 200 time points, then the total number of dimensions for just one image will be \(50 \times 50 \times 50 \times 200 = 25,000,000\), which will cause great computation burdun. </p>
+<p>fMRI data are 4D images, with one dimension being the time slot.</p>
 
-<p>In this task, we are not concerned about importance of particular voxels. Our purpose is to decrease the number of dimensions without losing too much information for further prediction task.</p>
-
-<p>Feature extraction applies.</p>
+<p><center><img src="assets/img/fMRI.png" alt="fMRI" title="fmri"></center></p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
       <slide class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h2>Difference between Feature Selection and Feature Extraction</h2>
+  </hgroup>
+  <article>
+    <h3>Example 3: classification with fMRI data</h3>
+
+<ul>
+<li><p>fMRI data are 4D images, with one dimension being the time slot. </p></li>
+<li><p>Suppose the dimension of images is \(50 \times 50 \times 50\) for single time point and we have 200 time points</p></li>
+<li><p>\(50 \times 50 \times 50 \times 200 = 25,000,000\) dimensions in total! This will cause great computation burdun</p></li>
+</ul>
+
+<p>In this task, we are not concerned about importance of particular voxels. Our purpose is to decrease the number of dimensions without losing too much information for further prediction task. </p>
+
+<p>Feature extraction applies better.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-8" style="background:;">
   <hgroup>
     <h2>Feature Selection</h2>
   </hgroup>
@@ -205,7 +224,7 @@ which are important for prediction of lpsa.</p>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-8" style="background:;">
+      <slide class="" id="slide-9" style="background:;">
   <hgroup>
     <h2>Feature Selection</h2>
   </hgroup>
@@ -244,7 +263,7 @@ which are important for prediction of lpsa.</p>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-9" style="background:;">
+      <slide class="" id="slide-10" style="background:;">
   <hgroup>
     <h2>Feature Extraction</h2>
   </hgroup>
@@ -271,7 +290,7 @@ which are important for prediction of lpsa.</p>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-10" style="background:;">
+      <slide class="" id="slide-11" style="background:;">
   <hgroup>
     <h2>Part 2: Linear Regression and Least Squares (Review)</h2>
   </hgroup>
@@ -295,7 +314,7 @@ which are important for prediction of lpsa.</p>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-11" style="background:;">
+      <slide class="" id="slide-12" style="background:;">
   <hgroup>
     <h2>Linear Regression and Least Squares (Review)</h2>
   </hgroup>
@@ -334,7 +353,7 @@ RSS(\beta) &= (\mathbf{y} - \mathbf{X}\beta)^T(\mathbf{y} - \mathbf{X}\beta)\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-12" style="background:;">
+      <slide class="" id="slide-13" style="background:;">
   <hgroup>
     <h2>Part 3: Subset Selection</h2>
   </hgroup>
@@ -358,7 +377,7 @@ RSS(\beta) &= (\mathbf{y} - \mathbf{X}\beta)^T(\mathbf{y} - \mathbf{X}\beta)\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-13" style="background:;">
+      <slide class="" id="slide-14" style="background:;">
   <hgroup>
     <h2>Linear Regression and Least Squares (Review)</h2>
   </hgroup>
@@ -388,28 +407,475 @@ MSE(\tilde{\theta} &= E[(\tilde{\theta} - \theta)^2])\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-14" style="background:;">
+      <slide class="" id="slide-15" style="background:;">
   <hgroup>
     <h2>Subset Selection</h2>
   </hgroup>
   <article>
     <h3>Best-subset selection</h3>
 
-<ul class = "build">
-<li>Best subset regression finds for each \(k \in \{0, 1, 2, . . . , p\}\) the subset of size \(k\) that gives smallest residual sum of squares. </li>
-<li>An efficient algorithm, the leaps and bounds procedure (Furnival and Wilson, 1974), makes this feasible for p as large as 30 or 40.</li>
+<ul>
+<li>Best subset regression finds for each \(k \in \{0, 1, 2, . . . , p\}\) the subset of size \(k\) that gives smallest residual sum of squares.</li>
+<li>An efficient algorithm, the leaps and bounds procedure (Furnival and Wilson, 1974), makes this feasible for p as large as 30 or 40.[]</li>
 </ul>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-15">
+      <slide class="" id="slide-16" style="background:;">
+  <hgroup>
+    <h2>Subset Selection</h2>
+  </hgroup>
+  <article>
+    <h3>Forward-stepwise selection</h3>
+
+<p>Instead of searching all possible subsets, we can seek a good path through them.</p>
+
+<p><em>Forward-Stepwise Selection</em> builds a model sequentially, adding one variable at a time. At each step, it</p>
+
+<ul>
+<li>identifies the best variable (with the highest correlation with the residual error) to include in the <em>active set</em>
+\[\mathbf{x_k} = argmax_{\mathbf{x}_j}(|\mathbf{x}^T_j \mathbf{r}|)\]</li>
+<li>then updates the least squares fit to include all the active variables</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-17" style="background:;">
+  <hgroup>
+    <h2>Subset Selection</h2>
+  </hgroup>
+  <article>
+    <h3>Forward-Stagewise Regression</h3>
+
+  
+<div class='left' style='float:left;width:45%'>
+ <ul>
+<li>Initialize the fit vector \(\mathbf{f} = 0\)</li>
+<li>Compute the correlation vector 
+\[\mathbf{c} = \mathbf{c}(\mathbf{f}) = \mathbf{X}^T(\mathbf{y} - \mathbf{f})\]</li>
+<li>\(k = argmax_{j \in \{1,2,..,p\}} |\mathbf{c}_j|\)</li>
+<li>Coefficients and fit vector are updated
+\[\mathbf{f} \gets \mathbf{f} + \alpha \cdot sign(\mathbf{c}_j) \mathbf{x}_j\]
+\[\beta_j \gets \beta_j + \alpha \cdot sign(\mathbf{c}_j)\] </li>
+</ul>
+
+
+</div>    
+<div class='right' style='float:right;width:50%'>
+ <p><img src="assets/img/stagewise.png" alt="Stagewise" title="Stagewise"></p>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-18" style="background:;">
+  <hgroup>
+    <h2>Subset Selection</h2>
+  </hgroup>
+  <article>
+    <h3>Comparison</h3>
+
+  
+<div class='left' style='float:left;width:40%'>
+ <ul>
+<li>It takes at most \(p\) steps for forward-stepwise selection to get the final fit</li>
+<li>Forward stagewise selection is a slow fitting algorithm, at each time step we only update one \(\beta_j\), which can take more than \(p\) steps</li>
+<li>Forward stagewise is useful in high dimensional problem</li>
+</ul>
+
+
+</div>    
+<div class='right' style='float:right;width:55%'>
+ <p><center><img src="assets/img/comp1.png" alt="comp1" title="comp"></center></p>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-19" style="background:;">
+  <hgroup>
+    <h2>Subset Selection</h2>
+  </hgroup>
+  <article>
+    <h3>Pros</h3>
+
+<ul>
+<li>More interpretable and compact model</li>
+</ul>
+
+<h3>Cons</h3>
+
+<ul>
+<li>It is a discrete process, and thus has high variance and sensitivity to the change in dataset.</li>
+<li>Thus may not be able to lower prediction error</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-20" style="background:;">
+  <hgroup>
+    <h2>Ridge Regression</h2>
+  </hgroup>
+  <article>
+    <ul>
+<li>Introduction to Dimension Reduction</li>
+<li>Linear Regression and Least Squares (Review)</li>
+<li><b>Shrinkage Method</b>
+
+<ul>
+<li><b>Ridge Regression</b>
+
+<ul>
+<li><b>Formulations and closed form solution</b></li>
+<li><b>Singular value decomposition</b></li>
+<li><b>Degree of Freedom</b></li>
+</ul></li>
+<li>Lasso</li>
+</ul></li>
+<li>Beyond Lasso</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-21" style="background:;">
+  <hgroup>
+    <h2>Ridge Regression</h2>
+  </hgroup>
+  <article>
+    <ul>
+<li><b>Linear regression with \(l2\)-regularization</b>
+
+<ul>
+<li>Least squares with quadratic constraints
+\[
+\begin{equation}
+\hat{\beta}^{ridge}= argmin_{\beta}\sum_{i=1}^N(y_i - \beta_0 - \sum_{j=1}^p\mathbf{x_{ij}}\beta_j)^2, s.t. \sum_{j = 1}^p \beta_j^2 \leq t
+\end{equation}
+\]</li>
+<li>Its dual form
+\[
+\hat{\beta}^{ridge} = argmin_{\beta}\{\sum_{i=1}^N(y_i - \beta_0 - \sum_{j=1}^p\mathbf{x_{ij}}\beta_j)^2 + \lambda \sum_{j = 1}^p\beta_j^2\}
+\]</li>
+<li>The L2-regularization can be viewed as a Gaussian prior on the coefficients, and our estimates are the posterior means</li>
+</ul></li>
+<li><b>Solution</b>
+\[
+\begin{equation}
+\begin{split}
+&RSS(\lambda) = (\mathbf{y} - \mathbf{X}\beta)^T(\mathbf{y} - \mathbf{X}\beta) + \lambda \beta^T\beta\\
+&\hat{\beta}^{ridge} = (\mathbf{X}^T\mathbf{X} + \lambda \mathbf{I})^{-1}\mathbf{X}^T\mathbf{y}
+\end{split}
+\end{equation}
+\]<br></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-22" style="background:;">
+  <hgroup>
+    <h2>Ridge Regression</h2>
+  </hgroup>
+  <article>
+    <h3>Singular Value Decomposition (SVD)</h3>
+
+<ul>
+<li>The SVD of \(\mathbf{X}\):
+\[\mathbf{X} = \mathbf{UDV}^T\]
+
+<ul>
+<li>\(\mathbf{U}\): \(N \times p\) <b>orthogonal</b> matrix with columns spanning the column space of \(\mathbf{X}\)</li>
+<li>\(\mathbf{V}\): \(p \times p\) <b>orthogonal</b> matrix with columns spanning the row space of \(\mathbf{X}\)<br></li>
+<li>\(\mathbf{D}\): \(p \times p\) <b>diagonal</b> matrix with diagonal entries \(d_1 \geq d_2 \geq ... \geq d_p \geq 0\) being the singular values of \(\mathbf{X}\)</li>
+</ul></li>
+<li>For least squares
+\[
+\begin{equation}
+\begin{split}
+\mathbf{X}\hat{\beta}^{ls} &= \mathbf{X(X^TX)^{-1}X^Ty}\\
+&=\mathbf{UU^Ty}
+\end{split}
+\end{equation}
+\]</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-23" style="background:;">
+  <hgroup>
+    <h2>Ridge Regression</h2>
+  </hgroup>
+  <article>
+    <h3>Singular Value Decomposition (SVD)</h3>
+
+<ul>
+<li>For ridge regression
+\[
+\begin{equation}
+\begin{split}
+\mathbf{X}\hat{\beta}^{ridge} &= \mathbf{X(X^TX + \lambda I)^{-1}X^Ty}\\
+&=\sum_{j=1}^p\mathbf{u}_j\frac{d_j^2}{d_j^2 + \lambda} \mathbf{u}_j^T\mathbf{y}
+\end{split}
+\end{equation}
+\]
+
+<ul>
+<li>Compared with the solution of least square, we have an additional shrinkage term, the smaller d is and the larger λ is, the more shrinkage we have. </li>
+</ul></li>
+<li>The SVD of the centered matrix \(X\) is another way of expressing the principal components of the variables in \(X\). </li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-24" style="background:;">
+  <hgroup>
+    <h2>Ridge Regression</h2>
+  </hgroup>
+  <article>
+    <h3>Singular Value Decomposition (SVD)</h3>
+
+<p><center><img src="assets/img/pc.png" alt="PC" title="pc"></center></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-25" style="background:;">
+  <hgroup>
+    <h2>Ridge Regression</h2>
+  </hgroup>
+  <article>
+    <h3>Degree of Freedom</h3>
+
+  
+<div class='left' style='float:left;width:40%'>
+ <ul>
+<li>In statistics, the number of degrees of freedom is the number of values in the final calculation of a statistic that are free to vary.</li>
+<li>Computation
+\[
+\begin{equation}
+\begin{split}
+d(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
+&=tr[\mathbf{H_{\lambda}}]\\
+&=\sum_{j=1}^p \frac{d_j^2}{d_j^2 + \lambda} 
+\end{split}
+\end{equation}
+\]</li>
+<li>The smaller \(d\) is and the larger \(\lambda\) is, the less degree of freedom we have</li>
+</ul>
+
+
+</div>    
+<div class='right' style='float:right;width:55%'>
+ <p><center><img src="assets/img/df.png" alt="df" title="df"></center></p>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-26" style="background:;">
+  <hgroup>
+    <h2>LASSO</h2>
+  </hgroup>
+  <article>
+    <ul>
+<li>Introduction to Dimension Reduction</li>
+<li>Linear Regression and Least Squares (Review)</li>
+<li><b>Shrinkage Method</b>
+
+<ul>
+<li>Ridge Regression</li>
+<li><b>Lasso</b>
+
+<ul>
+<li><b>Formulations</b></li>
+<li><b>Comparisons with ridge regression and subset selection</b></li>
+<li><b>Quadratic Programming</b></li>
+<li><b>Least Angle Regression</b></li>
+<li><b>Viewed as approximation for \(l0\)-regularization</b></li>
+</ul></li>
+</ul></li>
+<li>Beyond Lasso</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-27" style="background:;">
+  <hgroup>
+    <h2>LASSO</h2>
+  </hgroup>
+  <article>
+    <h3>Linear regression with \(l1\)-regularization</h3>
+
+<ul>
+<li><p>Problems with \(l2\)-regularization</p>
+
+<ul>
+<li>Interpretability and compactness: Though coefficients are shrinked, but not to zero.</li>
+<li>Least squares with constraints
+\[
+\begin{equation}
+\hat{\beta}^{ridge}= argmin_{\beta}\sum_{i=1}^N(y_i - \beta_0 - \sum_{j=1}^p\mathbf{x_{ij}}\beta_j)^2, s.t. \sum_{j = 1}^p |\beta_j| \leq t
+\end{equation}
+\]</li>
+<li>Its dual form
+\[
+\hat{\beta}^{ridge} = argmin_{\beta}\{\sum_{i=1}^N(y_i - \beta_0 - \sum_{j=1}^p\mathbf{x_{ij}}\beta_j)^2 + \lambda \sum_{j = 1}^p|\beta_j|\}
+\]</li>
+<li>The \(11\)-regularization can be viewed as a Laplace prior on the coefficients</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-28" style="background:;">
+  <hgroup>
+    <h2>LASSO</h2>
+  </hgroup>
+  <article>
+    <p><center><img src="assets/img/lasso.png" alt="lasso" title="lasso"></center></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-29" style="background:;">
+  <hgroup>
+    <h2>LASSO</h2>
+  </hgroup>
+  <article>
+    <h3>Comparison</h3>
+
+<ul>
+<li>Orthonormal Input \(\mathbf{X}\)
+
+<ul>
+<li><b>Best subset</b>: [Hard thresholding] Only keep the top \(M\) largest coefficeints of \(\hat{\beta}^{ls}\)</li>
+<li><b>Ridge</b>: [Pure shrinkage] does proportionally shrinkage of \(\hat{\beta}^{ls}\)</li>
+<li><b>Lasso</b>: [Soft thresholding] translates each coefficient of \(\hat{\beta}^{ls}\) by \(\lambda\), truncating at 0 </li>
+</ul></li>
+</ul>
+
+<p><center><img src="assets/img/comp2.png" alt="comp2" title="comp2"></center></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-30" style="background:;">
+  <hgroup>
+    <h2>LASSO</h2>
+  </hgroup>
+  <article>
+    <h3>Comparison</h3>
+
+<ul>
+<li>Non-orthonormal Input \(\mathbf{X}\)</li>
+</ul>
+
+<p><center><img src="assets/img/comp3.png" alt="comp3" title="comp3"></center></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-31" style="background:;">
+  <hgroup>
+    <h2>LASSO</h2>
+  </hgroup>
+  <article>
+    <h3>Other unit circles for different \(p\)-norms</h3>
+
+<p><center><img src="assets/img/unit_circle.png" alt="uc" title="uc"></center></p>
+
+<table><thead>
+<tr>
+<th></th>
+<th>Convex</th>
+<th>Smooth</th>
+<th>Sparse</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>\(q<1\)</td>
+<td>No</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>\(q>1\)</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>\(q = 1\)</td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<p>Here \(q = 0\) is the pure variable selection procedure, as it is counting the <b>number of non-zero coefficients</b>.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-32" style="background:;">
+  <hgroup>
+    <h2>LASSO</h2>
+  </hgroup>
+  <article>
+    <h3>Regularizations as priors</h3>
+
+<p>\(|\beta_j|^q\) can be viewed as the log-prior density for \(\beta_j\), these three methods are bayes estimates with different priors</p>
+
+<ul>
+<li><b>Subset selection</b>: corresponds to \(q = 0\)</li>
+<li><b>LASSO</b>: corresponds to \(q = 1\), Laplace prior, \(density = (\frac{1}{\tau})exp(\frac{-|\beta|}{\tau}), \tau = 1/\lambda\)</li>
+<li><b>Ridge regression</b>: corresponds to \(q = 2\), Gaussian Prior</li>
+</ul>
+
+  
+<div class='left' style='float:left;width:48%'>
+ <p><center><img src="assets/img/laplace.png" alt="laplace" title="laplace"></center></p>
+
+
+</div>    
+<div class='right' style='float:right;width:48%'>
+ <p><center><img src="assets/img/gauss.png" alt="gauss" title="gauss"></center></p>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-33">
 <hgroup>
-  <h2>.</h2>
+  <h2>Thank you</h2>
 </hgroup>
 <article class = 'flexbox vcenter'>
-<h2>Thank you</h2>
 
 </article>
 <!-- Presenter Notes -->

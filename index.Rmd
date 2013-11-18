@@ -86,17 +86,35 @@ Hence, we would prefer that our prediction task involves computation as little a
 
 Feature selection applies.
 
+
+---
+
+## Difference between Feature Selection and Feature Extraction
+
+### Example 3: classification with fMRI data
+fMRI data are 4D images, with one dimension being the time slot.
+
+<center>![fMRI](assets/img/fMRI.png "fmri")</center>
+
+
+
 ---
 
 ## Difference between Feature Selection and Feature Extraction
 
 ### Example 3: classification with fMRI data
 
-fMRI data are 4D images, with one dimension being the time slot. Imagining that one snapshot of it is a $50 \times 50 \times 50$ image and we have 200 time points, then the total number of dimensions for just one image will be $50 \times 50 \times 50 \times 200 = 25,000,000$, which will cause great computation burdun. 
+- fMRI data are 4D images, with one dimension being the time slot. 
 
-In this task, we are not concerned about importance of particular voxels. Our purpose is to decrease the number of dimensions without losing too much information for further prediction task.
+- Suppose the dimension of images is $50 \times 50 \times 50$ for single time point and we have 200 time points
 
-Feature extraction applies.
+- $50 \times 50 \times 50 \times 200 = 25,000,000$ dimensions in total! This will cause great computation burdun
+
+In this task, we are not concerned about importance of particular voxels. Our purpose is to decrease the number of dimensions without losing too much information for further prediction task. 
+
+Feature extraction applies better.
+
+
 
 ---
 
@@ -232,13 +250,293 @@ where $\theta = \alpha^T \beta$. We can trade some bias for much less variance.
 
 ### Best-subset selection
 
-> - Best subset regression finds for each $k \in \{0, 1, 2, . . . , p\}$ the subset of size $k$ that gives smallest residual sum of squares. 
-- An efficient algorithm, the leaps and bounds procedure (Furnival and Wilson, 1974), makes this feasible for p as large as 30 or 40.
+
+- Best subset regression finds for each $k \in \{0, 1, 2, . . . , p\}$ the subset of size $k$ that gives smallest residual sum of squares.
+- An efficient algorithm, the leaps and bounds procedure (Furnival and Wilson, 1974), makes this feasible for p as large as 30 or 40.[]
+
+---
+
+## Subset Selection
+
+### Forward-stepwise selection
+
+Instead of searching all possible subsets, we can seek a good path through them.
+
+*Forward-Stepwise Selection* builds a model sequentially, adding one variable at a time. At each step, it
+
+- identifies the best variable (with the highest correlation with the residual error) to include in the *active set*
+$$\mathbf{x_k} = argmax_{\mathbf{x}_j}(|\mathbf{x}^T_j \mathbf{r}|)$$
+- then updates the least squares fit to include all the active variables
+
+--- &twocolportion w1:45% w2:50%
+
+## Subset Selection
+
+### Forward-Stagewise Regression
+
+*** left
+- Initialize the fit vector $\mathbf{f} = 0$
+- Compute the correlation vector 
+$$\mathbf{c} = \mathbf{c}(\mathbf{f}) = \mathbf{X}^T(\mathbf{y} - \mathbf{f})$$
+- $k = argmax_{j \in \{1,2,..,p\}} |\mathbf{c}_j|$
+- Coefficients and fit vector are updated
+$$\mathbf{f} \gets \mathbf{f} + \alpha \cdot sign(\mathbf{c}_j) \mathbf{x}_j$$
+$$\beta_j \gets \beta_j + \alpha \cdot sign(\mathbf{c}_j)$$ 
 
 
+***right
 
---- &vcenter
-## .
+![Stagewise](assets/img/stagewise.png "Stagewise")
+
+
+---&twocolportion w1:40% w2:55%
+
+## Subset Selection
+
+### Comparison
+*** left
+- It takes at most $p$ steps for forward-stepwise selection to get the final fit
+- Forward stagewise selection is a slow fitting algorithm, at each time step we only update one $\beta_j$, which can take more than $p$ steps
+- Forward stagewise is useful in high dimensional problem
+
+*** right
+
+<center>![comp1](assets/img/comp1.png "comp")</center>
+
+---
+
+## Subset Selection
+
+### Pros
+
+- More interpretable and compact model
+
+### Cons
+
+- It is a discrete process, and thus has high variance and sensitivity to the change in dataset.
+- Thus may not be able to lower prediction error
+
+---
+
+
+## Ridge Regression
+
+- Introduction to Dimension Reduction
+- Linear Regression and Least Squares (Review)
+- <b>Shrinkage Method</b>
+    - <b>Ridge Regression</b>
+        - <b>Formulations and closed form solution</b>
+        - <b>Singular value decomposition</b>
+        - <b>Degree of Freedom</b>
+    - Lasso
+- Beyond Lasso
+
+---
+
+## Ridge Regression
+
+- <b>Linear regression with $l2$-regularization</b>
+    - Least squares with quadratic constraints
+$$
+\begin{equation}
+\hat{\beta}^{ridge}= argmin_{\beta}\sum_{i=1}^N(y_i - \beta_0 - \sum_{j=1}^p\mathbf{x_{ij}}\beta_j)^2, s.t. \sum_{j = 1}^p \beta_j^2 \leq t
+\end{equation}
+$$
+    - Its dual form
+$$
+\hat{\beta}^{ridge} = argmin_{\beta}\{\sum_{i=1}^N(y_i - \beta_0 - \sum_{j=1}^p\mathbf{x_{ij}}\beta_j)^2 + \lambda \sum_{j = 1}^p\beta_j^2\}
+$$
+    - The L2-regularization can be viewed as a Gaussian prior on the coefficients, and our estimates are the posterior means
+- <b>Solution</b>
+$$
+\begin{equation}
+\begin{split}
+&RSS(\lambda) = (\mathbf{y} - \mathbf{X}\beta)^T(\mathbf{y} - \mathbf{X}\beta) + \lambda \beta^T\beta\\
+&\hat{\beta}^{ridge} = (\mathbf{X}^T\mathbf{X} + \lambda \mathbf{I})^{-1}\mathbf{X}^T\mathbf{y}
+\end{split}
+\end{equation}
+$$    
+
+
+---
+
+## Ridge Regression
+
+### Singular Value Decomposition (SVD)
+- The SVD of $\mathbf{X}$:
+$$\mathbf{X} = \mathbf{UDV}^T$$
+    - $\mathbf{U}$: $N \times p$ <b>orthogonal</b> matrix with columns spanning the column space of $\mathbf{X}$
+    - $\mathbf{V}$: $p \times p$ <b>orthogonal</b> matrix with columns spanning the row space of $\mathbf{X}$  
+    - $\mathbf{D}$: $p \times p$ <b>diagonal</b> matrix with diagonal entries $d_1 \geq d_2 \geq ... \geq d_p \geq 0$ being the singular values of $\mathbf{X}$
+- For least squares
+$$
+\begin{equation}
+\begin{split}
+\mathbf{X}\hat{\beta}^{ls} &= \mathbf{X(X^TX)^{-1}X^Ty}\\
+&=\mathbf{UU^Ty}
+\end{split}
+\end{equation}
+$$
+
+---
+
+## Ridge Regression
+
+### Singular Value Decomposition (SVD)
+- For ridge regression
+$$
+\begin{equation}
+\begin{split}
+\mathbf{X}\hat{\beta}^{ridge} &= \mathbf{X(X^TX + \lambda I)^{-1}X^Ty}\\
+&=\sum_{j=1}^p\mathbf{u}_j\frac{d_j^2}{d_j^2 + \lambda} \mathbf{u}_j^T\mathbf{y}
+\end{split}
+\end{equation}
+$$
+    - Compared with the solution of least square, we have an additional shrinkage term, the smaller d is and the larger λ is, the more shrinkage we have. 
+- The SVD of the centered matrix $X$ is another way of expressing the principal components of the variables in $X$. 
+
+
+---
+
+## Ridge Regression
+
+### Singular Value Decomposition (SVD) 
+
+<center>![PC](assets/img/pc.png "pc")</center>
+
+--- &twocolportion w1:40% w2:55%
+
+## Ridge Regression
+
+### Degree of Freedom
+
+*** left
+- In statistics, the number of degrees of freedom is the number of values in the final calculation of a statistic that are free to vary.
+- Computation
+$$
+\begin{equation}
+\begin{split}
+d(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
+&=tr[\mathbf{H_{\lambda}}]\\
+&=\sum_{j=1}^p \frac{d_j^2}{d_j^2 + \lambda} 
+\end{split}
+\end{equation}
+$$
+- The smaller $d$ is and the larger $\lambda$ is, the less degree of freedom we have
+
+*** right
+
+<center>![df](assets/img/df.png "df")</center>
+
+
+---
+
+## LASSO
+
+- Introduction to Dimension Reduction
+- Linear Regression and Least Squares (Review)
+- <b>Shrinkage Method</b>
+    - Ridge Regression
+    - <b>Lasso</b>
+        - <b>Formulations</b>
+        - <b>Comparisons with ridge regression and subset selection</b>
+        - <b>Quadratic Programming</b>
+        - <b>Least Angle Regression</b>
+        - <b>Viewed as approximation for $l0$-regularization</b>
+- Beyond Lasso
+
+---
+
+
+## LASSO
+
+### Linear regression with $l1$-regularization
+
+- Problems with $l2$-regularization
+    - Interpretability and compactness: Though coefficients are shrinked, but not to zero.
+    
+    - Least squares with constraints
+$$
+\begin{equation}
+\hat{\beta}^{ridge}= argmin_{\beta}\sum_{i=1}^N(y_i - \beta_0 - \sum_{j=1}^p\mathbf{x_{ij}}\beta_j)^2, s.t. \sum_{j = 1}^p |\beta_j| \leq t
+\end{equation}
+$$
+    - Its dual form
+$$
+\hat{\beta}^{ridge} = argmin_{\beta}\{\sum_{i=1}^N(y_i - \beta_0 - \sum_{j=1}^p\mathbf{x_{ij}}\beta_j)^2 + \lambda \sum_{j = 1}^p|\beta_j|\}
+$$
+    - The $11$-regularization can be viewed as a Laplace prior on the coefficients
+
+---
+
+## LASSO
+
+<center>![lasso](assets/img/lasso.png "lasso")</center>
+
+
+---
+
+## LASSO
+
+### Comparison
+
+- Orthonormal Input $\mathbf{X}$
+    - <b>Best subset</b>: [Hard thresholding] Only keep the top $M$ largest coefficeints of $\hat{\beta}^{ls}$
+    - <b>Ridge</b>: [Pure shrinkage] does proportionally shrinkage of $\hat{\beta}^{ls}$
+    - <b>Lasso</b>: [Soft thresholding] translates each coefficient of $\hat{\beta}^{ls}$ by $\lambda$, truncating at 0 
+
+
+<center>![comp2](assets/img/comp2.png "comp2")</center>
+
+---
+
+## LASSO
+
+### Comparison
+
+- Non-orthonormal Input $\mathbf{X}$
+
+<center>![comp3](assets/img/comp3.png "comp3")</center>
+
+
+---
+
+## LASSO
+
+### Other unit circles for different $p$-norms
+
+<center>![uc](assets/img/unit_circle.png "uc")</center>
+
+|   |Convex| Smooth| Sparse|
+|----|----|----|----|
+|$q<1$|No|No|Yes|
+|$q>1$|Yes|Yes|No|
+|$q = 1$|Yes|No|Yes|
+
+Here $q = 0$ is the pure variable selection procedure, as it is counting the <b>number of non-zero coefficients</b>.
+
+--- &twocolportion w1:48% w2:48%
+
+## LASSO
+
+### Regularizations as priors
+
+$|\beta_j|^q$ can be viewed as the log-prior density for $\beta_j$, these three methods are bayes estimates with different priors
+
+- <b>Subset selection</b>: corresponds to $q = 0$
+- <b>LASSO</b>: corresponds to $q = 1$, Laplace prior, $density = (\frac{1}{\tau})exp(\frac{-|\beta|}{\tau}), \tau = 1/\lambda$
+- <b>Ridge regression</b>: corresponds to $q = 2$, Gaussian Prior
+
+*** left
+
+<center>![laplace](assets/img/laplace.png "laplace")</center>
+
+*** right
+
+<center>![gauss](assets/img/gauss.png "gauss")</center>
+
+
+--- &vcenter   
 
 ## Thank you
 
