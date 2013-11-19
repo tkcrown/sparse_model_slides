@@ -518,6 +518,7 @@ MSE(\tilde{\theta} &= E[(\tilde{\theta} - \theta)^2])\\
     <ul>
 <li>Introduction to Dimension Reduction</li>
 <li>Linear Regression and Least Squares (Review)</li>
+<li>Subset Selection</li>
 <li><b>Shrinkage Method</b>
 
 <ul>
@@ -687,8 +688,9 @@ d(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
     <h3>Pros</h3>
 
 <ul>
-<li>\((\mathbf{X^TX + \lambda |})\) is inveritible and thus the cloased form solution always exist</li>
+<li>\((\mathbf{X^TX + \lambda I})\) is inveritible and thus the cloased form solution always exist</li>
 <li>Ridge regression controls the complexity with regularization term via \(\lambda\), which is less prone to overfitting compared with least squares fit, e.g. sometimes a wildly large coefficient on one variable can be cancelled by another wildly large coefficient of a correlated variable</li>
+<li>Possibly higher prediction accuracy, as the estimates of ridge regression trade a little bias for less variance, compared with least squares</li>
 </ul>
 
 <h3>Cons</h3>
@@ -709,6 +711,7 @@ d(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
     <ul>
 <li>Introduction to Dimension Reduction</li>
 <li>Linear Regression and Least Squares (Review)</li>
+<li>Subset Selection</li>
 <li><b>Shrinkage Method</b>
 
 <ul>
@@ -778,6 +781,7 @@ d(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
     <ul>
 <li>Introduction to Dimension Reduction</li>
 <li>Linear Regression and Least Squares (Review)</li>
+<li>Subset Selection</li>
 <li><b>Shrinkage Method</b>
 
 <ul>
@@ -924,6 +928,7 @@ d(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
     <ul>
 <li>Introduction to Dimension Reduction</li>
 <li>Linear Regression and Least Squares (Review)</li>
+<li>Subset Selection</li>
 <li><b>Shrinkage Method</b>
 
 <ul>
@@ -988,6 +993,7 @@ s.t. &\beta_j \leq \xi_j\\
     <ul>
 <li>Introduction to Dimension Reduction</li>
 <li>Linear Regression and Least Squares (Review)</li>
+<li>Subset Selection</li>
 <li><b>Shrinkage Method</b>
 
 <ul>
@@ -1193,6 +1199,7 @@ where \(s_j \in \{-1,1\}\) indicates the sign of the left hand inner product and
     <ul>
 <li>Introduction to Dimension Reduction</li>
 <li>Linear Regression and Least Squares (Review)</li>
+<li>Subset Selection</li>
 <li><b>Shrinkage Method</b>
 
 <ul>
@@ -1265,6 +1272,7 @@ where \(s_j \in \{-1,1\}\) indicates the sign of the left hand inner product and
     <ul>
 <li>Introduction to Dimension Reduction</li>
 <li>Linear Regression and Least Squares (Review)</li>
+<li>Subset Selection</li>
 <li>Shrinkage Method</li>
 <li><b>Beyond LASSO</b>
 

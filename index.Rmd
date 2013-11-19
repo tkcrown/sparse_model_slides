@@ -318,6 +318,7 @@ $$\beta_j \gets \beta_j + \alpha \cdot sign(\mathbf{c}_j)$$
 
 - Introduction to Dimension Reduction
 - Linear Regression and Least Squares (Review)
+- Subset Selection
 - <b>Shrinkage Method</b>
     - <b>Ridge Regression</b>
         - <b>Formulations and closed form solution</b>
@@ -428,8 +429,9 @@ $$
 
 ### Pros
 
-- $(\mathbf{X^TX + \lambda |})$ is inveritible and thus the cloased form solution always exist
+- $(\mathbf{X^TX + \lambda I})$ is inveritible and thus the cloased form solution always exist
 - Ridge regression controls the complexity with regularization term via $\lambda$, which is less prone to overfitting compared with least squares fit, e.g. sometimes a wildly large coefficient on one variable can be cancelled by another wildly large coefficient of a correlated variable
+- Possibly higher prediction accuracy, as the estimates of ridge regression trade a little bias for less variance, compared with least squares
 
 ### Cons
 
@@ -441,6 +443,7 @@ $$
 
 - Introduction to Dimension Reduction
 - Linear Regression and Least Squares (Review)
+- Subset Selection
 - <b>Shrinkage Method</b>
     - Ridge Regression
     - <b>Lasso</b>
@@ -487,6 +490,7 @@ $$
 
 - Introduction to Dimension Reduction
 - Linear Regression and Least Squares (Review)
+- Subset Selection
 - <b>Shrinkage Method</b>
     - Ridge Regression
     - <b>Lasso</b>
@@ -568,6 +572,7 @@ $|\beta_j|^q$ can be viewed as the log-prior density for $\beta_j$, these three 
 
 - Introduction to Dimension Reduction
 - Linear Regression and Least Squares (Review)
+- Subset Selection
 - <b>Shrinkage Method</b>
     - Ridge Regression
     - <b>Lasso</b>
@@ -610,6 +615,7 @@ $$
 
 - Introduction to Dimension Reduction
 - Linear Regression and Least Squares (Review)
+- Subset Selection
 - <b>Shrinkage Method</b>
     - Ridge Regression
     - <b>Lasso</b>
@@ -743,6 +749,7 @@ $$
 
 - Introduction to Dimension Reduction
 - Linear Regression and Least Squares (Review)
+- Subset Selection
 - <b>Shrinkage Method</b>
     - Ridge Regression
     - <b>Lasso</b>
@@ -790,6 +797,7 @@ $l_0$-norm is not convex, which makes it very hard to optimize.
 
 - Introduction to Dimension Reduction
 - Linear Regression and Least Squares (Review)
+- Subset Selection
 - Shrinkage Method
 - <b>Beyond LASSO</b>
    - <b>Elastic-Net</b>
