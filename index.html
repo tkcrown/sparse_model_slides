@@ -764,6 +764,40 @@ d(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
     <h2>LASSO</h2>
   </hgroup>
   <article>
+    <ul>
+<li>Introduction to Dimension Reduction</li>
+<li>Linear Regression and Least Squares (Review)</li>
+<li><b>Shrinkage Method</b>
+
+<ul>
+<li>Ridge Regression</li>
+<li><b>Lasso</b>
+
+<ul>
+<li>Formulations</li>
+<li><b>Comparisons with ridge regression and subset selection</b>
+
+<ul>
+<li><b>Orthonormal inputs</b></li>
+<li><b>Non-orthonormal inputs</b></li>
+</ul></li>
+<li>Quadratic Programming</li>
+<li>Least Angle Regression</li>
+<li>Viewed as approximation for \(l0\)-regularization</li>
+</ul></li>
+</ul></li>
+<li>Beyond Lasso</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-30" style="background:;">
+  <hgroup>
+    <h2>LASSO</h2>
+  </hgroup>
+  <article>
     <h3>Comparison</h3>
 
 <ul>
@@ -782,7 +816,7 @@ d(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-30" style="background:;">
+      <slide class="" id="slide-31" style="background:;">
   <hgroup>
     <h2>LASSO</h2>
   </hgroup>
@@ -799,7 +833,7 @@ d(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-31" style="background:;">
+      <slide class="" id="slide-32" style="background:;">
   <hgroup>
     <h2>LASSO</h2>
   </hgroup>
@@ -842,7 +876,7 @@ d(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-32" style="background:;">
+      <slide class="" id="slide-33" style="background:;">
   <hgroup>
     <h2>LASSO</h2>
   </hgroup>
@@ -871,7 +905,215 @@ d(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-33">
+      <slide class="" id="slide-34" style="background:;">
+  <hgroup>
+    <h2>LASSO</h2>
+  </hgroup>
+  <article>
+    <ul>
+<li>Introduction to Dimension Reduction</li>
+<li>Linear Regression and Least Squares (Review)</li>
+<li><b>Shrinkage Method</b>
+
+<ul>
+<li>Ridge Regression</li>
+<li><b>Lasso</b>
+
+<ul>
+<li>Formulations</li>
+<li>Comparisons with ridge regression and subset selection</li>
+<li><b>Quadratic Programming</b></li>
+<li>Least Angle Regression</li>
+<li>Viewed as approximation for \(l0\)-regularization</li>
+</ul></li>
+</ul></li>
+<li>Beyond Lasso</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-35" style="background:;">
+  <hgroup>
+    <h2>LASSO</h2>
+  </hgroup>
+  <article>
+    <h3>Quadratic Programming</h3>
+
+<ul>
+<li>Formulation
+\[
+min_{\beta}\{ \frac{1}{2}(\mathbf{X}\beta - \mathbf{y})^T (\mathbf{X}\beta - \mathbf{y}) + \lambda \|\beta\|_1\}
+\]
+is equivalent to 
+\[
+min_{w, \xi}\{ \frac{1}{2}(\mathbf{X}\beta - \mathbf{y})^T (\mathbf{X}\beta - \mathbf{y}) + \lambda \mathbf{1}^T\xi\}
+\]</li>
+</ul>
+
+<p>\[
+\begin{equation}
+\begin{split}
+s.t. &\beta_j \leq \xi_j\\
+&\beta_j \geq -\xi_j
+\end{split}
+\end{equation}
+\]</p>
+
+<ul>
+<li>Note that QP can only solve LASSO with a fixed \(\lambda\)</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-36" style="background:;">
+  <hgroup>
+    <h2>LASSO</h2>
+  </hgroup>
+  <article>
+    <ul>
+<li>Introduction to Dimension Reduction</li>
+<li>Linear Regression and Least Squares (Review)</li>
+<li><b>Shrinkage Method</b>
+
+<ul>
+<li>Ridge Regression</li>
+<li><b>Lasso</b>
+
+<ul>
+<li>Formulations</li>
+<li>Comparisons with ridge regression and subset selection</li>
+<li>Quadratic Programming</li>
+<li><b>Least Angle Regression</b></li>
+<li>Viewed as approximation for \(l0\)-regularization</li>
+</ul></li>
+</ul></li>
+<li>Beyond Lasso</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-37" style="background:;">
+  <hgroup>
+    <h2>Least Angle Regression</h2>
+  </hgroup>
+  <article>
+    <h3>Notations</h3>
+
+<ul>
+<li>\(\mathcal{A}_k\): <i>active set</i>, the set of features we already included in the model at time step \(k\)</li>
+<li>\(\beta_{\mathcal{A}_k}\): coefficients vector at the beginning of time step \(k\)</li>
+<li>\(\beta_{\mathcal{A}_k}(\alpha)\): coefficients vector in time step \(k\) w.r.t. \(\alpha\), </li>
+<li>\(\mathbf{f}_k\): the fit vector at the beginning of time step \(k\), \(\mathbf{f}_0 = 0\)</li>
+<li>\(\mathbf{f}_k(\alpha)\): the fit vector in time step \(k\) w.r.t. \(\alpha\)</li>
+<li>\(\mathbf{r}_k\): residual vector at the beginning of time step \(k\), \(\mathbf{r}_0 = \mathbf{y} - \bar{\mathbf{y}}\)</li>
+<li>\(\mathbf{r}_k(\alpha)\): residual vector in time step \(k\), w.r.t. \(\alpha\)</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-38" style="background:;">
+  <hgroup>
+    <h2>LAR Algorithm</h2>
+  </hgroup>
+  <article>
+    <ul>
+<li>Initialization: 
+
+<ul>
+<li>Standardized all predictors s.t. \(\bar{\mathbf{x}_j} = 0, \mathbf{x}_j^T\mathbf{x}_j = 1\); \(\mathbf{r}_0 = \mathbf{y} - \bar{\mathbf{y}}\); \(\beta = \mathbf{0}\); \(\mathbf{f}_0 = \mathbf{0}\); \(\mathcal{A}_k = \emptyset\)</li>
+<li>\(\mathbf{x}_k = argmax_{\mathbf{x}_j} \mathbf{x}_j^T \mathbf{r}_0\), \(\mathcal{A}_1 = \{\mathbf{x}_k\}\)</li>
+</ul></li>
+<li>Main
+
+<ul>
+<li>While termination_cond != true
+
+<ul>
+<li>\(\mathbf{r}_k = \mathbf{y} - \mathbf{X}_{\mathcal{A}_k} \beta_{\mathcal{A}_k}\), \(\mathbf{f}_k = \mathbf{X}_{\mathcal{A}_k} \beta_{\mathcal{A}_k}\)</li>
+<li>Search \(\alpha\)
+
+<ul>
+<li>\(\beta_{\mathcal{A}_k}(\alpha) = \mathcal{A}_k + \alpha \cdot \delta_k\), where \(\delta_k = \mathbf{(X^T_{\mathcal{A}_k} X_{\mathcal{A}_k})^{-1} X^T_{\mathcal{A}_k}r_k}\)</li>
+<li>Concurrently, \(\mathbf{f}_k(\alpha) = \mathbf{f}_k + \alpha \cdot \mathbf{u}_k\), where \(\mathbf{u}_k = \mathbf{X}_{\mathcal{A}_k} \delta_k\)</li>
+</ul></li>
+<li>Until \(\mathbf{X}_{\mathcal{A}_k} \mathbf{r}_k(\alpha) = max_{\mathbf{x}_j \in \bar{\mathcal{A}_k}} \mathbf{x}_j^T \mathbf{r}_k(\alpha)\)</li>
+<li>\(\mathbf{x}_k = argmax_{\mathbf{x}_j \in \bar{\mathcal{A}_k}} \mathbf{x}_j \mathbf{r}_k(\alpha)\) </li>
+<li>\(\mathcal{A}_{k+1} = \mathcal{A}_{k} \cup \{\mathbf{x}_k\}\)</li>
+</ul></li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-39" style="background:;">
+  <hgroup>
+    <h2>LAR</h2>
+  </hgroup>
+  <article>
+    <h3>Comments</h3>
+
+<ol>
+<li><b>Why called Least Angle</b>: the direction \(\mathbf{u}_k = \mathbf{X}_{\mathcal{A}_k} \delta_k\) that our fit \(\mathbf{f}_k(\alpha)\) increases actually has the same angle with any \(\mathbf{x}_j \in \mathcal{A}_k\).</li>
+<li>Note that the left-hand side of the termination condition for searching is a vector, while the right-hand side is a single value. 
+\[\mathbf{X}_{\mathcal{A}_k} \mathbf{r}_k(\alpha) = max_{\mathbf{x}_j \in \bar{\mathcal{A}_k}} \mathbf{x}_j^T \mathbf{r}_k(\alpha)\]
+This actually comes from the fact that the correlations of \(\mathbf{x}_j \in \mathcal{A}_k, \forall j\) with the residual error are tied and decrease at the same rate.</li>
+<li>The procedure of searching is approaching the least-squares coefficients of fitting \(\mathbf{y}\) on \(\mathcal{A}_k\)</li>
+<li>LAR solves the subset selection problem for all \(t, s.t. \|\beta\| \leq t\)</li>
+<li>Actually, \(\alpha\) can be computed instead of searching</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-40" style="background:;">
+  <hgroup>
+    <h2>LAR</h2>
+  </hgroup>
+  <article>
+    <h3>Example</h3>
+
+<p><center><img src="assets/img/lars.png" alt="Lars" title="lars"></center></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-41" style="background:;">
+  <hgroup>
+    <h2>LAR</h2>
+  </hgroup>
+  <article>
+    <h3>Result compared with LASSO</h3>
+
+<p><center><img src="assets/img/comp4.png" alt="comp4" title="comp4"></center></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-42" style="background:;">
+  <hgroup>
+    <h2>LAR</h2>
+  </hgroup>
+  <article>
+    <h3>Modification for LASSO</h3>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-43">
 <hgroup>
   <h2>Thank you</h2>
 </hgroup>

@@ -474,6 +474,26 @@ $$
 <center>![lasso](assets/img/lasso.png "lasso")</center>
 
 
+
+---
+
+## LASSO
+
+- Introduction to Dimension Reduction
+- Linear Regression and Least Squares (Review)
+- <b>Shrinkage Method</b>
+    - Ridge Regression
+    - <b>Lasso</b>
+        - Formulations
+        - <b>Comparisons with ridge regression and subset selection</b>
+            - <b>Orthonormal inputs</b>
+            - <b>Non-orthonormal inputs</b>
+        - Quadratic Programming
+        - Least Angle Regression
+        - Viewed as approximation for $l0$-regularization
+- Beyond Lasso
+
+
 ---
 
 ## LASSO
@@ -534,6 +554,137 @@ $|\beta_j|^q$ can be viewed as the log-prior density for $\beta_j$, these three 
 *** right
 
 <center>![gauss](assets/img/gauss.png "gauss")</center>
+
+
+---
+
+## LASSO
+
+- Introduction to Dimension Reduction
+- Linear Regression and Least Squares (Review)
+- <b>Shrinkage Method</b>
+    - Ridge Regression
+    - <b>Lasso</b>
+        - Formulations
+        - Comparisons with ridge regression and subset selection
+        - <b>Quadratic Programming</b>
+        - Least Angle Regression
+        - Viewed as approximation for $l0$-regularization
+- Beyond Lasso
+
+---
+
+## LASSO
+
+### Quadratic Programming
+
+- Formulation
+$$
+min_{\beta}\{ \frac{1}{2}(\mathbf{X}\beta - \mathbf{y})^T (\mathbf{X}\beta - \mathbf{y}) + \lambda \|\beta\|_1\}
+$$
+is equivalent to 
+$$
+min_{w, \xi}\{ \frac{1}{2}(\mathbf{X}\beta - \mathbf{y})^T (\mathbf{X}\beta - \mathbf{y}) + \lambda \mathbf{1}^T\xi\}
+$$
+
+$$
+\begin{equation}
+\begin{split}
+s.t. &\beta_j \leq \xi_j\\
+&\beta_j \geq -\xi_j
+\end{split}
+\end{equation}
+$$
+
+- Note that QP can only solve LASSO with a fixed $\lambda$
+
+---
+
+## LASSO
+
+- Introduction to Dimension Reduction
+- Linear Regression and Least Squares (Review)
+- <b>Shrinkage Method</b>
+    - Ridge Regression
+    - <b>Lasso</b>
+        - Formulations
+        - Comparisons with ridge regression and subset selection
+        - Quadratic Programming
+        - <b>Least Angle Regression</b>
+        - Viewed as approximation for $l0$-regularization
+- Beyond Lasso
+
+
+--- 
+
+## Least Angle Regression
+
+### Notations
+
+- $\mathcal{A}_k$: <i>active set</i>, the set of features we already included in the model at time step $k$
+- $\beta_{\mathcal{A}_k}$: coefficients vector at the beginning of time step $k$
+- $\beta_{\mathcal{A}_k}(\alpha)$: coefficients vector in time step $k$ w.r.t. $\alpha$, 
+- $\mathbf{f}_k$: the fit vector at the beginning of time step $k$, $\mathbf{f}_0 = 0$
+- $\mathbf{f}_k(\alpha)$: the fit vector in time step $k$ w.r.t. $\alpha$
+- $\mathbf{r}_k$: residual vector at the beginning of time step $k$, $\mathbf{r}_0 = \mathbf{y} - \bar{\mathbf{y}}$
+- $\mathbf{r}_k(\alpha)$: residual vector in time step $k$, w.r.t. $\alpha$
+
+---
+
+## LAR Algorithm
+
+- Initialization: 
+    - Standardized all predictors s.t. $\bar{\mathbf{x}_j} = 0, \mathbf{x}_j^T\mathbf{x}_j = 1$; $\mathbf{r}_0 = \mathbf{y} - \bar{\mathbf{y}}$; $\beta = \mathbf{0}$; $\mathbf{f}_0 = \mathbf{0}$; $\mathcal{A}_k = \emptyset$
+    - $\mathbf{x}_k = argmax_{\mathbf{x}_j} \mathbf{x}_j^T \mathbf{r}_0$, $\mathcal{A}_1 = \{\mathbf{x}_k\}$
+- Main
+    - While termination_cond != true
+      - $\mathbf{r}_k = \mathbf{y} - \mathbf{X}_{\mathcal{A}_k} \beta_{\mathcal{A}_k}$, $\mathbf{f}_k = \mathbf{X}_{\mathcal{A}_k} \beta_{\mathcal{A}_k}$
+      - Search $\alpha$
+          - $\beta_{\mathcal{A}_k}(\alpha) = \mathcal{A}_k + \alpha \cdot \delta_k$, where $\delta_k = \mathbf{(X^T_{\mathcal{A}_k} X_{\mathcal{A}_k})^{-1} X^T_{\mathcal{A}_k}r_k}$
+          - Concurrently, $\mathbf{f}_k(\alpha) = \mathbf{f}_k + \alpha \cdot \mathbf{u}_k$, where $\mathbf{u}_k = \mathbf{X}_{\mathcal{A}_k} \delta_k$
+      - Until $\mathbf{X}_{\mathcal{A}_k} \mathbf{r}_k(\alpha) = max_{\mathbf{x}_j \in \bar{\mathcal{A}_k}} \mathbf{x}_j^T \mathbf{r}_k(\alpha)$
+      - $\mathbf{x}_k = argmax_{\mathbf{x}_j \in \bar{\mathcal{A}_k}} \mathbf{x}_j \mathbf{r}_k(\alpha)$ 
+      - $\mathcal{A}_{k+1} = \mathcal{A}_{k} \cup \{\mathbf{x}_k\}$
+
+---
+
+## LAR
+
+### Comments
+
+1. <b>Why called Least Angle</b>: the direction $\mathbf{u}_k = \mathbf{X}_{\mathcal{A}_k} \delta_k$ that our fit $\mathbf{f}_k(\alpha)$ increases actually has the same angle with any $\mathbf{x}_j \in \mathcal{A}_k$.
+2. Note that the left-hand side of the termination condition for searching is a vector, while the right-hand side is a single value. 
+$$\mathbf{X}_{\mathcal{A}_k} \mathbf{r}_k(\alpha) = max_{\mathbf{x}_j \in \bar{\mathcal{A}_k}} \mathbf{x}_j^T \mathbf{r}_k(\alpha)$$
+This actually comes from the fact that the correlations of $\mathbf{x}_j \in \mathcal{A}_k, \forall j$ with the residual error are tied and decrease at the same rate.
+3. The procedure of searching is approaching the least-squares coefficients of fitting $\mathbf{y}$ on $\mathcal{A}_k$
+4. LAR solves the subset selection problem for all $t, s.t. \|\beta\| \leq t$
+5. Actually, $\alpha$ can be computed instead of searching
+
+
+---
+
+## LAR
+
+### Example
+
+<center>![Lars](assets/img/lars.png "lars")</center>
+
+---
+
+## LAR
+
+### Result compared with LASSO
+
+<center>![comp4](assets/img/comp4.png "comp4")</center>
+
+---
+
+## LAR
+
+### Modification for LASSO
+
+
+
 
 
 --- &vcenter   
