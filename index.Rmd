@@ -352,7 +352,6 @@ $$
 \end{equation}
 $$    
 
-
 ---
 
 ## Ridge Regression
@@ -423,6 +422,18 @@ $$
 
 <center>![df](assets/img/df.png "df")</center>
 
+---
+
+## Ridge Regression
+
+### Pros
+
+- $(\mathbf{X^TX + \lambda |})$ is inveritible and thus the cloased form solution always exist
+- Ridge regression controls the complexity with regularization term via $\lambda$, which is less prone to overfitting compared with least squares fit, e.g. sometimes a wildly large coefficient on one variable can be cancelled by another wildly large coefficient of a correlated variable
+
+### Cons
+
+- Interpretability and compactness: Though coefficients are shrinked, but not to zero. For high dimensional problem, it may cause efficiency issue.
 
 ---
 
@@ -447,8 +458,8 @@ $$
 
 ### Linear regression with $l_1$-regularization
 
-- <b>Problems with $l_2$-regularization</b>
-    - Interpretability and compactness: Though coefficients are shrinked, but not to zero.
+- <b>Formulations</b>
+
     
     - Least squares with constraints
 $$

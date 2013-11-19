@@ -681,6 +681,28 @@ d(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
 
       <slide class="" id="slide-25" style="background:;">
   <hgroup>
+    <h2>Ridge Regression</h2>
+  </hgroup>
+  <article>
+    <h3>Pros</h3>
+
+<ul>
+<li>\((\mathbf{X^TX + \lambda |})\) is inveritible and thus the cloased form solution always exist</li>
+<li>Ridge regression controls the complexity with regularization term via \(\lambda\), which is less prone to overfitting compared with least squares fit, e.g. sometimes a wildly large coefficient on one variable can be cancelled by another wildly large coefficient of a correlated variable</li>
+</ul>
+
+<h3>Cons</h3>
+
+<ul>
+<li>Interpretability and compactness: Though coefficients are shrinked, but not to zero. For high dimensional problem, it may cause efficiency issue.</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-26" style="background:;">
+  <hgroup>
     <h2>LASSO</h2>
   </hgroup>
   <article>
@@ -708,7 +730,7 @@ d(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-26" style="background:;">
+      <slide class="" id="slide-27" style="background:;">
   <hgroup>
     <h2>LASSO</h2>
   </hgroup>
@@ -716,10 +738,9 @@ d(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
     <h3>Linear regression with \(l_1\)-regularization</h3>
 
 <ul>
-<li><p><b>Problems with \(l_2\)-regularization</b></p>
+<li><p><b>Formulations</b></p>
 
 <ul>
-<li>Interpretability and compactness: Though coefficients are shrinked, but not to zero.</li>
 <li>Least squares with constraints
 \[
 \begin{equation}
@@ -738,7 +759,7 @@ d(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-27" style="background:;">
+      <slide class="" id="slide-28" style="background:;">
   <hgroup>
     <h2>LASSO</h2>
   </hgroup>
@@ -749,7 +770,7 @@ d(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-28" style="background:;">
+      <slide class="" id="slide-29" style="background:;">
   <hgroup>
     <h2>LASSO</h2>
   </hgroup>
@@ -783,7 +804,7 @@ d(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-29" style="background:;">
+      <slide class="" id="slide-30" style="background:;">
   <hgroup>
     <h2>LASSO</h2>
   </hgroup>
@@ -806,7 +827,7 @@ d(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-30" style="background:;">
+      <slide class="" id="slide-31" style="background:;">
   <hgroup>
     <h2>LASSO</h2>
   </hgroup>
@@ -823,7 +844,7 @@ d(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-31" style="background:;">
+      <slide class="" id="slide-32" style="background:;">
   <hgroup>
     <h2>LASSO</h2>
   </hgroup>
@@ -866,7 +887,7 @@ d(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-32" style="background:;">
+      <slide class="" id="slide-33" style="background:;">
   <hgroup>
     <h2>LASSO</h2>
   </hgroup>
@@ -895,7 +916,7 @@ d(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-33" style="background:;">
+      <slide class="" id="slide-34" style="background:;">
   <hgroup>
     <h2>LASSO</h2>
   </hgroup>
@@ -924,7 +945,7 @@ d(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-34" style="background:;">
+      <slide class="" id="slide-35" style="background:;">
   <hgroup>
     <h2>LASSO</h2>
   </hgroup>
@@ -959,7 +980,7 @@ s.t. &\beta_j \leq \xi_j\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-35" style="background:;">
+      <slide class="" id="slide-36" style="background:;">
   <hgroup>
     <h2>LASSO</h2>
   </hgroup>
@@ -988,7 +1009,7 @@ s.t. &\beta_j \leq \xi_j\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-36" style="background:;">
+      <slide class="" id="slide-37" style="background:;">
   <hgroup>
     <h2>Least Angle Regression</h2>
   </hgroup>
@@ -1009,7 +1030,7 @@ s.t. &\beta_j \leq \xi_j\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-37" style="background:;">
+      <slide class="" id="slide-38" style="background:;">
   <hgroup>
     <h2>LAR Algorithm</h2>
   </hgroup>
@@ -1045,7 +1066,7 @@ s.t. &\beta_j \leq \xi_j\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-38" style="background:;">
+      <slide class="" id="slide-39" style="background:;">
   <hgroup>
     <h2>LAR</h2>
   </hgroup>
@@ -1066,7 +1087,7 @@ This actually comes from the fact that the absolute values of correlations of \(
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-39" style="background:;">
+      <slide class="" id="slide-40" style="background:;">
   <hgroup>
     <h2>LAR</h2>
   </hgroup>
@@ -1079,7 +1100,7 @@ This actually comes from the fact that the absolute values of correlations of \(
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-40" style="background:;">
+      <slide class="" id="slide-41" style="background:;">
   <hgroup>
     <h2>LAR</h2>
   </hgroup>
@@ -1102,7 +1123,7 @@ This actually comes from the fact that the absolute values of correlations of \(
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-41" style="background:;">
+      <slide class="" id="slide-42" style="background:;">
   <hgroup>
     <h2>LAR</h2>
   </hgroup>
@@ -1123,7 +1144,7 @@ where \(s_j \in \{-1,1\}\) indicates the sign of the left hand inner product and
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-42" style="background:;">
+      <slide class="" id="slide-43" style="background:;">
   <hgroup>
     <h2>LAR</h2>
   </hgroup>
@@ -1143,7 +1164,7 @@ where \(s_j \in \{-1,1\}\) indicates the sign of the left hand inner product and
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-43" style="background:;">
+      <slide class="" id="slide-44" style="background:;">
   <hgroup>
     <h2>LAR</h2>
   </hgroup>
@@ -1164,7 +1185,7 @@ where \(s_j \in \{-1,1\}\) indicates the sign of the left hand inner product and
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-44" style="background:;">
+      <slide class="" id="slide-45" style="background:;">
   <hgroup>
     <h2>LASSO</h2>
   </hgroup>
@@ -1193,7 +1214,7 @@ where \(s_j \in \{-1,1\}\) indicates the sign of the left hand inner product and
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-45" style="background:;">
+      <slide class="" id="slide-46" style="background:;">
   <hgroup>
     <h2>Viewed as approximation for \(l_0\)-regularization</h2>
   </hgroup>
@@ -1216,7 +1237,7 @@ where \(s_j \in \{-1,1\}\) indicates the sign of the left hand inner product and
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-46" style="background:;">
+      <slide class="" id="slide-47" style="background:;">
   <hgroup>
     <h2>Viewed as approximation for \(l_0\)-regularization</h2>
   </hgroup>
@@ -1236,7 +1257,7 @@ where \(s_j \in \{-1,1\}\) indicates the sign of the left hand inner product and
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-47" style="background:;">
+      <slide class="" id="slide-48" style="background:;">
   <hgroup>
     <h2>Beyond LASSO</h2>
   </hgroup>
@@ -1260,7 +1281,7 @@ where \(s_j \in \{-1,1\}\) indicates the sign of the left hand inner product and
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-48" style="background:;">
+      <slide class="" id="slide-49" style="background:;">
   <hgroup>
     <h2>Beyond LASSO</h2>
   </hgroup>
@@ -1298,7 +1319,7 @@ which is a compromise between ridge regression and LASSO.</li>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-49" style="background:;">
+      <slide class="" id="slide-50" style="background:;">
   <hgroup>
     <h2>Beyond LASSO</h2>
   </hgroup>
@@ -1322,7 +1343,7 @@ which is a compromise between ridge regression and LASSO.</li>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-50" style="background:;">
+      <slide class="" id="slide-51" style="background:;">
   <hgroup>
     <h2>Beyond LASSO</h2>
   </hgroup>
@@ -1335,7 +1356,7 @@ which is a compromise between ridge regression and LASSO.</li>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-51" style="background:;">
+      <slide class="" id="slide-52" style="background:;">
   <hgroup>
     <h2>Beyond LASSO</h2>
   </hgroup>
@@ -1362,7 +1383,7 @@ which is a compromise between ridge regression and LASSO.</li>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-52" style="background:;">
+      <slide class="" id="slide-53" style="background:;">
   <hgroup>
     <h2>Beyond LASSO</h2>
   </hgroup>
@@ -1390,7 +1411,7 @@ which is a compromise between ridge regression and LASSO.</li>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-53" style="background:;">
+      <slide class="" id="slide-54" style="background:;">
   <hgroup>
     <h2>Beyond LASSO</h2>
   </hgroup>
@@ -1414,7 +1435,7 @@ where \(loss()\) is some loss function and \(\sum_{j = 1}^p \|\beta_{:j}\|_2\) i
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-54" style="background:;">
+      <slide class="" id="slide-55" style="background:;">
   <hgroup>
     <h2>Beyond LASSO</h2>
   </hgroup>
@@ -1427,7 +1448,7 @@ where \(loss()\) is some loss function and \(\sum_{j = 1}^p \|\beta_{:j}\|_2\) i
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-55" style="background:;">
+      <slide class="" id="slide-56" style="background:;">
   <hgroup>
     <h2>Beyond LASSO</h2>
   </hgroup>
@@ -1440,7 +1461,7 @@ where \(loss()\) is some loss function and \(\sum_{j = 1}^p \|\beta_{:j}\|_2\) i
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-56" style="background:;">
+      <slide class="" id="slide-57" style="background:;">
   <hgroup>
     <h2>Beyond LASSO</h2>
   </hgroup>
@@ -1460,7 +1481,7 @@ where \(r_{a,b} \in \mathbb{R}\) denotes the weight of the edge and \(\tau(r)\) 
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-57" style="background:;">
+      <slide class="" id="slide-58" style="background:;">
   <hgroup>
     <h2>Beyond LASSO</h2>
   </hgroup>
@@ -1473,7 +1494,7 @@ where \(r_{a,b} \in \mathbb{R}\) denotes the weight of the edge and \(\tau(r)\) 
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-58">
+      <slide class="" id="slide-59">
 <hgroup>
   <h2>Sparse Models</h2>
 </hgroup>
