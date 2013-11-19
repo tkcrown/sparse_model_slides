@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Sparse Methods</title>
+  <title>Sparse Models</title>
   <meta charset="utf-8">
-  <meta name="description" content="Sparse Methods">
+  <meta name="description" content="Sparse Models">
   <meta name="author" content="Ping Jin">
   <meta name="generator" content="slidify" />
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -32,8 +32,8 @@
     <!-- Should I move this to a Local Layout File? -->
     <slide class="title-slide segue nobackground">
       <hgroup class="auto-fadein">
-        <h1>Sparse Methods</h1>
-        <h2></h2>
+        <h1>Sparse Models</h1>
+        <h2>CMPUT 466/551</h2>
         <p>Ping Jin<br/></p>
       </hgroup>
           </slide>
@@ -94,7 +94,9 @@
     <h2>Difference between Feature Selection and Feature Extraction</h2>
   </hgroup>
   <article>
-    <h3>Feature Selection</h3>
+      
+<div class='left' style='float:left;width:40%'>
+ <h3>Feature Selection</h3>
 
 <ul>
 <li>chooses a subset of features from the original feature set</li>
@@ -113,6 +115,14 @@
 <li>Why do we need two frameworks for dimension reduction?</li>
 </ul>
 
+
+</div>    
+<div class='right' style='float:right;width:56%'>
+ <p><center><img src="assets/img/fs.png" alt="fs" title="fs"></center></p>
+
+<p><center><img src="assets/img/fe.png" alt="fe" title="fe"></center></p>
+
+</div>
   </article>
   <!-- Presenter Notes -->
 </slide>
@@ -141,18 +151,11 @@ which are important for prediction of lpsa.</p>
     <h2>Difference between Feature Selection and Feature Extraction</h2>
   </hgroup>
   <article>
-    <h3>Example 2: Embedded System with limited computation resource</h3>
+    <h3>Example 2: classification with fMRI data</h3>
 
-<p>Suppose we have a robot which possess many sensors, such as temperature sensor, light senor, cliff sensor, gas sensor, GPS, gyroscope and so on. And our task is to discriminate if the current situation is dangerous for the robot, according the data from these sensors. In this task, our computation resource is very limited due to </p>
+<p>fMRI data are 4D images, with one dimension being the time slot.</p>
 
-<ul>
-<li>the CPU of the embedded system</li>
-<li>our battery capacity. </li>
-</ul>
-
-<p>Hence, we would prefer that our prediction task involves computation as little as possible. Then a compact model with less features from sensors would be preferred. </p>
-
-<p>Feature selection applies.</p>
+<p><center><img src="assets/img/fMRI.png" alt="fMRI" title="fmri"></center></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -163,22 +166,7 @@ which are important for prediction of lpsa.</p>
     <h2>Difference between Feature Selection and Feature Extraction</h2>
   </hgroup>
   <article>
-    <h3>Example 3: classification with fMRI data</h3>
-
-<p>fMRI data are 4D images, with one dimension being the time slot.</p>
-
-<p><center><img src="assets/img/fMRI.png" alt="fMRI" title="fmri"></center></p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-      <slide class="" id="slide-7" style="background:;">
-  <hgroup>
-    <h2>Difference between Feature Selection and Feature Extraction</h2>
-  </hgroup>
-  <article>
-    <h3>Example 3: classification with fMRI data</h3>
+    <h3>Example 2: classification with fMRI data</h3>
 
 <ul>
 <li><p>fMRI data are 4D images, with one dimension being the time slot. </p></li>
@@ -194,7 +182,7 @@ which are important for prediction of lpsa.</p>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-8" style="background:;">
+      <slide class="" id="slide-7" style="background:;">
   <hgroup>
     <h2>Feature Selection</h2>
   </hgroup>
@@ -203,28 +191,28 @@ which are important for prediction of lpsa.</p>
 
 <ul>
 <li>search the space of feature subsets</li>
-<li>use the training/validation accuracy of a particular classifier as the measure of utility for a candidate subset.</li>
+<li>use the training/validation accuracy of a particular classifier as the measure of utility for a candidate subset</li>
 </ul>
 
 <h3>Embedded Methods</h3>
 
 <ul>
-<li>exploit the structure of speciﬁc classes of learning models to guide the feature selection process, </li>
-<li>e.g. LASSO[1]. It is embedded as part of the model construction process[2].</li>
+<li>exploit the structure of speciﬁc classes of learning models to guide the feature selection process</li>
+<li>e.g. LASSO. It is embedded as part of the model construction process</li>
 </ul>
 
 <h3>Filter Methods</h3>
 
 <ul>
-<li>use some general rules/criterions to measure the feature selection results, independent of the classifiers, </li>
-<li>e.g. mutual information based method[1].</li>
+<li>use some general rules/criterions to measure the feature selection results independent of the classifiers</li>
+<li>e.g. mutual information based method</li>
 </ul>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-9" style="background:;">
+      <slide class="" id="slide-8" style="background:;">
   <hgroup>
     <h2>Feature Selection</h2>
   </hgroup>
@@ -263,7 +251,7 @@ which are important for prediction of lpsa.</p>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-10" style="background:;">
+      <slide class="" id="slide-9" style="background:;">
   <hgroup>
     <h2>Feature Extraction</h2>
   </hgroup>
@@ -290,7 +278,7 @@ which are important for prediction of lpsa.</p>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-11" style="background:;">
+      <slide class="" id="slide-10" style="background:;">
   <hgroup>
     <h2>Part 2: Linear Regression and Least Squares (Review)</h2>
   </hgroup>
@@ -314,7 +302,7 @@ which are important for prediction of lpsa.</p>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-12" style="background:;">
+      <slide class="" id="slide-11" style="background:;">
   <hgroup>
     <h2>Linear Regression and Least Squares (Review)</h2>
   </hgroup>
@@ -353,7 +341,7 @@ RSS(\beta) &= (\mathbf{y} - \mathbf{X}\beta)^T(\mathbf{y} - \mathbf{X}\beta)\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-13" style="background:;">
+      <slide class="" id="slide-12" style="background:;">
   <hgroup>
     <h2>Part 3: Subset Selection</h2>
   </hgroup>
@@ -377,7 +365,7 @@ RSS(\beta) &= (\mathbf{y} - \mathbf{X}\beta)^T(\mathbf{y} - \mathbf{X}\beta)\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-14" style="background:;">
+      <slide class="" id="slide-13" style="background:;">
   <hgroup>
     <h2>Linear Regression and Least Squares (Review)</h2>
   </hgroup>
@@ -398,16 +386,16 @@ MSE(\tilde{\theta} &= E[(\tilde{\theta} - \theta)^2])\\
 <h3>Problems of Least Squares</h3>
 
 <ul>
-<li>Prediction accuracy: low bias, but high variance, overfitting noise and sensitive to outlier</li>
-<li>Interpretation: Sometimes, especially when faced with numerous features, we may want a &quot;big picture&quot; of the model</li>
-<li>\((\mathbf{X}^T\mathbf{X})\) may be invertible and thus no closed form solution</li>
+<li><b>Prediction accuracy</b>: low bias, but high variance, overfitting noise and sensitive to outlier</li>
+<li><b>Interpretation</b>: Sometimes, especially when faced with numerous features, we may want a &quot;big picture&quot; of the model</li>
+<li>\((\mathbf{X}^T\mathbf{X})\) may be <b>not invertible</b> and thus no closed form solution</li>
 </ul>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-15" style="background:;">
+      <slide class="" id="slide-14" style="background:;">
   <hgroup>
     <h2>Subset Selection</h2>
   </hgroup>
@@ -416,14 +404,16 @@ MSE(\tilde{\theta} &= E[(\tilde{\theta} - \theta)^2])\\
 
 <ul>
 <li>Best subset regression finds for each \(k \in \{0, 1, 2, . . . , p\}\) the subset of size \(k\) that gives smallest residual sum of squares.</li>
-<li>An efficient algorithm, the leaps and bounds procedure (Furnival and Wilson, 1974), makes this feasible for p as large as 30 or 40.[]</li>
+<li>An efficient algorithm, the leaps and bounds procedure (Furnival and Wilson, 1974), makes this feasible for \(p\) as large as 30 or 40.</li>
 </ul>
+
+<p><center><img src="assets/img/best_sub.png" alt="best_sub" title="best_sub"></center></p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-16" style="background:;">
+      <slide class="" id="slide-15" style="background:;">
   <hgroup>
     <h2>Subset Selection</h2>
   </hgroup>
@@ -444,7 +434,7 @@ MSE(\tilde{\theta} &= E[(\tilde{\theta} - \theta)^2])\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-17" style="background:;">
+      <slide class="" id="slide-16" style="background:;">
   <hgroup>
     <h2>Subset Selection</h2>
   </hgroup>
@@ -473,7 +463,7 @@ MSE(\tilde{\theta} &= E[(\tilde{\theta} - \theta)^2])\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-18" style="background:;">
+      <slide class="" id="slide-17" style="background:;">
   <hgroup>
     <h2>Subset Selection</h2>
   </hgroup>
@@ -498,7 +488,7 @@ MSE(\tilde{\theta} &= E[(\tilde{\theta} - \theta)^2])\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-19" style="background:;">
+      <slide class="" id="slide-18" style="background:;">
   <hgroup>
     <h2>Subset Selection</h2>
   </hgroup>
@@ -520,7 +510,7 @@ MSE(\tilde{\theta} &= E[(\tilde{\theta} - \theta)^2])\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-20" style="background:;">
+      <slide class="" id="slide-19" style="background:;">
   <hgroup>
     <h2>Ridge Regression</h2>
   </hgroup>
@@ -547,13 +537,13 @@ MSE(\tilde{\theta} &= E[(\tilde{\theta} - \theta)^2])\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-21" style="background:;">
+      <slide class="" id="slide-20" style="background:;">
   <hgroup>
     <h2>Ridge Regression</h2>
   </hgroup>
   <article>
     <ul>
-<li><b>Linear regression with \(l2\)-regularization</b>
+<li><b>Linear regression with \(l_2\)-regularization</b>
 
 <ul>
 <li>Least squares with quadratic constraints
@@ -566,7 +556,7 @@ MSE(\tilde{\theta} &= E[(\tilde{\theta} - \theta)^2])\\
 \[
 \hat{\beta}^{ridge} = argmin_{\beta}\{\sum_{i=1}^N(y_i - \beta_0 - \sum_{j=1}^p\mathbf{x_{ij}}\beta_j)^2 + \lambda \sum_{j = 1}^p\beta_j^2\}
 \]</li>
-<li>The L2-regularization can be viewed as a Gaussian prior on the coefficients, and our estimates are the posterior means</li>
+<li>The \(l_2\)-regularization can be viewed as a Gaussian prior on the coefficients, and our estimates are the posterior means</li>
 </ul></li>
 <li><b>Solution</b>
 \[
@@ -583,7 +573,7 @@ MSE(\tilde{\theta} &= E[(\tilde{\theta} - \theta)^2])\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-22" style="background:;">
+      <slide class="" id="slide-21" style="background:;">
   <hgroup>
     <h2>Ridge Regression</h2>
   </hgroup>
@@ -591,7 +581,7 @@ MSE(\tilde{\theta} &= E[(\tilde{\theta} - \theta)^2])\\
     <h3>Singular Value Decomposition (SVD)</h3>
 
 <ul>
-<li>The SVD of \(\mathbf{X}\):
+<li><b>The SVD of</b> \(\mathbf{X}\):
 \[\mathbf{X} = \mathbf{UDV}^T\]
 
 <ul>
@@ -599,7 +589,7 @@ MSE(\tilde{\theta} &= E[(\tilde{\theta} - \theta)^2])\\
 <li>\(\mathbf{V}\): \(p \times p\) <b>orthogonal</b> matrix with columns spanning the row space of \(\mathbf{X}\)<br></li>
 <li>\(\mathbf{D}\): \(p \times p\) <b>diagonal</b> matrix with diagonal entries \(d_1 \geq d_2 \geq ... \geq d_p \geq 0\) being the singular values of \(\mathbf{X}\)</li>
 </ul></li>
-<li>For least squares
+<li><b>For least squares</b>
 \[
 \begin{equation}
 \begin{split}
@@ -614,7 +604,7 @@ MSE(\tilde{\theta} &= E[(\tilde{\theta} - \theta)^2])\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-23" style="background:;">
+      <slide class="" id="slide-22" style="background:;">
   <hgroup>
     <h2>Ridge Regression</h2>
   </hgroup>
@@ -622,7 +612,7 @@ MSE(\tilde{\theta} &= E[(\tilde{\theta} - \theta)^2])\\
     <h3>Singular Value Decomposition (SVD)</h3>
 
 <ul>
-<li>For ridge regression
+<li><b>For ridge regression</b>
 \[
 \begin{equation}
 \begin{split}
@@ -642,7 +632,7 @@ MSE(\tilde{\theta} &= E[(\tilde{\theta} - \theta)^2])\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-24" style="background:;">
+      <slide class="" id="slide-23" style="background:;">
   <hgroup>
     <h2>Ridge Regression</h2>
   </hgroup>
@@ -655,7 +645,7 @@ MSE(\tilde{\theta} &= E[(\tilde{\theta} - \theta)^2])\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-25" style="background:;">
+      <slide class="" id="slide-24" style="background:;">
   <hgroup>
     <h2>Ridge Regression</h2>
   </hgroup>
@@ -689,7 +679,7 @@ d(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-26" style="background:;">
+      <slide class="" id="slide-25" style="background:;">
   <hgroup>
     <h2>LASSO</h2>
   </hgroup>
@@ -708,7 +698,7 @@ d(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
 <li><b>Comparisons with ridge regression and subset selection</b></li>
 <li><b>Quadratic Programming</b></li>
 <li><b>Least Angle Regression</b></li>
-<li><b>Viewed as approximation for \(l0\)-regularization</b></li>
+<li><b>Viewed as approximation for \(l_0\)-regularization</b></li>
 </ul></li>
 </ul></li>
 <li>Beyond Lasso</li>
@@ -718,15 +708,15 @@ d(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-27" style="background:;">
+      <slide class="" id="slide-26" style="background:;">
   <hgroup>
     <h2>LASSO</h2>
   </hgroup>
   <article>
-    <h3>Linear regression with \(l1\)-regularization</h3>
+    <h3>Linear regression with \(l_1\)-regularization</h3>
 
 <ul>
-<li><p>Problems with \(l2\)-regularization</p>
+<li><p><b>Problems with \(l_2\)-regularization</b></p>
 
 <ul>
 <li>Interpretability and compactness: Though coefficients are shrinked, but not to zero.</li>
@@ -740,7 +730,7 @@ d(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
 \[
 \hat{\beta}^{ridge} = argmin_{\beta}\{\sum_{i=1}^N(y_i - \beta_0 - \sum_{j=1}^p\mathbf{x_{ij}}\beta_j)^2 + \lambda \sum_{j = 1}^p|\beta_j|\}
 \]</li>
-<li>The \(11\)-regularization can be viewed as a Laplace prior on the coefficients</li>
+<li>The \(1_1\)-regularization can be viewed as a Laplace prior on the coefficients</li>
 </ul></li>
 </ul>
 
@@ -748,7 +738,7 @@ d(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-28" style="background:;">
+      <slide class="" id="slide-27" style="background:;">
   <hgroup>
     <h2>LASSO</h2>
   </hgroup>
@@ -759,7 +749,7 @@ d(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-29" style="background:;">
+      <slide class="" id="slide-28" style="background:;">
   <hgroup>
     <h2>LASSO</h2>
   </hgroup>
@@ -783,11 +773,34 @@ d(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
 </ul></li>
 <li>Quadratic Programming</li>
 <li>Least Angle Regression</li>
-<li>Viewed as approximation for \(l0\)-regularization</li>
+<li>Viewed as approximation for \(l_0\)-regularization</li>
 </ul></li>
 </ul></li>
 <li>Beyond Lasso</li>
 </ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-29" style="background:;">
+  <hgroup>
+    <h2>LASSO</h2>
+  </hgroup>
+  <article>
+    <h3>Comparison</h3>
+
+<ul>
+<li><b>Orthonormal Input \(\mathbf{X}\)</b>
+
+<ul>
+<li><b>Best subset</b>: [Hard thresholding] Only keep the top \(M\) largest coefficeints of \(\hat{\beta}^{ls}\)</li>
+<li><b>Ridge</b>: [Pure shrinkage] does proportional shrinkage of \(\hat{\beta}^{ls}\)</li>
+<li><b>Lasso</b>: [Soft thresholding] translates each coefficient of \(\hat{\beta}^{ls}\) by \(\lambda\), truncating at 0 </li>
+</ul></li>
+</ul>
+
+<p><center><img src="assets/img/comp2.png" alt="comp2" title="comp2"></center></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -801,30 +814,7 @@ d(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
     <h3>Comparison</h3>
 
 <ul>
-<li>Orthonormal Input \(\mathbf{X}\)
-
-<ul>
-<li><b>Best subset</b>: [Hard thresholding] Only keep the top \(M\) largest coefficeints of \(\hat{\beta}^{ls}\)</li>
-<li><b>Ridge</b>: [Pure shrinkage] does proportionally shrinkage of \(\hat{\beta}^{ls}\)</li>
-<li><b>Lasso</b>: [Soft thresholding] translates each coefficient of \(\hat{\beta}^{ls}\) by \(\lambda\), truncating at 0 </li>
-</ul></li>
-</ul>
-
-<p><center><img src="assets/img/comp2.png" alt="comp2" title="comp2"></center></p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-      <slide class="" id="slide-31" style="background:;">
-  <hgroup>
-    <h2>LASSO</h2>
-  </hgroup>
-  <article>
-    <h3>Comparison</h3>
-
-<ul>
-<li>Non-orthonormal Input \(\mathbf{X}\)</li>
+<li><b>Non-orthonormal Input \(\mathbf{X}\)</b></li>
 </ul>
 
 <p><center><img src="assets/img/comp3.png" alt="comp3" title="comp3"></center></p>
@@ -833,7 +823,7 @@ d(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-32" style="background:;">
+      <slide class="" id="slide-31" style="background:;">
   <hgroup>
     <h2>LASSO</h2>
   </hgroup>
@@ -876,7 +866,7 @@ d(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-33" style="background:;">
+      <slide class="" id="slide-32" style="background:;">
   <hgroup>
     <h2>LASSO</h2>
   </hgroup>
@@ -905,7 +895,7 @@ d(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-34" style="background:;">
+      <slide class="" id="slide-33" style="background:;">
   <hgroup>
     <h2>LASSO</h2>
   </hgroup>
@@ -924,7 +914,7 @@ d(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
 <li>Comparisons with ridge regression and subset selection</li>
 <li><b>Quadratic Programming</b></li>
 <li>Least Angle Regression</li>
-<li>Viewed as approximation for \(l0\)-regularization</li>
+<li>Viewed as approximation for \(l_0\)-regularization</li>
 </ul></li>
 </ul></li>
 <li>Beyond Lasso</li>
@@ -934,7 +924,7 @@ d(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-35" style="background:;">
+      <slide class="" id="slide-34" style="background:;">
   <hgroup>
     <h2>LASSO</h2>
   </hgroup>
@@ -969,7 +959,7 @@ s.t. &\beta_j \leq \xi_j\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-36" style="background:;">
+      <slide class="" id="slide-35" style="background:;">
   <hgroup>
     <h2>LASSO</h2>
   </hgroup>
@@ -988,7 +978,7 @@ s.t. &\beta_j \leq \xi_j\\
 <li>Comparisons with ridge regression and subset selection</li>
 <li>Quadratic Programming</li>
 <li><b>Least Angle Regression</b></li>
-<li>Viewed as approximation for \(l0\)-regularization</li>
+<li>Viewed as approximation for \(l_0\)-regularization</li>
 </ul></li>
 </ul></li>
 <li>Beyond Lasso</li>
@@ -998,7 +988,7 @@ s.t. &\beta_j \leq \xi_j\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-37" style="background:;">
+      <slide class="" id="slide-36" style="background:;">
   <hgroup>
     <h2>Least Angle Regression</h2>
   </hgroup>
@@ -1019,7 +1009,7 @@ s.t. &\beta_j \leq \xi_j\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-38" style="background:;">
+      <slide class="" id="slide-37" style="background:;">
   <hgroup>
     <h2>LAR Algorithm</h2>
   </hgroup>
@@ -1045,7 +1035,7 @@ s.t. &\beta_j \leq \xi_j\\
 <li>Concurrently, \(\mathbf{f}_k(\alpha) = \mathbf{f}_k + \alpha \cdot \mathbf{u}_k\), where \(\mathbf{u}_k = \mathbf{X}_{\mathcal{A}_k} \delta_k\)</li>
 </ul></li>
 <li>Until \(|\mathbf{X}_{\mathcal{A}_k} \mathbf{r}_k(\alpha)| = max_{\mathbf{x}_j \in \bar{\mathcal{A}_k}} |\mathbf{x}_j^T \mathbf{r}_k(\alpha)|\)</li>
-<li>\(\mathbf{x}_k = argmax_{\mathbf{x}_j \in \bar{\mathcal{A}_k}} \mathbf{x}_j \mathbf{r}_k(\alpha)\) </li>
+<li>\(\mathbf{x}_k = argmax_{\mathbf{x}_j \in \bar{\mathcal{A}_k}} |\mathbf{x}_j \mathbf{r}_k(\alpha)|\) </li>
 <li>\(\mathcal{A}_{k+1} = \mathcal{A}_{k} \cup \{\mathbf{x}_k\}\)</li>
 </ul></li>
 </ul></li>
@@ -1055,7 +1045,7 @@ s.t. &\beta_j \leq \xi_j\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-39" style="background:;">
+      <slide class="" id="slide-38" style="background:;">
   <hgroup>
     <h2>LAR</h2>
   </hgroup>
@@ -1076,7 +1066,7 @@ This actually comes from the fact that the absolute values of correlations of \(
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-40" style="background:;">
+      <slide class="" id="slide-39" style="background:;">
   <hgroup>
     <h2>LAR</h2>
   </hgroup>
@@ -1089,7 +1079,7 @@ This actually comes from the fact that the absolute values of correlations of \(
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-41" style="background:;">
+      <slide class="" id="slide-40" style="background:;">
   <hgroup>
     <h2>LAR</h2>
   </hgroup>
@@ -1112,7 +1102,7 @@ This actually comes from the fact that the absolute values of correlations of \(
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-42" style="background:;">
+      <slide class="" id="slide-41" style="background:;">
   <hgroup>
     <h2>LAR</h2>
   </hgroup>
@@ -1133,7 +1123,7 @@ where \(s_j \in \{-1,1\}\) indicates the sign of the left hand inner product and
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-43" style="background:;">
+      <slide class="" id="slide-42" style="background:;">
   <hgroup>
     <h2>LAR</h2>
   </hgroup>
@@ -1146,14 +1136,14 @@ where \(s_j \in \{-1,1\}\) indicates the sign of the left hand inner product and
 where \(s_j \in \{-1,1\}\) indicates the sign of the left hand inner product and \(\gamma\) is the common value. We also know that \(|\mathbf{x_j}(\mathbf{y} - \mathbf{X}\beta)| \leq \gamma, \forall \mathbf{x}_j \not\in \mathcal{A}\)</p></li>
 <li><p>Now consider about LASSO for a fixed given \(\lambda\). Let \(\mathcal{B}\) with non-zero coefficients, then we differentiate the objective function w.r.t. these non zero coefficients and set the gradient to zero
 \[\mathbf{x}_j^T(\mathbf{y} - \mathbf{X}\beta) = \lambda \cdot sign(\beta_j), \forall j \in \mathcal{B}\]</p></li>
-<li><p>They are identical only if \(sign(\beta_j)\) matches the sign of the lefthand side. In \(\mathcal{A}\), we allow for the \(\beta_j\), where \(sign(\beta_j) \neq sign(correlation_j)\), while this is forbidden in \(\mathcal{B}\). Thus, once a coefficent hits zero, we drop it.</p></li>
+<li><p>They are identical only if \(sign(\beta_j)\) matches the sign of the lefthand side. In \(\mathcal{A}\), we allow for the \(\beta_j\), where \(sign(\beta_j) \neq sign(\mathbf{x}_j^T(\mathbf{y} - \mathbf{X}\beta))\), while this is forbidden in \(\mathcal{B}\). Thus, once a coefficent hits zero, we drop it.</p></li>
 </ul>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-44" style="background:;">
+      <slide class="" id="slide-43" style="background:;">
   <hgroup>
     <h2>LAR</h2>
   </hgroup>
@@ -1162,7 +1152,7 @@ where \(s_j \in \{-1,1\}\) indicates the sign of the left hand inner product and
 
 <ul>
 <li> For LAR, we have 
-\[|\mathbf{x_j}(\mathbf{y} - \mathbf{X}\beta)| \leq \gamma, \forall \mathbf{x}_j \not\in \mathcal{A}\]</li>
+\[|\mathbf{x}_j^T(\mathbf{y} - \mathbf{X}\beta)| \leq \gamma, \forall \mathbf{x}_j \not\in \mathcal{A}\]</li>
 <li>According to the stationary conditions, for LASSO, we have
 \[
 |\mathbf{x}_j^T(\mathbf{y} - \mathbf{X}\beta)| \leq \lambda, \forall \mathbf{x}_j \not\in \mathcal{B}
@@ -1174,7 +1164,7 @@ where \(s_j \in \{-1,1\}\) indicates the sign of the left hand inner product and
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-45" style="background:;">
+      <slide class="" id="slide-44" style="background:;">
   <hgroup>
     <h2>LASSO</h2>
   </hgroup>
@@ -1193,7 +1183,7 @@ where \(s_j \in \{-1,1\}\) indicates the sign of the left hand inner product and
 <li>Comparisons with ridge regression and subset selection</li>
 <li>Quadratic Programming</li>
 <li>Least Angle Regression</li>
-<li><b>Viewed as approximation for \(l0\)-regularization</b></li>
+<li><b>Viewed as approximation for \(l_0\)-regularization</b></li>
 </ul></li>
 </ul></li>
 <li>Beyond Lasso</li>
@@ -1203,9 +1193,9 @@ where \(s_j \in \{-1,1\}\) indicates the sign of the left hand inner product and
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-46" style="background:;">
+      <slide class="" id="slide-45" style="background:;">
   <hgroup>
-    <h2>Viewed as approximation for \(l0\)-regularization</h2>
+    <h2>Viewed as approximation for \(l_0\)-regularization</h2>
   </hgroup>
   <article>
     <h3>Pure variable selection</h3>
@@ -1226,19 +1216,19 @@ where \(s_j \in \{-1,1\}\) indicates the sign of the left hand inner product and
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-47" style="background:;">
+      <slide class="" id="slide-46" style="background:;">
   <hgroup>
-    <h2>Viewed as approximation for \(l0\)-regularization</h2>
+    <h2>Viewed as approximation for \(l_0\)-regularization</h2>
   </hgroup>
   <article>
     <h3>Problem</h3>
 
-<p>This norm is not convex, which makes it very hard to optimize.</p>
+<p>\(l_0\)-norm is not convex, which makes it very hard to optimize.</p>
 
-<h3>Solution</h3>
+<h3>Solutions</h3>
 
 <ul>
-<li><b>LASSO</b>: Approximated objective function (\(l1\)-norm), with exact optimization</li>
+<li><b>LASSO</b>: Approximated objective function (\(l_1\)-norm), with exact optimization</li>
 <li><b>Subset selection</b>: Exact objective function, with approximated optimization (greedy strategy)</li>
 </ul>
 
@@ -1246,7 +1236,7 @@ where \(s_j \in \{-1,1\}\) indicates the sign of the left hand inner product and
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-48" style="background:;">
+      <slide class="" id="slide-47" style="background:;">
   <hgroup>
     <h2>Beyond LASSO</h2>
   </hgroup>
@@ -1259,9 +1249,9 @@ where \(s_j \in \{-1,1\}\) indicates the sign of the left hand inner product and
 
 <ul>
 <li><b>Elastic-Net</b></li>
-<li><b>\(L1-lp\) norm</b></li>
 <li><b>Fused Lasso</b></li>
-<li><b>Group Lasso</b></li>
+<li><b>Group Lasso</b><br></li>
+<li><b>\(l_1-lp\) norm</b></li>
 <li><b>Graph-guided Lasso</b></li>
 </ul></li>
 </ul>
@@ -1270,22 +1260,18 @@ where \(s_j \in \{-1,1\}\) indicates the sign of the left hand inner product and
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-49" style="background:;">
+      <slide class="" id="slide-48" style="background:;">
   <hgroup>
     <h2>Beyond LASSO</h2>
   </hgroup>
   <article>
-    <h3>\(L1-lp\) norm</h3>
-
-<ul>
-<li>Example</li>
-</ul>
+    <h3>Elastic Net</h3>
 
   
 
 <div class='left' style='float:left;width:41%'>
  <ul>
-<li>Formualtion
+<li><b>Formualtion</b>
 \[\lambda \sum_{j = 1}^p (\alpha \beta_j^2 + (1-\alpha)|\beta_j|)\]
 which is a compromise between ridge regression and LASSO.</li>
 </ul>
@@ -1299,15 +1285,39 @@ which is a compromise between ridge regression and LASSO.</li>
 </div>
 <div style='float:left;width:100%;' class='centered'>
   <ul>
-<li>Advantages
+<li><b>Advantages</b>
 
 <ul>
 <li>The elastic-net selects variables like the lasso, and shrinks together the coefficients of correlated predictors like ridge.</li>
-<li>It also has considerable computational advantages over the \(Lq\) penalties. (detailed in Section 18.4 in Elements of Statistical Learning)</li>
+<li>It also has considerable computational advantages over the \(l_q\) penalties. (detailed in Section 18.4 in Elements of Statistical Learning)</li>
 </ul></li>
 </ul>
 
 </div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-49" style="background:;">
+  <hgroup>
+    <h2>Beyond LASSO</h2>
+  </hgroup>
+  <article>
+    <h3>Fused Lasso</h3>
+
+<ul>
+<li><b>Intuition</b>
+
+<ul>
+<li>Fused lasso is a generalization that is designed for problems with features that can be ordered in some meaningful way. </li>
+<li>The fused lasso penalizes the \(L_1\)-norm of both the coefﬁcients and their successive differences.</li>
+</ul></li>
+<li><b>Formulation</b></li>
+</ul>
+
+<p>\[\hat{\beta} = argmin_{\beta}\{\|\mathbf{X\beta - y}\|_2^2\}\]
+\[s.t. \|\beta\| \leq s_1 and \sum_{j = 2}^p |\beta_j - \beta_{j-1}| \leq s_2\]</p>
+
   </article>
   <!-- Presenter Notes -->
 </slide>
@@ -1317,21 +1327,61 @@ which is a compromise between ridge regression and LASSO.</li>
     <h2>Beyond LASSO</h2>
   </hgroup>
   <article>
-    <h3>\(l1-lp\) penalization</h3>
+    <h3>Fused Lasso</h3>
+
+<p><center><img src="assets/img/nb_fs.png" alt="nb_fs" title="nb_fs"></center></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-51" style="background:;">
+  <hgroup>
+    <h2>Beyond LASSO</h2>
+  </hgroup>
+  <article>
+    <h3>Group Lasso</h3>
 
 <ul>
-<li>Applies to multi-task learning, where the goal is to estimate predictive models for several related tasks. </li>
-<li>Examples:
+<li><b>Intuition</b>
+
+<ul>
+<li>Features are divided into \(L\) groups</li>
+<li>Features within the same group should share similar coefficients</li>
+</ul></li>
+<li><b>Example</b>
+
+<ul>
+<li>Binary dummy variables from one single discrete variable, e.g. \(stage\_cancer \in \{1,2,3\}\) can be translated into three binary dummy variables \((stage1, stage2, stage3)\) </li>
+</ul></li>
+<li><b>Formulations</b>
+\[obj = \|\mathbf{y} - \sum_{l = 1}^L \mathbf{X}_l \beta_l \|_2^2 + \lambda_1 \sum_{l = 1}^L\|\beta_l\|_2 + \lambda_2 \|\beta\|_1\]</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-52" style="background:;">
+  <hgroup>
+    <h2>Beyond LASSO</h2>
+  </hgroup>
+  <article>
+    <h3>\(l_1\)-\(l_p\) penalization</h3>
+
+<ul>
+<li><b>Applies to multi-task learning</b>, where the goal is to estimate predictive models for several related tasks. </li>
+<li><b>Examples</b>
 
 <ul>
 <li><b>Example 1</b>: recognize speech of different speakers, or handwriting of different writers, </li>
 <li><b>Example 2</b>: learn to control a robot for grasping different objects or drive in different landscapes, etc. </li>
 </ul></li>
-<li>Assumptions about the tasks
+<li><b>Assumptions about the tasks</b>
 
 <ul>
-<li>sufficiently different that learning a specific model for each task results in improved performance</li>
-<li>similar enough that they share some common underlying representation that should make simul- taneous learning beneficial. </li>
+<li>sufficiently <i>different</i> that learning a specific model for each task results in improved performance</li>
+<li><i>similar</i> enough that they share some common underlying representation that should make simul- taneous learning beneficial. </li>
 <li>In particular, we focus on the scenario where the different tasks share a subset of relevant features to be selected from a large common space of features.</li>
 </ul></li>
 </ul>
@@ -1340,11 +1390,95 @@ which is a compromise between ridge regression and LASSO.</li>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-51">
+      <slide class="" id="slide-53" style="background:;">
+  <hgroup>
+    <h2>Beyond LASSO</h2>
+  </hgroup>
+  <article>
+    <h3>\(l_1\)-\(l_p\) penalization</h3>
+
+<ul>
+<li>Formulation
+
+<ul>
+<li>\(\mathbf{X}_l\): \(N \times p\) input matrix for task \(l\) and \(L\) is the total number of tasks</li>
+<li>\(\beta\): \(p \times L\) coefficient matrix</li>
+<li>\(\mathbf{y}\): \(N \times L\) output matrix</li>
+<li>objective function
+\[obj = \sum_{l= 1}^L loss(\beta_{:l}, \mathbf{X}_l, \mathbf{y}_{:l}) + \lambda \sum_{j = 1}^p \|\beta_{:j}\|_2\]
+where \(loss()\) is some loss function and \(\sum_{j = 1}^p \|\beta_{:j}\|_2\) is equavalent to get the \(l_1\) norm of vector \((\|\beta_{:1}\|_2, \|\beta_{:2}\|_2, ..., \|\beta_{:p}\|_2)\).</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-54" style="background:;">
+  <hgroup>
+    <h2>Beyond LASSO</h2>
+  </hgroup>
+  <article>
+    <h3>\(l_1-l_p\) penalization -Coefficient matrix</h3>
+
+<p><center><img src="assets/img/l1lp.png" alt="l1lp" title="l1lp"></center></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-55" style="background:;">
+  <hgroup>
+    <h2>Beyond LASSO</h2>
+  </hgroup>
+  <article>
+    <h3>\(l_1-l_p\) penalization -Norm ball</h3>
+
+<p><center><img src="assets/img/normball.png" alt="normball" title="normball"></center></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-56" style="background:;">
+  <hgroup>
+    <h2>Beyond LASSO</h2>
+  </hgroup>
+  <article>
+    <h3>Graph-Guided LASSO</h3>
+
+<ul>
+<li><b>Example</b>
+<center><img src="assets/img/gflasso.png" alt="gflasso" title="gflasso"></center></li>
+<li><b>Formulation</b>
+Graph-Guided Lasso applies to multi-task settings
+\[obj = \sum_{l= 1}^L loss(\beta_{:l}, \mathbf{X}_l, \mathbf{y}_{:l}) + \lambda \|\beta\|_1+\gamma \sum_{e=(a,b)\in E}^p \tau(r_{ab}) \sum_{j = 1}^p |\beta_{ja} - sign(r_{a,b})\beta_{jb}|\]
+where \(r_{a,b} \in \mathbb{R}\) denotes the weight of the edge and \(\tau(r)\) can be any positive monotonically increasing function of \(|r|\), e.g. \(\tau(r) = |r|\).</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-57" style="background:;">
+  <hgroup>
+    <h2>Beyond LASSO</h2>
+  </hgroup>
+  <article>
+    <h3>Graph-Guided LASSO</h3>
+
+<p><center><img src="assets/img/gflasso_re.png" alt="gflasso_re" title="gflasso_re"></center></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-58">
 <hgroup>
-  <h2>Thank you</h2>
+  <h2>Sparse Models</h2>
 </hgroup>
 <article class = 'flexbox vcenter'>
+<h3>Thank You!</h3>
 
 </article>
 <!-- Presenter Notes -->
