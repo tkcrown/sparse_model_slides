@@ -635,14 +635,14 @@ $$
 
 - Initialization: 
     - Standardized all predictors s.t. $\bar{\mathbf{x}_j} = 0, \mathbf{x}_j^T\mathbf{x}_j = 1$; $\mathbf{r}_0 = \mathbf{y} - \bar{\mathbf{y}}$; $\beta = \mathbf{0}$; $\mathbf{f}_0 = \mathbf{0}$; $\mathcal{A}_k = \emptyset$
-    - $\mathbf{x}_k = argmax_{\mathbf{x}_j} \mathbf{x}_j^T \mathbf{r}_0$, $\mathcal{A}_1 = \{\mathbf{x}_k\}$
+    - $\mathbf{x}_k = argmax_{\mathbf{x}_j} |\mathbf{x}_j^T \mathbf{r}_0|$, $\mathcal{A}_1 = \{\mathbf{x}_k\}$
 - Main
     - While termination_cond != true
       - $\mathbf{r}_k = \mathbf{y} - \mathbf{X}_{\mathcal{A}_k} \beta_{\mathcal{A}_k}$, $\mathbf{f}_k = \mathbf{X}_{\mathcal{A}_k} \beta_{\mathcal{A}_k}$
       - Search $\alpha$
           - $\beta_{\mathcal{A}_k}(\alpha) = \mathcal{A}_k + \alpha \cdot \delta_k$, where $\delta_k = \mathbf{(X^T_{\mathcal{A}_k} X_{\mathcal{A}_k})^{-1} X^T_{\mathcal{A}_k}r_k}$
           - Concurrently, $\mathbf{f}_k(\alpha) = \mathbf{f}_k + \alpha \cdot \mathbf{u}_k$, where $\mathbf{u}_k = \mathbf{X}_{\mathcal{A}_k} \delta_k$
-      - Until $\mathbf{X}_{\mathcal{A}_k} \mathbf{r}_k(\alpha) = max_{\mathbf{x}_j \in \bar{\mathcal{A}_k}} \mathbf{x}_j^T \mathbf{r}_k(\alpha)$
+      - Until $|\mathbf{X}_{\mathcal{A}_k} \mathbf{r}_k(\alpha)| = max_{\mathbf{x}_j \in \bar{\mathcal{A}_k}} |\mathbf{x}_j^T \mathbf{r}_k(\alpha)|$
       - $\mathbf{x}_k = argmax_{\mathbf{x}_j \in \bar{\mathcal{A}_k}} \mathbf{x}_j \mathbf{r}_k(\alpha)$ 
       - $\mathcal{A}_{k+1} = \mathcal{A}_{k} \cup \{\mathbf{x}_k\}$
 
@@ -654,8 +654,8 @@ $$
 
 1. <b>Why called Least Angle</b>: the direction $\mathbf{u}_k = \mathbf{X}_{\mathcal{A}_k} \delta_k$ that our fit $\mathbf{f}_k(\alpha)$ increases actually has the same angle with any $\mathbf{x}_j \in \mathcal{A}_k$.
 2. Note that the left-hand side of the termination condition for searching is a vector, while the right-hand side is a single value. 
-$$\mathbf{X}_{\mathcal{A}_k} \mathbf{r}_k(\alpha) = max_{\mathbf{x}_j \in \bar{\mathcal{A}_k}} \mathbf{x}_j^T \mathbf{r}_k(\alpha)$$
-This actually comes from the fact that the correlations of $\mathbf{x}_j \in \mathcal{A}_k, \forall j$ with the residual error are tied and decrease at the same rate.
+$$|\mathbf{X}_{\mathcal{A}_k} \mathbf{r}_k(\alpha)| = max_{\mathbf{x}_j \in \bar{\mathcal{A}_k}} |\mathbf{x}_j^T \mathbf{r}_k(\alpha)|$$
+This actually comes from the fact that the absolute values of correlations of $\mathbf{x}_j \in \mathcal{A}_k, \forall j$ with the residual error are tied and decrease at the same rate.
 3. The procedure of searching is approaching the least-squares coefficients of fitting $\mathbf{y}$ on $\mathcal{A}_k$
 4. LAR solves the subset selection problem for all $t, s.t. \|\beta\| \leq t$
 5. Actually, $\alpha$ can be computed instead of searching
@@ -669,11 +669,19 @@ This actually comes from the fact that the correlations of $\mathbf{x}_j \in \ma
 
 <center>![Lars](assets/img/lars.png "lars")</center>
 
----
+--- &twocolportion w1:28% w2:72%
 
 ## LAR
 
 ### Result compared with LASSO
+
+*** left
+
+#### Observations:
+
+When the blue line coefficient cross zero, LAR and LASSO become different.
+
+*** right
 
 <center>![comp4](assets/img/comp4.png "comp4")</center>
 
@@ -683,11 +691,150 @@ This actually comes from the fact that the correlations of $\mathbf{x}_j \in \ma
 
 ### Modification for LASSO
 
+During the searching procedure, if a non-zero coefficient hits zero, drop this variable from $\mathcal{A}_k$, and recompute the direction $\delta_k$
+
+### Some heuristic analysis
+
+- At a certain time point, we know that all $\mathbf{x}_j \in \mathcal{A}$ share the same absolute values of correlations with the residual error. That is
+$$\mathbf{x}_j^T(\mathbf{y} - \mathbf{X}\beta) = \gamma \cdot s_j, \forall \mathbf{x}_j \ \in \mathcal{A}$$
+where $s_j \in \{-1,1\}$ indicates the sign of the left hand inner product and $\gamma$ is the common value. We also know that $|\mathbf{x_j}(\mathbf{y} - \mathbf{X}\beta)| \leq \gamma, \forall \mathbf{x}_j \not\in \mathcal{A}$
+
+---
+
+## LAR
+
+### Some heuristic analysis
+
+- At a certain time point, we know that all $\mathbf{x}_j \in \mathcal{A}$ share the same absolute values of correlations with the residual error. That is
+$$\mathbf{x}_j^T(\mathbf{y} - \mathbf{X}\beta) = \gamma \cdot s_j, \forall \mathbf{x}_j \ \in \mathcal{A}$$
+where $s_j \in \{-1,1\}$ indicates the sign of the left hand inner product and $\gamma$ is the common value. We also know that $|\mathbf{x_j}(\mathbf{y} - \mathbf{X}\beta)| \leq \gamma, \forall \mathbf{x}_j \not\in \mathcal{A}$
+
+- Now consider about LASSO for a fixed given $\lambda$. Let $\mathcal{B}$ with non-zero coefficients, then we differentiate the objective function w.r.t. these non zero coefficients and set the gradient to zero
+$$\mathbf{x}_j^T(\mathbf{y} - \mathbf{X}\beta) = \lambda \cdot sign(\beta_j), \forall j \in \mathcal{B}$$
+
+- They are identical only if $sign(\beta_j)$ matches the sign of the lefthand side. In $\mathcal{A}$, we allow for the $\beta_j$, where $sign(\beta_j) \neq sign(correlation_j)$, while this is forbidden in $\mathcal{B}$. Thus, once a coefficent hits zero, we drop it.
+
+
+---
+
+## LAR
+
+### Some heuristic analysis
+
+-  For LAR, we have 
+$$|\mathbf{x_j}(\mathbf{y} - \mathbf{X}\beta)| \leq \gamma, \forall \mathbf{x}_j \not\in \mathcal{A}$$
+- According to the stationary conditions, for LASSO, we have
+$$
+|\mathbf{x}_j^T(\mathbf{y} - \mathbf{X}\beta)| \leq \lambda, \forall \mathbf{x}_j \not\in \mathcal{B}
+$$
+- They match for variables with zero coefficients too.
 
 
 
+---
 
---- &vcenter   
+## LASSO
+
+- Introduction to Dimension Reduction
+- Linear Regression and Least Squares (Review)
+- <b>Shrinkage Method</b>
+    - Ridge Regression
+    - <b>Lasso</b>
+        - Formulations
+        - Comparisons with ridge regression and subset selection
+        - Quadratic Programming
+        - Least Angle Regression
+        - <b>Viewed as approximation for $l0$-regularization</b>
+- Beyond Lasso
+
+---
+
+## Viewed as approximation for $l0$-regularization
+
+### Pure variable selection
+
+$$
+\begin{equation}
+\hat{\beta}^{ridge}= argmin_{\beta}\sum_{i=1}^N(y_i - \beta_0 - \sum_{j=1}^p\mathbf{x_{ij}}\beta_j)^2, s.t. \#nonzero \beta_j \leq t
+\end{equation}
+$$
+
+Actually $\#nonzero \beta_j = \|\beta\|_0$, where
+
+$$\|\beta\|_0 = lim_{q \to 0}(\sum_{j = 1}^p|\beta_j|^q)^{\frac{1}{q}} = card(\{\beta_j|\beta_j \neq 0\})$$
+
+<center>![zeronorm](assets/img/zeronorm.png "zeronorm")</center>
+
+---
+
+## Viewed as approximation for $l0$-regularization
+
+### Problem
+
+This norm is not convex, which makes it very hard to optimize.
+
+### Solution
+
+- <b>LASSO</b>: Approximated objective function ($l1$-norm), with exact optimization
+- <b>Subset selection</b>: Exact objective function, with approximated optimization (greedy strategy)
+
+---
+
+## Beyond LASSO
+
+- Introduction to Dimension Reduction
+- Linear Regression and Least Squares (Review)
+- Shrinkage Method
+- <b>Beyond LASSO</b>
+   - <b>Elastic-Net</b>
+   - <b>$L1-lp$ norm</b>
+   - <b>Fused Lasso</b>
+   - <b>Group Lasso</b>
+   - <b>Graph-guided Lasso</b>
+
+--- &triple w1:41% w2:55% 
+
+## Beyond LASSO
+
+### $L1-lp$ norm
+
+- Example
+
+*** left
+
+- Formualtion
+$$\lambda \sum_{j = 1}^p (\alpha \beta_j^2 + (1-\alpha)|\beta_j|)$$
+which is a compromise between ridge regression and LASSO.
+
+*** right
+
+<center>![enet](assets/img/enet.png "enet")</center>
+
+*** down
+
+- Advantages
+    - The elastic-net selects variables like the lasso, and shrinks together the coefficients of correlated predictors like ridge.
+    - It also has considerable computational advantages over the $Lq$ penalties. (detailed in Section 18.4 in Elements of Statistical Learning)
+
+
+---
+
+## Beyond LASSO
+
+### $l1-lp$ penalization
+
+- Applies to multi-task learning, where the goal is to estimate predictive models for several related tasks. 
+- Examples:
+    - <b>Example 1</b>: recognize speech of different speakers, or handwriting of different writers, 
+    - <b>Example 2</b>: learn to control a robot for grasping different objects or drive in different landscapes, etc. 
+- Assumptions about the tasks
+    - sufficiently different that learning a specific model for each task results in improved performance
+    - similar enough that they share some common underlying representation that should make simul- taneous learning beneficial. 
+    - In particular, we focus on the scenario where the different tasks share a subset of relevant features to be selected from a large common space of features.
+
+
+
+--- &vcenter  
 
 ## Thank you
 
