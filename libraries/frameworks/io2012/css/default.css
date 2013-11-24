@@ -442,6 +442,11 @@ a:hover {
 }
 
 /* line 312, ../scss/default.scss */
+
+p{
+color: #000000
+}
+
 h1, h2, h3 {
   font-weight: 600;
 }
@@ -460,7 +465,7 @@ h3 {
   letter-spacing: -1px;
   line-height: 2;
   font-weight: inherit;
-  color: #797979;
+  color: #000000;
 }
 
 /* line 331, ../scss/default.scss */
@@ -472,6 +477,7 @@ ul {
 /* line 336, ../scss/default.scss */
 ul li {
   margin-bottom: 0.5em;
+  color: #000000  
 }
 /* line 339, ../scss/default.scss */
 ul li ul {
