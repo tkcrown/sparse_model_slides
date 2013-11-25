@@ -932,7 +932,7 @@ $$
 *** right
 
 - If $p = 2$
-    - $\mathbf{f}_2 = \mathbf{f}_2^{LeastSquares}$
+    - $\mathbf{f}_2 = \mathbf{f}_2^{ls}$
 - The absolute values of correlations of $\mathbf{x}_j \in \mathcal{A}_k, \forall j$ with the residual error $\mathbf{r}_t{\alpha}$ are tied and decrease at the same rate during searching $\alpha$.
 
 
@@ -1144,12 +1144,14 @@ where $\epsilon$ is $i.i.d.$ random noise.
 
 <center>![enet_LASSO](assets/img/enet_LASSO.png "enet_LASSO")</center>
 
+
 ---
 
 ## Elastic Net - A simple illustration
 
 <center>![enet_LASSO](assets/img/enet_re.png "enet_re")</center>
 
+- MSE(standard error)
 
 ---
 
@@ -1186,7 +1188,7 @@ $$s.t. \|\beta\| \leq s_1 \quad and \quad \sum_{j = 2}^p |\beta_j - \beta_{j-1}|
 - $p = 100$. Black lines are the true coefficients.
 - (a) Univeriate regression coefficients (red), a soft threshold version of them (green)
 - (b) LASSO solution (red), $s_1 = 35.6,\quad s_2 = \infty$
-- (c) Fusion estimate, $s_1 = \infty, s_2 = 26$
+- (c) Fusion estimate, $s_1 = \infty, \quad s_2 = 26$
 - (d) Fused LASSO, $s_1 = \sum |\beta_j|,\quad s_2 = \sum |\beta_j - \beta_{j-1}|$
 
 ---

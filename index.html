@@ -1526,7 +1526,7 @@ s.t. &\beta_j \leq \xi_j\\
 <li>If \(p = 2\)
 
 <ul>
-<li>\(\mathbf{f}_2 = \mathbf{f}_2^{LeastSquares}\)</li>
+<li>\(\mathbf{f}_2 = \mathbf{f}_2^{ls}\)</li>
 </ul></li>
 <li>The absolute values of correlations of \(\mathbf{x}_j \in \mathcal{A}_k, \forall j\) with the residual error \(\mathbf{r}_t{\alpha}\) are tied and decrease at the same rate during searching \(\alpha\).</li>
 </ul>
@@ -1848,6 +1848,10 @@ where \(\epsilon\) is \(i.i.d.\) random noise.</li>
   <article>
     <p><center><img src="assets/img/enet_re.png" alt="enet_LASSO" title="enet_re"></center></p>
 
+<ul>
+<li>MSE(standard error)</li>
+</ul>
+
   </article>
   <!-- Presenter Notes -->
 </slide>
@@ -1905,7 +1909,7 @@ where \(\epsilon\) is \(i.i.d.\) random noise.</li>
 <li>\(p = 100\). Black lines are the true coefficients.</li>
 <li>(a) Univeriate regression coefficients (red), a soft threshold version of them (green)</li>
 <li>(b) LASSO solution (red), \(s_1 = 35.6,\quad s_2 = \infty\)</li>
-<li>(c) Fusion estimate, \(s_1 = \infty, s_2 = 26\)</li>
+<li>(c) Fusion estimate, \(s_1 = \infty, \quad s_2 = 26\)</li>
 <li>(d) Fused LASSO, \(s_1 = \sum |\beta_j|,\quad s_2 = \sum |\beta_j - \beta_{j-1}|\)</li>
 </ul>
 
