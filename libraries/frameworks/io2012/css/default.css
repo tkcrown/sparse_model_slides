@@ -475,9 +475,13 @@ ul {
   position: relative;
 }
 /* line 336, ../scss/default.scss */
+
+li {
+  color: #000000  
+}
+
 ul li {
   margin-bottom: 0.5em;
-  color: #000000  
 }
 /* line 339, ../scss/default.scss */
 ul li ul {
