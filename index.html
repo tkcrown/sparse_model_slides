@@ -48,7 +48,7 @@
 <li><h3>Introduction to Dimension Reduction</h3></li>
 <li><h3>Linear Regression and Least Squares (Review)</h3></li>
 <li><h3>Subset Selection</h3></li>
-<li><h3>Shrinkage Method</h3></li>
+<li><h3>Shrinkage Methods</h3></li>
 <li><h3>Beyond LASSO</h3></li>
 </ul>
 
@@ -83,7 +83,7 @@
 </ul></li>
 <li>Linear Regression and Least Squares (Review)</li>
 <li>Subset Selection</li>
-<li>Shrinkage Method</li>
+<li>Shrinkage Methods</li>
 <li>Beyond LASSO</li>
 </ol>
 
@@ -98,7 +98,10 @@
   <article>
     <h3>Dataset</h3>
 
-<ul>
+  
+
+<div class='left' style='float:left;width:50%'>
+ <ul>
 <li>\(\mathbf{X}\): columnwise centered \(N \times p\) matrix
 
 <ul>
@@ -108,7 +111,15 @@
 <li>\(\mathbf{y}\): \(N \times 1\) vector of labels(classification) or continous values(regression)</li>
 </ul>
 
-<h3>Basic Model</h3>
+
+</div>    
+<div class='right' style='float:right;width:50%'>
+ <p><center><img src="assets/img/xy.png" alt="x" title="xy"></center></p>
+
+
+</div>
+<div style='float:left;width:100%;' class='centered'>
+  <h3>Basic Model</h3>
 
 <ul>
 <li>Linear Regression
@@ -120,6 +131,7 @@
 </ul></li>
 </ul>
 
+</div>
   </article>
   <!-- Presenter Notes -->
 </slide>
@@ -197,7 +209,7 @@
  <h3>Feature Extraction</h3>
 
 <ul>
-<li>More flexible. Feature selection is a spectial case of linear feature extraction</li>
+<li>More flexible. Feature selection is a special case of linear feature extraction</li>
 </ul>
 
 <p><br>
@@ -220,7 +232,7 @@
 
 <ul>
 <li><b>Response</b>: level of prostate-specific antigen (lpsa). </li>
-<li><b>Inputs</b>:
+<li><b>Initial Feature Set</b>:
 \[\{lcavol, lweight, age, lbph, svi, lcp, gleason, pgg45\}.\]</li>
 <li><b>Task</b>:
 
@@ -377,8 +389,8 @@
 
 <ul>
 <li>Each data sample has three features</li>
-<li>Often prefer the direction with larger variance</li>
 <li>Original features are transformed into new ones</li>
+<li>Often use only the new features with largest variance</li>
 </ul></li>
 <li><b>Example</b>
 
@@ -414,7 +426,7 @@
 <li><b>Problems</b></li>
 </ul></li>
 <li>Subset Selection</li>
-<li>Shrinkage Method</li>
+<li>Shrinkage Methods</li>
 <li>Beyond LASSO</li>
 </ol>
 
@@ -512,7 +524,7 @@ Better to have SIMPLER linear model, that involves only a few features...</li>
 <li><b>Forward stagewise selection</b></li>
 <li><b>Problems</b></li>
 </ul></li>
-<li>Shrinkage Method</li>
+<li>Shrinkage Methods</li>
 <li>Beyond LASSO</li>
 </ol>
 
@@ -588,7 +600,12 @@ Better to have SIMPLER linear model, that involves only a few features...</li>
 <li>For each time step
 
 <ul>
-<li>Compute the correlation vector \(\mathbf{c} = (\mathbf{c}_1, ..\mathbf{c}_p)\), \(\mathbf{c}_j\) represents the correlation between \(\mathbf{x}_j\) and the residual error</li>
+<li>Compute the correlation vector 
+\[\mathbf{c} = (\mathbf{c}_1, ..\mathbf{c}_p)\]
+
+<ul>
+<li>\(\mathbf{c}_j\) represents the correlation between \(\mathbf{x}_j\) and the residual error</li>
+</ul></li>
 <li>\(k = argmax_{j \in \{1,2,..,p\}} |\mathbf{c}_j|\)</li>
 <li>Coefficients and fit vector are updated
 \[\mathbf{f} \gets \mathbf{f} + \alpha \cdot sign(\mathbf{c}_k) \mathbf{x}_k\]
@@ -649,7 +666,7 @@ where \(\alpha\) is the learning rate</li>
     <h2>Summary of Subset Selection Methods</h2>
   </hgroup>
   <article>
-    <h3>Advantages</h3>
+    <h3>Advantages w.r.t Least Squares</h3>
 
 <ul>
 <li>More interpretable result</li>
@@ -659,12 +676,12 @@ where \(\alpha\) is the learning rate</li>
 <h3>Disadvantages</h3>
 
 <ul>
-<li>It is a discrete process, and thus has high variance and sensitivity to the change in dataset.
+<li>It is a discrete process, and thus has high variance and sensitivity to changes in the dataset
 
 <ul>
 <li>If the dataset changes a little, the feature selection result may be very different</li>
 </ul></li>
-<li>Thus may not be able to lower prediction error</li>
+<li>Thus may not  lower prediction error as much<br></li>
 </ul>
 
   </article>
@@ -673,14 +690,14 @@ where \(\alpha\) is the learning rate</li>
 
       <slide class="" id="slide-22" style="background:;">
   <hgroup>
-    <h2>Part 4: Shrinkage Method</h2>
+    <h2>Part 4: Shrinkage Methods</h2>
   </hgroup>
   <article>
     <ol>
 <li>Introduction to Dimension Reduction</li>
 <li>Linear Regression and Least Squares (Review)</li>
 <li>Subset Selection</li>
-<li><b>Shrinkage Method</b>
+<li><b>Shrinkage Methods</b>
 
 <ul>
 <li><b>Ridge Regression</b>
@@ -916,7 +933,8 @@ df(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
 \end{split}
 \end{equation}
 \]</li>
-<li>[larger \(\lambda\)] \(\rightarrow\) [smaller \(df(\lambda)\)] \(\rightarrow\) [more constrained model].</li>
+<li>[larger \(\lambda\)] \(\rightarrow\) [smaller \(df(\lambda)\)] \(\rightarrow\) [more constrained model]</li>
+<li>The redline gives the best \(df(\lambda)\) identified from cross validation</li>
 </ul>
 
 
@@ -931,10 +949,13 @@ df(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
 
       <slide class="" id="slide-30" style="background:;">
   <hgroup>
-    <h2>Ridge Regression</h2>
+    <h3>Ridge Regression</h3>
   </hgroup>
   <article>
-    <h3>Advantages</h3>
+    <h4>Advantages</h4>
+
+<ul>
+<li> w.r.t. Least Squares
 
 <ul>
 <li>\((\mathbf{X^TX + \lambda I})\) is always inveritible and thus the closed form solution always exist</li>
@@ -944,9 +965,15 @@ df(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
 <li>e.g. sometimes a wildly large coefficient on one variable can be cancelled by another wildly large coefficient of a correlated variable</li>
 </ul></li>
 <li>Possibly higher prediction accuracy, as the estimates of ridge regression trade a little bias for less variance</li>
+</ul></li>
+<li> w.r.t. Subset Selection Methods
+
+<ul>
+<li>Ridge regression is a continous shrinkage method which has less variance than subset selection methods</li>
+</ul></li>
 </ul>
 
-<h3>Disadvantages</h3>
+<h4>Disadvantages w.r.t. Subset Selection Methods</h4>
 
 <ul>
 <li>Interpretability and compactness: Though coefficients are shrunk, but not to zero. Unlike methods that select part of the features, ridge regression may encounter efficiency issue and offer little interpretations in high dimensional problems.</li>
@@ -958,14 +985,14 @@ df(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
 
       <slide class="" id="slide-31" style="background:;">
   <hgroup>
-    <h2>Part 4: Shrinkage Method - LASSO</h2>
+    <h2>Part 4: Shrinkage Methods - LASSO</h2>
   </hgroup>
   <article>
     <ol>
 <li>Introduction to Dimension Reduction</li>
 <li>Linear Regression and Least Squares (Review)</li>
 <li>Subset Selection</li>
-<li><b>Shrinkage Method</b>
+<li><b>Shrinkage Methods</b>
 
 <ul>
 <li>Ridge Regression</li>
@@ -1003,11 +1030,11 @@ df(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
 \hat{\beta}^{LASSO}= argmin_{\beta}\sum_{i=1}^N(y_i - \beta_0 - \sum_{j=1}^p\mathbf{x_{ij}}\beta_j)^2, \quad s.t. \sum_{j = 1}^p |\beta_j| \leq t
 \end{equation}
 \]</li>
-<li><b>Its lagrange form</b>
+<li><b>Its Lagrange form</b>
 \[
 \hat{\beta}^{LASSO} = argmin_{\beta}\sum_{i=1}^N(y_i - \beta_0 - \sum_{j=1}^p\mathbf{x_{ij}}\beta_j)^2 + \lambda \sum_{j = 1}^p|\beta_j|
 \]</li>
-<li>The \(1_1\)-regularization can be viewed as a Laplace prior on the coefficients</li>
+<li>The \(l_1\)-regularization can be viewed as a Laplace prior on the coefficients</li>
 </ul></li>
 </ul>
 
@@ -1021,8 +1048,8 @@ df(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
   </hgroup>
   <article>
     <ul>
-<li>\(s = \frac{t}{\sum_{j=1}^p |\hat{\beta}_j|}\), where \(\hat{\beta}\) is the least square estimates.</li>
-<li>Redlines represent the \(s\) and \(df(\lambda)\) with the best cross validation errors</li>
+<li>\(s = \frac{t}{\sum_{j=1}^p |\hat{\beta}_j|}\), where \(\hat{\beta}\) is the least squares estimate</li>
+<li>Redlines represent the \(s\) and \(df(\lambda)\) with the best cross validation error</li>
 </ul>
 
 
@@ -1048,7 +1075,7 @@ df(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
 <li>Introduction to Dimension Reduction</li>
 <li>Linear Regression and Least Squares (Review)</li>
 <li>Subset Selection</li>
-<li><b>Shrinkage Method</b>
+<li><b>Shrinkage Methods</b>
 
 <ul>
 <li>Ridge Regression</li>
@@ -1085,7 +1112,7 @@ df(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
 <li><b>Orthonormal Input \(\mathbf{X}\)</b>
 
 <ul>
-<li><b>Best subset</b>: [Hard thresholding] keep the top \(M\) largest coefficeints of \(\hat{\beta}^{ls}\)</li>
+<li><b>Best subset</b>: [Hard thresholding] keeps the top \(M\) largest coefficeints of \(\hat{\beta}^{ls}\)</li>
 <li><b>Ridge</b>: [Pure shrinkage] does proportional shrinkage of \(\hat{\beta}^{ls}\)</li>
 <li><b>LASSO</b>: [Soft thresholding] translates each coefficient of \(\hat{\beta}^{ls}\) by \(\lambda\) towards 0, truncating at 0 </li>
 </ul></li>
@@ -1210,7 +1237,7 @@ df(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
 <li>Introduction to Dimension Reduction</li>
 <li>Linear Regression and Least Squares (Review)</li>
 <li>Subset Selection</li>
-<li><b>Shrinkage Method</b>
+<li><b>Shrinkage Methods</b>
 
 <ul>
 <li>Ridge Regression</li>
@@ -1262,7 +1289,7 @@ s.t. &\beta_j \leq \xi_j\\
 <li>Note that QP can only solve LASSO for a given \(\lambda\). 
 
 <ul>
-<li>Later in this slide, a method called least angle regression can solve LASSO for all \(\lambda\)</li>
+<li>Later in these slides, a method called least angle regression can solve LASSO for all \(\lambda\)</li>
 </ul></li>
 </ul>
 
@@ -1279,7 +1306,7 @@ s.t. &\beta_j \leq \xi_j\\
 <li>Introduction to Dimension Reduction</li>
 <li>Linear Regression and Least Squares (Review)</li>
 <li>Subset Selection</li>
-<li><b>Shrinkage Method</b>
+<li><b>Shrinkage Methods</b>
 
 <ul>
 <li>Ridge Regression</li>
@@ -1306,7 +1333,7 @@ s.t. &\beta_j \leq \xi_j\\
   </hgroup>
   <article>
       
-<div class='left' style='float:left;width:55%'>
+<div class='left' style='float:left;width:54%'>
  <ul>
 <li>Initialization: 
 
@@ -1337,13 +1364,39 @@ s.t. &\beta_j \leq \xi_j\\
 
 
 </div>    
-<div class='right' style='float:right;width:45%'>
- <ul>
+<div class='middle' style='float:left;width:2%'>
+ <p>|</p>
+
+<p>|</p>
+
+<p>|</p>
+
+<p>|</p>
+
+<p>|</p>
+
+<p>|</p>
+
+<p>|</p>
+
+<p>|</p>
+
+<p>|</p>
+
+<p>|</p>
+
+<p>|</p>
+
+
+</div>    
+<div class='right' style='float:right;width:44%'>
+ <hr>
+
+<ul>
 <li>\(\mathcal{A}_t\): <i>active set</i>, the set indices of features we already included in the model at time step \(t\).
 
 <ul>
-<li>\(\mathcal{A}_t \cup \bar{\mathcal{A}_t} = \{1,2,...,p\}\)</li>
-<li>\(\mathcal{A}_t \cap \mathcal{\bar{A}}_t = \emptyset\)</li>
+<li>\(\bar{\mathcal{A}_t} = \{1,2,...,p\} - \mathcal{A}_t\)</li>
 </ul></li>
 <li>\(\alpha\): searching parameter within a time step</li>
 <li>\(\beta_{\mathcal{A}_t}\): coefficients vector at the beginning of time step \(t\)</li>
@@ -1353,6 +1406,8 @@ s.t. &\beta_j \leq \xi_j\\
 <li>\(\mathbf{r}_t\): residual vector at the beginning of time step \(t\), \(\mathbf{r}_0 = \mathbf{y} - \bar{\mathbf{y}}\), where \(\bar{\mathbf{y}} = average(\mathbf{y})\)</li>
 <li>\(\mathbf{r}_t(\alpha)\): residual vector in time step \(t\), w.r.t. \(\alpha\)</li>
 </ul>
+
+<hr>
 
 </div>
   </article>
@@ -1626,7 +1681,7 @@ where \(s_j \in \{-1,1\}\) indicates the sign of the left hand inner product and
 \[
 |\mathbf{x}_j^T(\mathbf{y} - \mathbf{X}\beta)| \leq \lambda, \quad \forall \mathbf{x}_j \not\in \mathcal{B}
 \]</li>
-<li>LAR and Lasso match for variables with zero coefficients too.</li>
+<li>LAR and LASSO match for variables with zero coefficients too.</li>
 </ul>
 
   </article>
@@ -1642,7 +1697,7 @@ where \(s_j \in \{-1,1\}\) indicates the sign of the left hand inner product and
 <li>Introduction to Dimension Reduction</li>
 <li>Linear Regression and Least Squares (Review)</li>
 <li>Subset Selection</li>
-<li><b>Shrinkage Method</b>
+<li><b>Shrinkage Methods</b>
 
 <ul>
 <li>Ridge Regression</li>
@@ -1715,7 +1770,7 @@ where \(s_j \in \{-1,1\}\) indicates the sign of the left hand inner product and
 <li>Introduction to Dimension Reduction</li>
 <li>Linear Regression and Least Squares (Review)</li>
 <li>Subset Selection</li>
-<li>Shrinkage Method</li>
+<li>Shrinkage Methods</li>
 <li><b>Beyond LASSO</b>
 
 <ul>
@@ -1776,8 +1831,8 @@ which is a compromise between ridge regression and LASSO and \(\alpha \in [0,1]\
     <h3>Advantages of E-Net</h3>
 
 <ul>
-<li>Solves above problems</li>
-<li>elects variables like LASSO, and shrinks together the coefficients of correlated predictors like ridge.</li>
+<li>solves above problems</li>
+<li>selects variables like LASSO, and shrinks together the coefficients of correlated predictors like ridge.</li>
 <li>has considerable computational advantages over the \(l_q\) penalties. 
 
 <ul>
@@ -2083,7 +2138,7 @@ where \(J\) is some loss function and \(\sum_{j = 1}^p \|\beta_{:j}\|_2\) is the
 <li><b>Candidate methods</b>
 
 <ul>
-<li>Pooled \(l_1\): a classifier is trained on all data regardless of writers</li>
+<li>Pool \(l_1\): a classifier is trained on all data regardless of writers</li>
 <li>Independent \(l_1\) regularization: For each writer, a classifier is trained</li>
 <li>\(l_1/l_1\)-regularization:
 \[obj = \sum_{l= 1}^L J(\beta_{:l}, \mathbf{X}_l, \mathbf{y}_{:l}) + \lambda \sum_{l = 1}^L \|\beta_{:l}\|_1\]</li>
@@ -2106,7 +2161,7 @@ where \(J\) is some loss function and \(\sum_{j = 1}^p \|\beta_{:j}\|_2\) is the
     <p><center><img src="assets/img/l1lp_re.png" alt="l1lp_re" title="l1lp_re"></center></p>
 
 <ul>
-<li>Within a cell,  the first row contains results for feature selection, the second row uses random projections to obtain a common subspace (details ommited, see paper: Multi-task feature selection)</li>
+<li>Within a cell,  the first row contains results for feature selection, the second row uses random projections to obtain a common subspace (details omited, see paper: Multi-task feature selection)</li>
 <li>Bold: best of \(l_1/l_2\),\(l_1/l_1\), \(sp.l_1\) or pooled \(l_1\), Boxed : best of cell</li>
 </ul>
 
@@ -2174,7 +2229,7 @@ where \(r_{a,b} \in \mathbb{R}\) denotes the weight of the edge and \(\tau(r)\) 
 <li><h3>Introduction to Dimension Reduction</h3></li>
 <li><h3>Linear Regression and Least Squares (Review)</h3></li>
 <li><h3>Subset Selection</h3></li>
-<li><h3>Shrinkage Method</h3></li>
+<li><h3>Shrinkage Methods</h3></li>
 <li><h3>Beyond LASSO</h3></li>
 </ul>
 
@@ -2187,33 +2242,28 @@ where \(r_{a,b} \in \mathbb{R}\) denotes the weight of the edge and \(\tau(r)\) 
     <h2>Summary</h2>
   </hgroup>
   <article>
-    <h3>Part 1: Introduction to Dimension Reduction</h3>
-
-<ol>
-<li><b>Introduction to Dimension Reduction</b>
+    <ul>
+<li>Feature selection vs feature extraction
 
 <ul>
-<li><b>General notations</b></li>
-<li><b>Motivations</b></li>
-<li><b>Feature selection and feature extraction</b></li>
-<li><b>Feature Selection</b>
+<li>Feature selection: can save cost, be interpreted</li>
+<li>Feature extraction: more general, often leads to better performance</li>
+</ul></li>
+<li>Linear models: Least Squares, Subset Selection, Ridge, LASSO:
 
 <ul>
-<li><b>Wrapper method</b></li>
-<li><b>Filter method</b></li>
-<li><b>Embedded method</b></li>
+<li>LS is unbiased, but can have high variance (as includes all features)</li>
+<li>Ridge (\(l_2\) regularization): constrains parameter values, to reduce variance</li>
+<li>Subset Selection, LASSO: finds subset of features (to reduce variance)</li>
+<li>LASSO uses \(l_1\) regularization </li>
 </ul></li>
-<li><b>Feature Extraction</b>
+<li>LAR is like LASSO ( (\(l_1\) regularization), but 
 
 <ul>
-<li><b>PCA, ICA...</b></li>
+<li>Their behaviors become different, when an coefficient hits zero</li>
+<li>Modification: drops the feature, when its coefficient hits zero</li>
 </ul></li>
-</ul></li>
-<li>Linear Regression and Least Squares (Review)</li>
-<li>Subset Selection</li>
-<li>Shrinkage Method</li>
-<li>Beyond LASSO</li>
-</ol>
+</ul>
 
   </article>
   <!-- Presenter Notes -->
@@ -2224,143 +2274,25 @@ where \(r_{a,b} \in \mathbb{R}\) denotes the weight of the edge and \(\tau(r)\) 
     <h2>Summary</h2>
   </hgroup>
   <article>
-    <h3>Part 2: Linear Regression and Least Squares (Review)</h3>
-
-<ol>
-<li>Introduction to Dimension Reduction</li>
-<li><b>Linear Regression and Least Squares (Review)</b>
+    <ul>
+<li>QP solves LASSO for a single \(\lambda\), while LAR can solve LASSO for all \(\lambda\)</li>
+<li>Bayesian prior interpretation for Subset Selection, Ridge and LASSO</li>
+<li>Beyond LASSO (all use L1 regularization)
 
 <ul>
-<li><b>Least Square Fit</b></li>
-<li><b>Gauss Markov</b></li>
-<li><b>Bias-Variance tradeoff</b></li>
-<li><b>Problems</b></li>
+<li>Elastic Net -- both L1 and L2</li>
+<li>fused LASSO: coefficients of adjacent features are similar</li>
+<li>group LASSO: feautures share similar coefficients within groups</li>
+<li>\(l_1/l_2\): similarities in multi-task</li>
+<li>GFlasso: incorporates structure on output variables</li>
 </ul></li>
-<li>Subset Selection</li>
-<li>Shrinkage Method</li>
-<li>Beyond LASSO</li>
-</ol>
+</ul>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
       <slide class="" id="slide-80" style="background:;">
-  <hgroup>
-    <h2>Summary</h2>
-  </hgroup>
-  <article>
-    <h3>Part 3: Subset Selection</h3>
-
-<ol>
-<li>Introduction to Dimension Reduction</li>
-<li>Linear Regression and Least Squares (Review)</li>
-<li><b>Subset Selection</b>
-
-<ul>
-<li><b>Best-subset selection</b></li>
-<li><b>Forward stepwise selection</b></li>
-<li><b>Forward stagewise selection</b></li>
-<li><b>Problems</b></li>
-</ul></li>
-<li>Shrinkage Method</li>
-<li>Beyond LASSO</li>
-</ol>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-      <slide class="" id="slide-81" style="background:;">
-  <hgroup>
-    <h2>Summary</h2>
-  </hgroup>
-  <article>
-    <h3>Part 4: Shrinkage Method - Ridge Regression</h3>
-
-<ol>
-<li>Introduction to Dimension Reduction</li>
-<li>Linear Regression and Least Squares (Review)</li>
-<li>Subset Selection</li>
-<li><b>Shrinkage Method</b>
-
-<ul>
-<li><b>Ridge Regression</b>
-
-<ul>
-<li><b>Formulations and closed form solution</b></li>
-<li><b>Singular value decomposition</b></li>
-<li><b>Degree of Freedom</b></li>
-</ul></li>
-<li>LASSO</li>
-</ul></li>
-<li>Beyond LASSO</li>
-</ol>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-      <slide class="" id="slide-82" style="background:;">
-  <hgroup>
-    <h2>Summary</h2>
-  </hgroup>
-  <article>
-    <h3>Part4 Shrinkage Method - LASSO</h3>
-
-<ol>
-<li>Introduction to Dimension Reduction</li>
-<li>Linear Regression and Least Squares (Review)</li>
-<li>Subset Selection</li>
-<li><b>Shrinkage Method</b>
-
-<ul>
-<li>Ridge Regression</li>
-<li><b>LASSO</b>
-
-<ul>
-<li><b>Formulations</b></li>
-<li><b>Comparisons with ridge regression and subset selection</b></li>
-<li><b>Quadratic Programming</b></li>
-<li><b>Least Angle Regression</b></li>
-<li><b>Viewed as approximation for \(l_0\)-regularization</b></li>
-</ul></li>
-</ul></li>
-<li>Beyond LASSO</li>
-</ol>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-      <slide class="" id="slide-83" style="background:;">
-  <hgroup>
-    <h2>Summary</h2>
-  </hgroup>
-  <article>
-    <h3>Part 5: Beyond LASSO</h3>
-
-<ol>
-<li>Introduction to Dimension Reduction</li>
-<li>Linear Regression and Least Squares (Review)</li>
-<li>Subset Selection</li>
-<li>Shrinkage Method</li>
-<li><b>Beyond LASSO</b>
-
-<ul>
-<li><b>Elastic-Net</b></li>
-<li><b>Fused LASSO</b></li>
-<li><b>Group LASSO</b><br></li>
-<li><b>\(l_1-lp\) norm</b></li>
-<li><b>Graph-guided LASSO</b></li>
-</ul></li>
-</ol>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-      <slide class="" id="slide-84" style="background:;">
   <hgroup>
     <h2>More on the topics skipped here</h2>
   </hgroup>
@@ -2372,7 +2304,6 @@ where \(r_{a,b} \in \mathbb{R}\) denotes the weight of the edge and \(\tau(r)\) 
 <li><a href="http://www.cs.otago.ac.nz/cosc453/student_tutorials/principal_components.pdf">http://www.cs.otago.ac.nz/cosc453/student_tutorials/principal_components.pdf</a></li>
 <li>Imola K. Fodor, A survey of dimension reduction techniques</li>
 <li>Christopher J. C. Burges, Dimension Reduction: A Guided Tour</li>
-<li>Ali Ghodsi, Dimensionality Reduction A Short Tutorial</li>
 </ul></li>
 <li>Mutual-info-based feature selection: 
 
@@ -2386,13 +2317,18 @@ where \(r_{a,b} \in \mathbb{R}\) denotes the weight of the edge and \(\tau(r)\) 
 <ul>
 <li><a href="http://webdocs.cs.ualberta.ca/%7Emahdavif/ReadingGroup/">http://webdocs.cs.ualberta.ca/~mahdavif/ReadingGroup/</a></li>
 </ul></li>
+<li>ELEN E6898 Sparse Signal Modeling 
+
+<ul>
+<li><a href="https://sites.google.com/site/eecs6898sparse2011/home">https://sites.google.com/site/eecs6898sparse2011/home</a></li>
+</ul></li>
 </ul>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-85">
+      <slide class="" id="slide-81">
 <hgroup>
   <h2>Sparse Models</h2>
 </hgroup>
@@ -2402,7 +2338,7 @@ where \(r_{a,b} \in \mathbb{R}\) denotes the weight of the edge and \(\tau(r)\) 
 </article>
 <!-- Presenter Notes -->
 </slide>
-      <slide class="" id="slide-86" style="background:;">
+      <slide class="" id="slide-82" style="background:;">
   <hgroup>
     <h2>Reference</h2>
   </hgroup>
@@ -2423,7 +2359,7 @@ where \(r_{a,b} \in \mathbb{R}\) denotes the weight of the edge and \(\tau(r)\) 
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-87" style="background:;">
+      <slide class="" id="slide-83" style="background:;">
   <hgroup>
     <h2>Reference</h2>
   </hgroup>

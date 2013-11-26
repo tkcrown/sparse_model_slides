@@ -19,7 +19,7 @@ mode        : selfcontained # {standalone, draft}
 
 - <h3>Subset Selection</h3>
 
-- <h3>Shrinkage Method</h3>
+- <h3>Shrinkage Methods</h3>
 
 - <h3>Beyond LASSO</h3>
 
@@ -39,18 +39,29 @@ mode        : selfcontained # {standalone, draft}
         - <b>PCA, ICA...</b>
 2. Linear Regression and Least Squares (Review)
 3. Subset Selection
-4. Shrinkage Method
+4. Shrinkage Methods
 5. Beyond LASSO
 
----
+---&triple w1:50% w2:50%
 
 ## General Notations
 
+
+
 ### Dataset
+
+*** left
+
 - $\mathbf{X}$: columnwise centered $N \times p$ matrix
     - $N:$ # samples, $p:$ # features
     - An intercept vector $\mathbf{1}$ is added to $\mathbf{X}$, then $\mathbf{X}$ is $N \times (p+1)$ matrix
 - $\mathbf{y}$: $N \times 1$ vector of labels(classification) or continous values(regression)
+
+*** right
+
+<center>![x](assets/img/xy.png "xy")</center>
+
+*** down
 
 ### Basic Model
 - Linear Regression
@@ -107,7 +118,7 @@ mode        : selfcontained # {standalone, draft}
 
 ### Feature Extraction
 
-- More flexible. Feature selection is a spectial case of linear feature extraction
+- More flexible. Feature selection is a special case of linear feature extraction
 
 <br>
 <br>
@@ -123,7 +134,7 @@ mode        : selfcontained # {standalone, draft}
 ### Example 1: Prostate Cancer
 
 - <b>Response</b>: level of prostate-specific antigen (lpsa). 
-- <b>Inputs</b>:
+- <b>Initial Feature Set</b>:
 $$\{lcavol, lweight, age, lbph, svi, lcp, gleason, pgg45\}.$$
 - <b>Task</b>:
     - predict $lpsa$ from measurements of features
@@ -207,8 +218,8 @@ Feature extraction
 
 - <b>A graphical explanation</b>
     - Each data sample has three features
-    - Often prefer the direction with larger variance
     - Original features are transformed into new ones
+    - Often use only the new features with largest variance
 - <b>Example</b>
     - For fMRI images, we usually have millions of dimensions. PCA can project the data from millions of dimensions to only thousands of dimensions, or even less
 - Other feature extraction methods: ICA, Kernel PCA , etc..
@@ -229,7 +240,7 @@ Feature extraction
     - <b>Bias-Variance tradeoff</b>
     - <b>Problems</b>
 3. Subset Selection
-4. Shrinkage Method
+4. Shrinkage Methods
 5. Beyond LASSO
 
 --- &twocolportion w1:58% w2:38%
@@ -301,7 +312,7 @@ Better to have SIMPLER linear model, that involves only a few features...
   - <b>Forward stepwise selection</b>
   - <b>Forward stagewise selection</b>
   - <b>Problems</b>
-4. Shrinkage Method
+4. Shrinkage Methods
 5. Beyond LASSO
 
 ---
@@ -345,7 +356,9 @@ $$\mathbf{k} = argmax_{j}(|correlation(\mathbf{x}_j, \mathbf{r})|)$$
 *** left
 - Initialize the fit vector $\mathbf{f} = 0$
 - For each time step
-    - Compute the correlation vector $\mathbf{c} = (\mathbf{c}_1, ..\mathbf{c}_p)$, $\mathbf{c}_j$ represents the correlation between $\mathbf{x}_j$ and the residual error
+    - Compute the correlation vector 
+    $$\mathbf{c} = (\mathbf{c}_1, ..\mathbf{c}_p)$$
+        - $\mathbf{c}_j$ represents the correlation between $\mathbf{x}_j$ and the residual error
     - $k = argmax_{j \in \{1,2,..,p\}} |\mathbf{c}_j|$
     - Coefficients and fit vector are updated
 $$\mathbf{f} \gets \mathbf{f} + \alpha \cdot sign(\mathbf{c}_k) \mathbf{x}_k$$
@@ -379,26 +392,26 @@ where $\alpha$ is the learning rate
 
 ## Summary of Subset Selection Methods
 
-### Advantages
+### Advantages w.r.t Least Squares
 
 - More interpretable result
 - More compact model
 
 ### Disadvantages
 
-- It is a discrete process, and thus has high variance and sensitivity to the change in dataset.
+- It is a discrete process, and thus has high variance and sensitivity to changes in the dataset
     - If the dataset changes a little, the feature selection result may be very different
-- Thus may not be able to lower prediction error
+- Thus may not  lower prediction error as much    
 
 ---
 
 
-## Part 4: Shrinkage Method
+## Part 4: Shrinkage Methods
 
 1. Introduction to Dimension Reduction
 2. Linear Regression and Least Squares (Review)
 3. Subset Selection
-4. <b>Shrinkage Method</b>
+4. <b>Shrinkage Methods</b>
     - <b>Ridge Regression</b>
         - <b>Formulations and closed form solution</b>
         - <b>Singular value decomposition</b>
@@ -560,7 +573,8 @@ df(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
 \end{split}
 \end{equation}
 $$
-- [larger $\lambda$] $\rightarrow$ [smaller $df(\lambda)$] $\rightarrow$ [more constrained model].
+- [larger $\lambda$] $\rightarrow$ [smaller $df(\lambda)$] $\rightarrow$ [more constrained model]
+- The redline gives the best $df(\lambda)$ identified from cross validation
 
 *** right
 
@@ -568,27 +582,30 @@ $$
 
 ---
 
-## Ridge Regression
+### Ridge Regression
 
-### Advantages
+#### Advantages 
 
-- $(\mathbf{X^TX + \lambda I})$ is always inveritible and thus the closed form solution always exist
-- Ridge regression controls the complexity with regularization term via $\lambda$, which is less prone to overfitting compared with least squares fit, 
-     - e.g. sometimes a wildly large coefficient on one variable can be cancelled by another wildly large coefficient of a correlated variable
-- Possibly higher prediction accuracy, as the estimates of ridge regression trade a little bias for less variance
-
-### Disadvantages
+-  w.r.t. Least Squares
+    - $(\mathbf{X^TX + \lambda I})$ is always inveritible and thus the closed form solution always exist
+    - Ridge regression controls the complexity with regularization term via $\lambda$, which is less prone to overfitting compared with least squares fit, 
+        - e.g. sometimes a wildly large coefficient on one variable can be cancelled by another wildly large coefficient of a correlated variable
+    - Possibly higher prediction accuracy, as the estimates of ridge regression trade a little bias for less variance
+-  w.r.t. Subset Selection Methods
+    - Ridge regression is a continous shrinkage method which has less variance than subset selection methods
+    
+#### Disadvantages w.r.t. Subset Selection Methods
 
 - Interpretability and compactness: Though coefficients are shrunk, but not to zero. Unlike methods that select part of the features, ridge regression may encounter efficiency issue and offer little interpretations in high dimensional problems.
 
 ---
 
-## Part 4: Shrinkage Method - LASSO
+## Part 4: Shrinkage Methods - LASSO
 
 1. Introduction to Dimension Reduction
 2. Linear Regression and Least Squares (Review)
 3. Subset Selection
-4. <b>Shrinkage Method</b>
+4. <b>Shrinkage Methods</b>
     - Ridge Regression
     - <b>LASSO</b>
         - <b>Formulations</b>
@@ -614,18 +631,18 @@ $$
 \hat{\beta}^{LASSO}= argmin_{\beta}\sum_{i=1}^N(y_i - \beta_0 - \sum_{j=1}^p\mathbf{x_{ij}}\beta_j)^2, \quad s.t. \sum_{j = 1}^p |\beta_j| \leq t
 \end{equation}
 $$
-    - <b>Its lagrange form</b>
+    - <b>Its Lagrange form</b>
 $$
 \hat{\beta}^{LASSO} = argmin_{\beta}\sum_{i=1}^N(y_i - \beta_0 - \sum_{j=1}^p\mathbf{x_{ij}}\beta_j)^2 + \lambda \sum_{j = 1}^p|\beta_j|
 $$
-    - The $1_1$-regularization can be viewed as a Laplace prior on the coefficients
+    - The $l_1$-regularization can be viewed as a Laplace prior on the coefficients
 
 ---&twocol
 
 ## LASSO
 
-- $s = \frac{t}{\sum_{j=1}^p |\hat{\beta}_j|}$, where $\hat{\beta}$ is the least square estimates.
-- Redlines represent the $s$ and $df(\lambda)$ with the best cross validation errors
+- $s = \frac{t}{\sum_{j=1}^p |\hat{\beta}_j|}$, where $\hat{\beta}$ is the least squares estimate
+- Redlines represent the $s$ and $df(\lambda)$ with the best cross validation error
 
 *** left
 
@@ -647,7 +664,7 @@ $$
 - Introduction to Dimension Reduction
 - Linear Regression and Least Squares (Review)
 - Subset Selection
-- <b>Shrinkage Method</b>
+- <b>Shrinkage Methods</b>
     - Ridge Regression
     - <b>LASSO</b>
         - Formulations
@@ -667,7 +684,7 @@ $$
 ### Comparison
 
 - <b>Orthonormal Input $\mathbf{X}$</b>
-    - <b>Best subset</b>: [Hard thresholding] keep the top $M$ largest coefficeints of $\hat{\beta}^{ls}$
+    - <b>Best subset</b>: [Hard thresholding] keeps the top $M$ largest coefficeints of $\hat{\beta}^{ls}$
     - <b>Ridge</b>: [Pure shrinkage] does proportional shrinkage of $\hat{\beta}^{ls}$
     - <b>LASSO</b>: [Soft thresholding] translates each coefficient of $\hat{\beta}^{ls}$ by $\lambda$ towards 0, truncating at 0 
 
@@ -738,7 +755,7 @@ $|\beta_j|^q$ can be viewed as the log-prior density for $\beta_j$, these three 
 - Introduction to Dimension Reduction
 - Linear Regression and Least Squares (Review)
 - Subset Selection
-- <b>Shrinkage Method</b>
+- <b>Shrinkage Methods</b>
     - Ridge Regression
     - <b>LASSO</b>
         - Formulations
@@ -773,7 +790,7 @@ s.t. &\beta_j \leq \xi_j\\
 $$
 
 - Note that QP can only solve LASSO for a given $\lambda$. 
-    - Later in this slide, a method called least angle regression can solve LASSO for all $\lambda$
+    - Later in these slides, a method called least angle regression can solve LASSO for all $\lambda$
 
 ---
 
@@ -782,7 +799,7 @@ $$
 - Introduction to Dimension Reduction
 - Linear Regression and Least Squares (Review)
 - Subset Selection
-- <b>Shrinkage Method</b>
+- <b>Shrinkage Methods</b>
     - Ridge Regression
     - <b>LASSO</b>
         - Formulations
@@ -793,7 +810,7 @@ $$
 - Beyond LASSO
 
 
----&twocolportion w1:55% w2:45%
+---&tripcolportion w1:54% w2:2% w3:44%
 
 #### LAR Algorithm
 
@@ -813,12 +830,37 @@ $$
       - $k = argmax_{j \in \bar{\mathcal{A}_t}} |\mathbf{x}_j \mathbf{r}_t(\alpha)|$, 
       - $\mathcal{A}_{t+1} = \mathcal{A}_{t} \cup \{k\}$
 
+*** middle
+
+\|
+
+\|
+
+\|
+
+\|
+
+\|
+
+\|
+
+\|
+
+\|
+
+\|
+
+\|
+
+\|
+
 
 *** right
 
+________________________________
+
 - $\mathcal{A}_t$: <i>active set</i>, the set indices of features we already included in the model at time step $t$.
-    - $\mathcal{A}_t \cup \bar{\mathcal{A}_t} = \{1,2,...,p\}$
-    - $\mathcal{A}_t \cap \mathcal{\bar{A}}_t = \emptyset$
+    - $\bar{\mathcal{A}_t} = \{1,2,...,p\} - \mathcal{A}_t$
 - $\alpha$: searching parameter within a time step
 - $\beta_{\mathcal{A}_t}$: coefficients vector at the beginning of time step $t$
 - $\beta_{\mathcal{A}_t}(\alpha)$: coefficients vector in time step $t$ w.r.t. $\alpha$
@@ -826,6 +868,8 @@ $$
 - $\mathbf{f}_t(\alpha)$: the fit vector in time step $t$ w.r.t. $\alpha$
 - $\mathbf{r}_t$: residual vector at the beginning of time step $t$, $\mathbf{r}_0 = \mathbf{y} - \bar{\mathbf{y}}$, where $\bar{\mathbf{y}} = average(\mathbf{y})$
 - $\mathbf{r}_t(\alpha)$: residual vector in time step $t$, w.r.t. $\alpha$
+
+___________________________________
 
 
 ---&twocolportion w1:55% w2:45%
@@ -1009,7 +1053,7 @@ $$|\mathbf{x}_j^T(\mathbf{y} - \mathbf{X}\beta)| \leq \gamma, \quad \forall \mat
 $$
 |\mathbf{x}_j^T(\mathbf{y} - \mathbf{X}\beta)| \leq \lambda, \quad \forall \mathbf{x}_j \not\in \mathcal{B}
 $$
-- LAR and Lasso match for variables with zero coefficients too.
+- LAR and LASSO match for variables with zero coefficients too.
 
 
 
@@ -1020,7 +1064,7 @@ $$
 - Introduction to Dimension Reduction
 - Linear Regression and Least Squares (Review)
 - Subset Selection
-- <b>Shrinkage Method</b>
+- <b>Shrinkage Methods</b>
     - Ridge Regression
     - <b>LASSO</b>
         - Formulations
@@ -1068,7 +1112,7 @@ $l_0$-norm is not convex, which makes it very hard to optimize.
 1. Introduction to Dimension Reduction
 2. Linear Regression and Least Squares (Review)
 3. Subset Selection
-4. Shrinkage Method
+4. Shrinkage Methods
 5. <b>Beyond LASSO</b>
    - <b>Elastic-Net</b>
    - <b>Fused LASSO</b>
@@ -1105,8 +1149,8 @@ which is a compromise between ridge regression and LASSO and $\alpha \in [0,1]$.
 ## Beyond LASSO - Elastic Net
 
 ### Advantages of E-Net
-- Solves above problems
-- elects variables like LASSO, and shrinks together the coefficients of correlated predictors like ridge.
+- solves above problems
+- selects variables like LASSO, and shrinks together the coefficients of correlated predictors like ridge.
 - has considerable computational advantages over the $l_q$ penalties. 
     - See 18.4 [Elements of Statistical Learning]
 
@@ -1288,7 +1332,7 @@ $$obj = \left\|\mathbf{y} - \sum_{l = 1}^L \mathbf{X}_l \beta_l \right\|_2^2 + \
 ## $l_1-l_p$ penalization - Experiment Result
 
 - <b>Candidate methods</b>
-    - Pooled $l_1$: a classifier is trained on all data regardless of writers
+    - Pool $l_1$: a classifier is trained on all data regardless of writers
     - Independent $l_1$ regularization: For each writer, a classifier is trained
     - $l_1/l_1$-regularization:
     $$obj = \sum_{l= 1}^L J(\beta_{:l}, \mathbf{X}_l, \mathbf{y}_{:l}) + \lambda \sum_{l = 1}^L \|\beta_{:l}\|_1$$
@@ -1303,7 +1347,7 @@ $$obj = \left\|\mathbf{y} - \sum_{l = 1}^L \mathbf{X}_l \beta_l \right\|_2^2 + \
 
 <center>![l1lp_re](assets/img/l1lp_re.png "l1lp_re")</center>
 
-- Within a cell,  the first row contains results for feature selection, the second row uses random projections to obtain a common subspace (details ommited, see paper: Multi-task feature selection)
+- Within a cell,  the first row contains results for feature selection, the second row uses random projections to obtain a common subspace (details omited, see paper: Multi-task feature selection)
 - Bold: best of $l_1/l_2$,$l_1/l_1$, $sp.l_1$ or pooled $l_1$, Boxed : best of cell
 
 
@@ -1351,7 +1395,7 @@ where $r_{a,b} \in \mathbb{R}$ denotes the weight of the edge and $\tau(r)$ can 
 
 - <h3>Subset Selection</h3>
 
-- <h3>Shrinkage Method</h3>
+- <h3>Shrinkage Methods</h3>
 
 - <h3>Beyond LASSO</h3>
 
@@ -1360,111 +1404,34 @@ where $r_{a,b} \in \mathbb{R}$ denotes the weight of the edge and $\tau(r)$ can 
 
 ## Summary
 
-### Part 1: Introduction to Dimension Reduction
-
-1. <b>Introduction to Dimension Reduction</b>
-    - <b>General notations</b>
-    - <b>Motivations</b>
-    - <b>Feature selection and feature extraction</b>
-    - <b>Feature Selection</b>
-        - <b>Wrapper method</b>
-        - <b>Filter method</b>
-        - <b>Embedded method</b>
-    - <b>Feature Extraction</b>
-        - <b>PCA, ICA...</b>
-2. Linear Regression and Least Squares (Review)
-3. Subset Selection
-4. Shrinkage Method
-5. Beyond LASSO
-
+- Feature selection vs feature extraction
+    - Feature selection: can save cost, be interpreted
+    - Feature extraction: more general, often leads to better performance
+- Linear models: Least Squares, Subset Selection, Ridge, LASSO:
+    - LS is unbiased, but can have high variance (as includes all features)
+    - Ridge ($l_2$ regularization): constrains parameter values, to reduce variance
+    - Subset Selection, LASSO: finds subset of features (to reduce variance)
+    - LASSO uses $l_1$ regularization 
+- LAR is like LASSO ( ($l_1$ regularization), but 
+    - Their behaviors become different, when an coefficient hits zero
+    - Modification: drops the feature, when its coefficient hits zero
 
 ---
 
 ## Summary
 
-### Part 2: Linear Regression and Least Squares (Review)
-
-1. Introduction to Dimension Reduction
-2. <b>Linear Regression and Least Squares (Review)</b>
-    - <b>Least Square Fit</b>
-    - <b>Gauss Markov</b>
-    - <b>Bias-Variance tradeoff</b>
-    - <b>Problems</b>
-3. Subset Selection
-4. Shrinkage Method
-- Beyond LASSO
+- QP solves LASSO for a single $\lambda$, while LAR can solve LASSO for all $\lambda$
+- Bayesian prior interpretation for Subset Selection, Ridge and LASSO
+- Beyond LASSO (all use L1 regularization)
+    - Elastic Net -- both L1 and L2
+    - fused LASSO: coefficients of adjacent features are similar
+    - group LASSO: feautures share similar coefficients within groups
+    - $l_1/l_2$: similarities in multi-task
+    - GFlasso: incorporates structure on output variables
+    
 
 
----
 
-## Summary
-
-### Part 3: Subset Selection
-
-1. Introduction to Dimension Reduction
-2. Linear Regression and Least Squares (Review)
-3. <b>Subset Selection</b>
-  - <b>Best-subset selection</b>
-  - <b>Forward stepwise selection</b>
-  - <b>Forward stagewise selection</b>
-  - <b>Problems</b>
-4. Shrinkage Method
-5. Beyond LASSO
-
-
----
-
-## Summary
-
-### Part 4: Shrinkage Method - Ridge Regression
-
-1. Introduction to Dimension Reduction
-2. Linear Regression and Least Squares (Review)
-3. Subset Selection
-4. <b>Shrinkage Method</b>
-    - <b>Ridge Regression</b>
-        - <b>Formulations and closed form solution</b>
-        - <b>Singular value decomposition</b>
-        - <b>Degree of Freedom</b>
-    - LASSO
-5. Beyond LASSO
-
----
-
-## Summary
-
-### Part4 Shrinkage Method - LASSO
-
-1. Introduction to Dimension Reduction
-2. Linear Regression and Least Squares (Review)
-3. Subset Selection
-4. <b>Shrinkage Method</b>
-    - Ridge Regression
-    - <b>LASSO</b>
-        - <b>Formulations</b>
-        - <b>Comparisons with ridge regression and subset selection</b>
-        - <b>Quadratic Programming</b>
-        - <b>Least Angle Regression</b>
-        - <b>Viewed as approximation for $l_0$-regularization</b>
-5. Beyond LASSO
-
-
----
-
-## Summary
-
-### Part 5: Beyond LASSO
-
-1. Introduction to Dimension Reduction
-2. Linear Regression and Least Squares (Review)
-3. Subset Selection
-4. Shrinkage Method
-5. <b>Beyond LASSO</b>
-   - <b>Elastic-Net</b>
-   - <b>Fused LASSO</b>
-   - <b>Group LASSO</b>   
-   - <b>$l_1-lp$ norm</b>
-   - <b>Graph-guided LASSO</b>
 
 
 ---
@@ -1475,13 +1442,14 @@ where $r_{a,b} \in \mathbb{R}$ denotes the weight of the edge and $\tau(r)$ can 
     - http://www.cs.otago.ac.nz/cosc453/student_tutorials/principal_components.pdf
     - Imola K. Fodor, A survey of dimension reduction techniques
     - Christopher J. C. Burges, Dimension Reduction: A Guided Tour
-    - Ali Ghodsi, Dimensionality Reduction A Short Tutorial
 - Mutual-info-based feature selection: 
     - Gavin Brown, Adam Pocock, Ming-Jie Zhao, Mikel Luján; Conditional Likelihood Maximisation: A Unifying Framework for Information Theoretic Feature Selection
     - Howard Hua Yang, John Moody. Feature Selection Based on Joint Mutual Information
     - Hanchuan Peng, Fuhui Long, and Chris Ding. Feature selection based on mutual information: criteria of max-dependency, max-relevance, and min-redundancy
 - Beyond LASSO
     - http://webdocs.cs.ualberta.ca/~mahdavif/ReadingGroup/
+- ELEN E6898 Sparse Signal Modeling 
+    - https://sites.google.com/site/eecs6898sparse2011/home
 
 
 
