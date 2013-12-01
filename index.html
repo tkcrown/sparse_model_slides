@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Sparse Models</title>
+  <title>Dimensionality Reduction</title>
   <meta charset="utf-8">
-  <meta name="description" content="Sparse Models">
+  <meta name="description" content="Dimensionality Reduction">
   <meta name="author" content="Ping Jin (pjin1@ualberta.ca)">
   <meta name="generator" content="slidify" />
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -32,7 +32,7 @@
     <!-- Should I move this to a Local Layout File? -->
     <slide class="title-slide segue nobackground">
       <hgroup class="auto-fadein">
-        <h1>Sparse Models</h1>
+        <h1>Dimensionality Reduction</h1>
         <h2>CMPUT 466/551</h2>
         <p>Ping Jin (pjin1@ualberta.ca)<br/></p>
       </hgroup>
@@ -45,7 +45,7 @@
   </hgroup>
   <article>
     <ul>
-<li><h3>Introduction to Dimension Reduction</h3></li>
+<li><h3>Introduction to Dimensionality Reduction</h3></li>
 <li><h3>Linear Regression and Least Squares (Review)</h3></li>
 <li><h3>Subset Selection</h3></li>
 <li><h3>Shrinkage Methods</h3></li>
@@ -58,11 +58,11 @@
 
       <slide class="" id="slide-2" style="background:;">
   <hgroup>
-    <h2>Part 1: Introduction to Dimension Reduction</h2>
+    <h2>Part 1: Introduction to Dimensionality Reduction</h2>
   </hgroup>
   <article>
     <ol>
-<li><b>Introduction to Dimension Reduction</b>
+<li><b>Introduction to Dimensionality Reduction</b>
 
 <ul>
 <li><b>General notations</b></li>
@@ -126,7 +126,7 @@
 
 <ul>
 <li>Assumption: the regression function \(E(Y|X)\) is linear
-\[f(X) = X\beta\]</li>
+\[f(X) = X^T\beta\]</li>
 <li>\(\beta\): \((p+1) \times 1\) vector of coefficients</li>
 </ul></li>
 </ul>
@@ -142,7 +142,7 @@
   </hgroup>
   <article>
     <ul>
-<li>Dimension reduction is about transforming data with high dimensionality into data of much lower dimensionality
+<li>Dimensionality Reduction is about transforming data with high dimensionality into data of much lower dimensionality
 
 <ul>
 <li><b>Computational efficiency</b>: less dimensions require less computations</li>
@@ -175,9 +175,9 @@
 <div class='right' style='float:right;width:47%'>
  <p><br></p>
 
-<p><center><img src="assets/img/fs.png" alt="fs" title="fs"></center></p>
+<p><center><img src="assets/img/fs.gif" alt="fs" title="fs"></center></p>
 
-<p><center><img src="assets/img/fe.png" alt="fe" title="fe"></center></p>
+<p><center><img src="assets/img/fe.gif" alt="fe" title="fe"></center></p>
 
 </div>
   </article>
@@ -201,7 +201,7 @@
 <p><br>
 <br>
 <br>
-<center><img src="assets/img/fs2.png" alt="fs2" title="fs2"></center></p>
+<center><img src="assets/img/fs2.gif" alt="fs2" title="fs2"></center></p>
 
 
 </div>    
@@ -216,7 +216,7 @@
 <br>
 <br></p>
 
-<p><center><img src="assets/img/fe2.png" alt="fe2" title="fe2"></center></p>
+<p><center><img src="assets/img/fe2.gif" alt="fe2" title="fe2"></center></p>
 
 </div>
   </article>
@@ -286,8 +286,9 @@
     <h3>Wrapper Methods</h3>
 
 <ul>
-<li>search the space of feature subsets</li>
-<li>use the training/validation accuracy of a particular classifier as the measure of utility for a candidate subset</li>
+<li>Search the space of feature subsets</li>
+<li>Use the cross validation accuracy w.r.t. a specific classifier as the measure of utility for a candidate subset</li>
+<li>e.g. see how it works for a feature set {1, 2, 3} in the figure below</li>
 </ul>
 
 <p><center><img src="assets/img/wrapper.png" alt="wrapper" title="wrapper"></center></p>
@@ -352,7 +353,7 @@
 </tr>
 </thead><tbody>
 <tr>
-<td>Speed</td>
+<td>Computational Speed</td>
 <td align="center">Low</td>
 <td align="right">High</td>
 <td align="right">Mid</td>
@@ -371,6 +372,8 @@
 </tr>
 </tbody></table>
 
+<p>Wrapper methods has the strongest learning capability among the three, which requires more data to reliably get a near-optimal approximation. For small datasets, it is prone to overfitting.</p>
+
   </article>
   <!-- Presenter Notes -->
 </slide>
@@ -381,7 +384,7 @@
   </hgroup>
   <article>
       
-<div class='left' style='float:left;width:40%'>
+<div class='left' style='float:left;width:50%'>
  <h3>Principle Components Analysis</h3>
 
 <ul>
@@ -402,8 +405,10 @@
 
 
 </div>    
-<div class='right' style='float:right;width:60%'>
- <p><img src="assets/img/pca.png" alt="alt text" title="Principle component analysis"></p>
+<div class='right' style='float:right;width:48%'>
+ <p><center><img src="assets/img/pca.png" alt="alt text" title="Principle component analysis"></center></p>
+
+<p><center><img src="assets/img/pca_var.png" alt="alt text" title="Principle component analysis"></center></p>
 
 </div>
   </article>
@@ -416,7 +421,7 @@
   </hgroup>
   <article>
     <ol>
-<li>Introduction to Dimension Reduction</li>
+<li>Introduction to Dimensionality Reduction</li>
 <li><b>Linear Regression and Least Squares (Review)</b>
 
 <ul>
@@ -514,7 +519,7 @@ Better to have SIMPLER linear model, that involves only a few features...</li>
   </hgroup>
   <article>
     <ol>
-<li>Introduction to Dimension Reduction</li>
+<li>Introduction to Dimensionality Reduction</li>
 <li>Linear Regression and Least Squares (Review)</li>
 <li><b>Subset Selection</b>
 
@@ -577,7 +582,7 @@ Better to have SIMPLER linear model, that involves only a few features...</li>
 <ul>
 <li>identifies the best variable (with the highest correlation with the residual error)
 \[\mathbf{k} = argmax_{j}(|correlation(\mathbf{x}_j, \mathbf{r})|)\]</li>
-<li>\(A = A \cup \mathbf{k}\)</li>
+<li>\(A = A \cup \{\mathbf{k}\}\)</li>
 <li>then updates the least squares fit \(\beta\), \(\mathbf{r}\) to include all the active variables</li>
 </ul></li>
 </ul>
@@ -694,7 +699,7 @@ where \(\alpha\) is the learning rate</li>
   </hgroup>
   <article>
     <ol>
-<li>Introduction to Dimension Reduction</li>
+<li>Introduction to Dimensionality Reduction</li>
 <li>Linear Regression and Least Squares (Review)</li>
 <li>Subset Selection</li>
 <li><b>Shrinkage Methods</b>
@@ -731,15 +736,9 @@ where \(\alpha\) is the learning rate</li>
 <li><p>Simulation Experiment</p>
 
 <ul>
-<li>\(N = 30\)</li>
-<li>\(\mathbf{x}_1 \sim N(0, 1)\), \(\mathbf{x}_2 = \mathbf{x}^2_1\)</li>
-<li>\(\beta \sim U(-0.5,0.5)\)</li>
-<li>\(Y = (\mathbf{x}_1, \mathbf{x}_2) \times \beta\)</li>
-<li>\(\mathbf{X} = (\mathbf{x}_1, \mathbf{x}^2_1, ..., \mathbf{x}^8_1)\)</li>
+<li>See next slide</li>
 </ul></li>
 </ul>
-
-<hr>
 
   </article>
   <!-- Presenter Notes -->
@@ -750,12 +749,31 @@ where \(\alpha\) is the learning rate</li>
     <h2>Ridge Regression</h2>
   </hgroup>
   <article>
-    <ul>
-<li>Simulation Experiment</li>
+    <h3>Simulation Experiment</h3>
+
+  
+
+<div class='left' style='float:left;width:50%'>
+ <ul>
+<li>\(N = 30\)</li>
+<li>\(\mathbf{x}_1 \sim N(0, 1)\)</li>
+<li>\(\beta \sim (U(-0.5,0.5), U(-0.5,0.5))\)</li>
 </ul>
 
-<p><center><img src="assets/img/lst.png" alt="lst" title="lst"></center></p>
 
+</div>    
+<div class='right' style='float:right;width:50%'>
+ <ul>
+<li>\(\mathbf{y} = (\mathbf{x}_1, \mathbf{x}_1^2) \times \beta\)</li>
+<li>\(\mathbf{X} = (\mathbf{x}_1, \mathbf{x}^2_1, ..., \mathbf{x}^8_1)\)</li>
+</ul>
+
+
+</div>
+<div style='float:left;width:100%;' class='centered'>
+  <p><center><img src="assets/img/lst.png" alt="lst" title="lst"></center></p>
+
+</div>
   </article>
   <!-- Presenter Notes -->
 </slide>
@@ -921,7 +939,7 @@ the smaller \(d_j\) is and the larger \(\lambda\) is, the more shrinkage we have
     <h3>Degree of Freedom</h3>
 
   
-<div class='left' style='float:left;width:40%'>
+<div class='left' style='float:left;width:50%'>
  <ul>
 <li>The number of degrees of freedom is the number of values in the final calculation of a statistic that are free to vary. The degree of freedom of ridge estimate is related to \(\lambda\), thus defined as \(df(\lambda)\).</li>
 <li>Computation
@@ -934,12 +952,12 @@ df(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
 \end{equation}
 \]</li>
 <li>[larger \(\lambda\)] \(\rightarrow\) [smaller \(df(\lambda)\)] \(\rightarrow\) [more constrained model]</li>
-<li>The redline gives the best \(df(\lambda)\) identified from cross validation</li>
+<li>The red line gives the best \(df(\lambda)\) identified from cross validation</li>
 </ul>
 
 
 </div>    
-<div class='right' style='float:right;width:55%'>
+<div class='right' style='float:right;width:48%'>
  <p><center><img src="assets/img/df.png" alt="df" title="df"></center></p>
 
 </div>
@@ -958,18 +976,14 @@ df(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
 <li> w.r.t. Least Squares
 
 <ul>
-<li>\((\mathbf{X^TX + \lambda I})\) is always inveritible and thus the closed form solution always exist</li>
-<li>Ridge regression controls the complexity with regularization term via \(\lambda\), which is less prone to overfitting compared with least squares fit, 
-
-<ul>
-<li>e.g. sometimes a wildly large coefficient on one variable can be cancelled by another wildly large coefficient of a correlated variable</li>
-</ul></li>
+<li>\((\mathbf{X^TX + \lambda I})\) is always invertible and thus the closed form solution always exist</li>
+<li>Ridge regression controls the complexity with regularization term via \(\lambda\), which is less prone to overfitting compared with least squares fit, </li>
 <li>Possibly higher prediction accuracy, as the estimates of ridge regression trade a little bias for less variance</li>
 </ul></li>
 <li> w.r.t. Subset Selection Methods
 
 <ul>
-<li>Ridge regression is a continous shrinkage method which has less variance than subset selection methods</li>
+<li>Ridge regression is a continuous shrinkage method that has less variance than subset selection methods</li>
 </ul></li>
 </ul>
 
@@ -989,7 +1003,7 @@ df(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
   </hgroup>
   <article>
     <ol>
-<li>Introduction to Dimension Reduction</li>
+<li>Introduction to Dimensionality Reduction</li>
 <li>Linear Regression and Least Squares (Review)</li>
 <li>Subset Selection</li>
 <li><b>Shrinkage Methods</b>
@@ -1072,7 +1086,7 @@ df(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
   </hgroup>
   <article>
     <ul>
-<li>Introduction to Dimension Reduction</li>
+<li>Introduction to Dimensionality Reduction</li>
 <li>Linear Regression and Least Squares (Review)</li>
 <li>Subset Selection</li>
 <li><b>Shrinkage Methods</b>
@@ -1234,7 +1248,7 @@ df(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
   </hgroup>
   <article>
     <ul>
-<li>Introduction to Dimension Reduction</li>
+<li>Introduction to Dimensionality Reduction</li>
 <li>Linear Regression and Least Squares (Review)</li>
 <li>Subset Selection</li>
 <li><b>Shrinkage Methods</b>
@@ -1303,7 +1317,7 @@ s.t. &\beta_j \leq \xi_j\\
   </hgroup>
   <article>
     <ul>
-<li>Introduction to Dimension Reduction</li>
+<li>Introduction to Dimensionality Reduction</li>
 <li>Linear Regression and Least Squares (Review)</li>
 <li>Subset Selection</li>
 <li><b>Shrinkage Methods</b>
@@ -1329,85 +1343,48 @@ s.t. &\beta_j \leq \xi_j\\
 
       <slide class="" id="slide-42" style="background:;">
   <hgroup>
-    <h4>LAR Algorithm</h4>
+    <h2>LAR Algorithm</h2>
   </hgroup>
   <article>
       
-<div class='left' style='float:left;width:54%'>
- <ul>
-<li>Initialization: 
+<div class='left' style='float:left;width:44%'>
+ <h3>Algorithm</h3>
 
 <ul>
-<li>Standardized all predictors s.t. \(\bar{\mathbf{x}_j} = 0, \mathbf{x}_j^T\mathbf{x}_j = 1\); \(\mathbf{r}_0 = \mathbf{y} - \bar{\mathbf{y}}\); \(\beta = \mathbf{0}\); \(\mathbf{f}_0 = \mathbf{0}\);</li>
-<li>\(k = argmax_{j} |\mathbf{x}_j^T \mathbf{r}_0|\), \(\mathcal{A}_1 = \{k\}\)<br></li>
-</ul></li>
-<li>Main
+<li>Standardized all predictors; </li>
+<li>\(\mathbf{r}_0 = \mathbf{y} - \bar{\mathbf{y}}\); \(\beta = \mathbf{0}\);</li>
+<li>\(k = argmax_{j} |corr(\mathbf{x}_j, \mathbf{r}_0)|\), \(\mathcal{A}_1 = \{k\}\)<br></li>
+<li>For time step \(t = 1,2,...min(N-1,p)\)
 
 <ul>
-<li>for time step \(t = 1,2,...min(N-1,p)\)
-
-<ul>
-<li>\(\mathbf{r}_t = \mathbf{y} - \mathbf{X}_{\mathcal{A}_t} \beta_{\mathcal{A}_t}\), \(\quad \mathbf{f}_t = \mathbf{X}_{\mathcal{A}_t} \beta_{\mathcal{A}_t}\)</li>
-<li>\(\delta_t = \mathbf{(X^T_{\mathcal{A}_t} X_{\mathcal{A}_t})^{-1} X^T_{\mathcal{A}_t}r_t}\), \(\quad \mathbf{u}_t = \mathbf{X}_{\mathcal{A}_t} \delta_t\)</li>
-<li>Search \(\alpha\)
-
-<ul>
-<li>\(\beta_{\mathcal{A}_t}(\alpha) = \beta_{\mathcal{A}_t} + \alpha \cdot \delta_t\)</li>
-<li>Concurrently, \(\mathbf{f}_t(\alpha) = \mathbf{f}_t + \alpha \cdot \mathbf{u}_t\)</li>
-</ul></li>
-<li>Until \(|\mathbf{X}_{\mathcal{A}_t} \mathbf{r}_t(\alpha)| = max_{\mathbf{x}_j \in \bar{\mathcal{A}_t}} |\mathbf{x}_j^T \mathbf{r}_t(\alpha)|\)</li>
-<li>\(k = argmax_{j \in \bar{\mathcal{A}_t}} |\mathbf{x}_j \mathbf{r}_t(\alpha)|\), </li>
+<li>Move \(\beta_{\mathcal{A}_t}\) in the joint least squares direction for \(\mathcal{A}_t\), until some other \(k \not\in \mathcal{A}_t\) has as much correlation with the current residual</li>
 <li>\(\mathcal{A}_{t+1} = \mathcal{A}_{t} \cup \{k\}\)</li>
-</ul></li>
 </ul></li>
 </ul>
 
 
 </div>    
-<div class='middle' style='float:left;width:2%'>
- <p>|</p>
-
-<p>|</p>
-
-<p>|</p>
-
-<p>|</p>
-
-<p>|</p>
-
-<p>|</p>
-
-<p>|</p>
-
-<p>|</p>
-
-<p>|</p>
-
-<p>|</p>
-
-<p>|</p>
-
-
-</div>    
 <div class='right' style='float:right;width:44%'>
- <hr>
+ <h3>Notations</h3>
 
 <ul>
+<li>\(\beta\):\(p \times 1\) coefficient vector</li>
 <li>\(\mathcal{A}_t\): <i>active set</i>, the set indices of features we already included in the model at time step \(t\).
 
 <ul>
 <li>\(\bar{\mathcal{A}_t} = \{1,2,...,p\} - \mathcal{A}_t\)</li>
 </ul></li>
-<li>\(\alpha\): searching parameter within a time step</li>
-<li>\(\beta_{\mathcal{A}_t}\): coefficients vector at the beginning of time step \(t\)</li>
-<li>\(\beta_{\mathcal{A}_t}(\alpha)\): coefficients vector in time step \(t\) w.r.t. \(\alpha\)</li>
-<li>\(\mathbf{f}_t\): the fit vector at the beginning of time step \(t\), \(\mathbf{f}_0 = 0\)</li>
-<li>\(\mathbf{f}_t(\alpha)\): the fit vector in time step \(t\) w.r.t. \(\alpha\)</li>
-<li>\(\mathbf{r}_t\): residual vector at the beginning of time step \(t\), \(\mathbf{r}_0 = \mathbf{y} - \bar{\mathbf{y}}\), where \(\bar{\mathbf{y}} = average(\mathbf{y})\)</li>
-<li>\(\mathbf{r}_t(\alpha)\): residual vector in time step \(t\), w.r.t. \(\alpha\)</li>
-</ul>
+<li>\(\beta_{\mathcal{A}_t}\): \(|\mathcal{A}_t| \times 1\) vector of coefficients, w.r.t \(\mathcal{A}_t\)
 
-<hr>
+<ul>
+<li>Contains the \(\beta_j, j \in \mathcal{A}_t\)</li>
+</ul></li>
+<li>\(\mathbf{X}_{\mathcal{A}_t}\): \(N \times |\mathcal{A}_t|\) matrix
+
+<ul>
+<li>Contains \(\mathbf{x}_j, j \in \mathcal{A}_t\)</li>
+</ul></li>
+</ul>
 
 </div>
   </article>
@@ -1420,30 +1397,28 @@ s.t. &\beta_j \leq \xi_j\\
   </hgroup>
   <article>
       
-<div class='left' style='float:left;width:55%'>
+<div class='left' style='float:left;width:50%'>
  <p><center><img src="assets/img/lars1.png" alt="lars1" title="lars1"></center></p>
 
 
 </div>    
-<div class='right' style='float:right;width:45%'>
+<div class='right' style='float:right;width:48%'>
  <ul>
-<li>Initialization: 
+<li>Example Setting:
 
 <ul>
+<li>\(N = 2\), \(p = 2\)</li>
+</ul></li>
 <li>Standardized each columns of \(\mathbf{X}\) 
 
 <ul>
-<li>s.t. \(\bar{\mathbf{x}_j} = 0\), \(\mathbf{x}_j^T\mathbf{x}_j = 1\)</li>
+<li>s.t. \(mean\{\mathbf{x}_j\} = 0\), \(std\{\mathbf{x}_j\} = 1\)</li>
+<li>Thus we know \(\|\mathbf{x}_1\| = \|\mathbf{x}_2\| = ... = \|\mathbf{x}_p\|\)</li>
+<li>Two standardized column vectors \(\mathbf{x}_1\) and \(\mathbf{x}_2\) are shown in the left figure<br></li>
 </ul></li>
-<li>\(\mathbf{r}_0 = \mathbf{y} - \bar{\mathbf{y}}\); </li>
-<li>\(\beta = (0, 0)^T\); </li>
-<li>\(\mathcal{A}_0 = \emptyset\)</li>
-<li>\(\mathbf{f}_0\) is the current fit at time \(0\) 
-
-<ul>
-<li>\(\mathbf{f}_0 = (0, 0)^T\)</li>
-</ul></li>
-</ul></li>
+<li>\(\mathcal{A}_0 = \emptyset\), which means that we have not chosen any feature yet<br></li>
+<li>\(\beta = (0, 0)^T\)</li>
+<li>The \(N\times 1\) fit vector \(\mathbf{f}_0 = \mathbf{X} \beta_{\mathcal{A}_t } = 0\)</li>
 </ul>
 
 </div>
@@ -1464,8 +1439,8 @@ s.t. &\beta_j \leq \xi_j\\
 </div>    
 <div class='right' style='float:right;width:45%'>
  <ul>
-<li>\(k = argmax_{j} |\mathbf{x}_j^T \mathbf{r}_0| = 1\)</li>
-<li>\(\mathcal{A}_1 = \{1\}\)</li>
+<li>\(k = argmax_{j} |corr(\mathbf{x}_j, \mathbf{r}_0)| = 1\)</li>
+<li>\(\mathcal{A}_1 = \mathcal{A}_0 \cup \{1\} = \{1\}\)</li>
 </ul>
 
 </div>
@@ -1485,10 +1460,20 @@ s.t. &\beta_j \leq \xi_j\\
 
 </div>    
 <div class='right' style='float:right;width:45%'>
- <ul>
-<li>\(\mathbf{r}_1 = \mathbf{y} - \mathbf{X}_{\mathcal{A}_1} \beta_{\mathcal{A}_1}\)</li>
-<li>\(\delta_1 = \mathbf{(X^T_{\mathcal{A}_1} X_{\mathcal{A}_1})^{-1}X^T_{\mathcal{A}_1}r_1}\)</li>
-<li>\(\mathbf{u}_1 = \mathbf{X}_{\mathcal{A}_1} \delta_1\)</li>
+ <h3>Explanations</h3>
+
+<ul>
+<li>\(\mathbf{r}_1 = \mathbf{y} - \mathbf{X}_{\mathcal{A}_1} \beta_{\mathcal{A}_1}\) is the residual error at the beginning of time \(1\)</li>
+<li>\(\delta_1 = \mathbf{(X^T_{\mathcal{A}_1} X_{\mathcal{A}_1})^{-1}X^T_{\mathcal{A}_1}r_1}\) is the least square estimates of the coefficients whose corresponding features in \(\mathcal{A}_1 = \{1\}\) w.r.t. residual error \(\mathbf{r}_1\)
+
+<ul>
+<li>\(\delta_1\) is the direction that coefficients \(\beta_{\mathcal{A}_1}\) changes along</li>
+</ul></li>
+<li>\(\mathbf{u}_1 = \mathbf{X}_{\mathcal{A}_1} \delta_1\)
+
+<ul>
+<li>As \(\beta_{\mathcal{A}_1}\) changes along \(\delta_1\), the fit \(\mathbf{f}\) changes along \(\mathbf{u}_1\)</li>
+</ul></li>
 </ul>
 
 </div>
@@ -1503,30 +1488,26 @@ s.t. &\beta_j \leq \xi_j\\
   <article>
       
 <div class='left' style='float:left;width:55%'>
- <p><center><img src="assets/img/lars4.png" alt="lars4" title="lars4"></center></p>
+ <p><center><img src="assets/img/lars3.png" alt="lars3" title="lars3"></center></p>
 
 
 </div>    
 <div class='right' style='float:right;width:45%'>
- <h3>Explanations</h3>
+ <h3>Comparison</h3>
 
 <ul>
-<li>Search \(\alpha\)
+<li>\(\mathbf{r}_1\)
 
 <ul>
-<li>\(\beta_{\mathcal{A}_1}(\alpha) = \beta_{\mathcal{A}_1} + \alpha \cdot \delta_1\), </li>
-<li>\(\mathbf{f}_1(\alpha) = \mathbf{f}_1 + \alpha \cdot \mathbf{u}_1\)</li>
-<li>\(\mathbf{r}_1(\alpha) = \mathbf{y} - \mathbf{X}_{\mathcal{A}_1} \beta_{\mathcal{A}_1}(\alpha)\)</li>
+<li>\(\delta_1 = \mathbf{(X^T_{\mathcal{A}_1} X_{\mathcal{A}_1})^{-1}X^T_{\mathcal{A}_1}r_1}\)</li>
+<li>\(\mathbf{u}_1 = \mathbf{X}_{\mathcal{A}_1} \delta_1\)</li>
 </ul></li>
-<li>Until \(|\mathbf{X}_{\mathcal{A}_1} \mathbf{r}_1(\alpha)| = max_{j \in \bar{\mathcal{A}_1}} |\mathbf{x}_j^T \mathbf{r}_1(\alpha)|\)</li>
-<li>\(2 = argmax_{j \in \bar{\mathcal{A}_1}} |\mathbf{x}_j^T \mathbf{r}_1(\alpha)|\)</li>
-<li>\(\mathcal{A}_2 = \{1, 2\}\)</li>
-</ul>
-
-<h3>Comments</h3>
+<li>\(\mathbf{y}\)
 
 <ul>
-<li>\(\mathbf{f}_t\) is approaching \(\mathbf{f}_t^{ls}\), but never reaches it, except for the final step of LAR</li>
+<li>\(\hat{\beta} = \mathbf{(X^T X)^{-1}X^Ty}\)</li>
+<li>\(\hat{\mathbf{y}} = \mathbf{X} \hat{\beta}\)</li>
+</ul></li>
 </ul>
 
 </div>
@@ -1541,7 +1522,7 @@ s.t. &\beta_j \leq \xi_j\\
   <article>
       
 <div class='left' style='float:left;width:55%'>
- <p><center><img src="assets/img/lars5.png" alt="lars5" title="lars5"></center></p>
+ <p><center><img src="assets/img/lars4.png" alt="lars4" title="lars4"></center></p>
 
 
 </div>    
@@ -1549,15 +1530,11 @@ s.t. &\beta_j \leq \xi_j\\
  <h3>Explanations</h3>
 
 <ul>
-<li>\(\mathbf{r}_2 = \mathbf{y} - \mathbf{X}_{\mathcal{A}_2} \beta_{\mathcal{A}_2}\)</li>
-<li>\(\delta_2 = \mathbf{(X^T_{\mathcal{A}_2} X_{\mathcal{A}_2})^{-1}X^T_{\mathcal{A}_2}r_2}\)</li>
-<li>\(\mathbf{u}_2 = \mathbf{X}_{\mathcal{A}_2} \delta_2\)</li>
-</ul>
-
-<h3>Comments</h3>
-
-<ul>
-<li>the direction \(\mathbf{u}_k = \mathbf{X}_{\mathcal{A}_k} \delta_k\) that our fit \(\mathbf{f}_k(\alpha)\) increases actually has the same angle with any \(\mathbf{x}_j \in \mathcal{A}_k\).</li>
+<li>As \(\beta_{\mathcal{A}_1}\) moves along \(\delta_1\), the correlation between the coefficient of the feature in \(\mathcal{A}_1 = \{1\}\) with the residual error decreases</li>
+<li>\(\mathbf{f}_1\), intialized as \(\mathbf{f}_0\), moves along \(\mathbf{u}_1\)</li>
+<li>At last, the correlation between the coefficient of feature \(k = 2\) and residual error catches up</li>
+<li>\(\mathcal{A}_2 = \mathcal{A}_1 \cup \{2\} = \{1, 2\}\)</li>
+<li>Note that the fit \(\mathbf{f}_1\) approaches the least squares fit \(\mathbf{f}_1^{ls}\), but not reach it</li>
 </ul>
 
 </div>
@@ -1572,18 +1549,25 @@ s.t. &\beta_j \leq \xi_j\\
   <article>
       
 <div class='left' style='float:left;width:55%'>
- <p><center><img src="assets/img/lars6.png" alt="lars6" title="lars6"></center></p>
+ <p><center><img src="assets/img/lars5.png" alt="lars5" title="lars5"></center></p>
 
 
 </div>    
 <div class='right' style='float:right;width:45%'>
- <ul>
-<li>If \(p = 2\)
+ <h3>Explanations</h3>
 
 <ul>
-<li>\(\mathbf{f}_2 = \mathbf{f}_2^{ls}\)</li>
+<li>The joint least squares direction, which \(\beta_{\mathcal{A}_2}\) moves along, is \(\delta_2 = \mathbf{(X^T_{\mathcal{A}_2} X_{\mathcal{A}_2})^{-1}X^T_{\mathcal{A}_2}r_2}\)
+
+<ul>
+<li>\(\mathbf{r}_2 = \mathbf{y} - \mathbf{X}_{\mathcal{A}_2} \beta_{\mathcal{A}_2}\)</li>
 </ul></li>
-<li>The absolute values of correlations of \(\mathbf{x}_j \in \mathcal{A}_k, \forall j\) with the residual error \(\mathbf{r}_t{\alpha}\) are tied and decrease at the same rate during searching \(\alpha\).</li>
+<li>The direction our fit move along is \(\mathbf{u}_2 = \mathbf{X}_{\mathcal{A}_2} \delta_2\)
+
+<ul>
+<li>Note that \(\mathbf{u}_2\) is the bisector of \(\mathbf{x}_1\) and \(\mathbf{x}_2\)</li>
+<li>Furthermore, \(\mathbf{u}_t\) is the &quot;bisector&quot; of (hase the same angle with) all \(\mathbf{x}_j, j \in \mathcal{A}_t\)</li>
+</ul></li>
 </ul>
 
 </div>
@@ -1593,23 +1577,56 @@ s.t. &\beta_j \leq \xi_j\\
 
       <slide class="" id="slide-49" style="background:;">
   <hgroup>
+    <h2>LAR - Example</h2>
+  </hgroup>
+  <article>
+      
+<div class='left' style='float:left;width:55%'>
+ <p><center><img src="assets/img/lars6.png" alt="lars6" title="lars6"></center></p>
+
+
+</div>    
+<div class='right' style='float:right;width:45%'>
+ <h3>Explanations</h3>
+
+<ul>
+<li>As \(\beta_{\mathcal{A}_2}\) moves along \(\delta_2\), the fit \(\mathbf{f}_2\), initialized as \(\mathbf{f}_1\),
+
+<ul>
+<li>moves along \(\mathbf{u}_2\)</li>
+<li>approaches \(\mathbf{f}_2^{ls}\)</li>
+</ul></li>
+<li>As we only have \(p = 2\) features, finally
+
+<ul>
+<li>\(\mathbf{f}_2 = \mathbf{f}^{ls}_2\)</li>
+</ul></li>
+</ul>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-50" style="background:;">
+  <hgroup>
     <h2>LAR</h2>
   </hgroup>
   <article>
     <h3>More Comments</h3>
 
 <ul>
-<li>The procedure of searching is approaching the least-squares coefficients of fitting \(\mathbf{y}\) on \(\mathcal{A}_k\)</li>
 <li>LAR solves the subset selection problem for all \(t, s.t. \|\beta\| \leq t\)</li>
-<li>Actually, \(\alpha\) can be computed instead of searching</li>
 <li>LAR algorithm ends in \(min(p, N-1)\) steps</li>
 </ul>
+
+<p><center><img src="assets/img/lar_corr.png" alt="corr" title="cor"></center></p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-50" style="background:;">
+      <slide class="" id="slide-51" style="background:;">
   <hgroup>
     <h2>LAR</h2>
   </hgroup>
@@ -1626,7 +1643,7 @@ s.t. &\beta_j \leq \xi_j\\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-51" style="background:;">
+      <slide class="" id="slide-52" style="background:;">
   <hgroup>
     <h2>LAR</h2>
   </hgroup>
@@ -1635,33 +1652,9 @@ s.t. &\beta_j \leq \xi_j\\
 
 <h3>Modification for LASSO</h3>
 
-<p>During the searching procedure, if a non-zero coefficient hits zero, drop this variable from \(\mathcal{A}_k\), and recompute the direction \(\delta_k\)</p>
+<p>During the searching procedure, if a non-zero coefficient hits zero, drop this variable from \(\mathcal{A}_t\), and recompute the direction \(\delta_t\)</p>
 
 <p><center><img src="assets/img/comp4.png" alt="comp4" title="comp4"></center></p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-      <slide class="" id="slide-52" style="background:;">
-  <hgroup>
-    <h2>LAR</h2>
-  </hgroup>
-  <article>
-    <h3>Some heuristic analysis</h3>
-
-<ul>
-<li><p>At a certain time point, we know that all \(\mathbf{x}_j \in \mathcal{A}\) share the same absolute values of correlations with the residual error. That is
-\[\mathbf{x}_j^T(\mathbf{y} - \mathbf{X}\beta) = \gamma \cdot s_j, \quad \forall j \ \in \mathcal{A}\]
-where \(s_j \in \{-1,1\}\) indicates the sign of the left hand inner product and \(\gamma\) is the common value. </p>
-
-<ul>
-<li>We also know that \(|\mathbf{x_j}(\mathbf{y} - \mathbf{X}\beta)| \leq \gamma, \quad \forall \mathbf{x}_j \not\in \mathcal{A}\)</li>
-</ul></li>
-<li><p>Consider LASSO for a fixed \(\lambda\). Let \(\mathcal{B}\) be the set of indices of non-zero coefficients, then we differentiate the objective function w.r.t. those coefficients in \(\mathcal{B}\) and set the gradient to zero. We have
-\[\mathbf{x}_j^T(\mathbf{y} - \mathbf{X}\beta) = \lambda \cdot sign(\beta_j), \quad \forall j \in \mathcal{B}\]</p></li>
-<li><p>They are identical only if \(sign(\beta_j)\) matches the sign of the lefthand side. In \(\mathcal{A}\), we allow for the \(\beta_j\), where \(sign(\beta_j) \neq sign(\mathbf{x}_j^T(\mathbf{y} - \mathbf{X}\beta))\), while this is forbidden in \(\mathcal{B}\). </p></li>
-</ul>
 
   </article>
   <!-- Presenter Notes -->
@@ -1675,13 +1668,16 @@ where \(s_j \in \{-1,1\}\) indicates the sign of the left hand inner product and
     <h3>Some heuristic analysis</h3>
 
 <ul>
-<li> For LAR, we have 
-\[|\mathbf{x}_j^T(\mathbf{y} - \mathbf{X}\beta)| \leq \gamma, \quad \forall \mathbf{x}_j \not\in \mathcal{A}\]</li>
-<li>According to the stationary conditions, for LASSO, we have
-\[
-|\mathbf{x}_j^T(\mathbf{y} - \mathbf{X}\beta)| \leq \lambda, \quad \forall \mathbf{x}_j \not\in \mathcal{B}
-\]</li>
-<li>LAR and LASSO match for variables with zero coefficients too.</li>
+<li><p>At a certain time point, we know that all \(\mathbf{x}_j \in \mathcal{A}\) share the same absolute values of correlations with the residual error. That is
+\[\mathbf{x}_j^T(\mathbf{y} - \mathbf{X}\beta) = \gamma \cdot s_j, \quad \forall j \ \in \mathcal{A}\]
+where \(s_j \in \{-1,1\}\) and \(s_j = sign(\mathbf{x}_j^T(\mathbf{y} - \mathbf{X}\beta))\) and \(\gamma\) is the common value. </p>
+
+<ul>
+<li>We also know that \(|\mathbf{x_j}(\mathbf{y} - \mathbf{X}\beta)| \leq \gamma, \quad \forall j \not\in \mathcal{A}\)</li>
+</ul></li>
+<li><p>Consider LASSO for a fixed \(\lambda\). Let \(\mathcal{B}\) be the set of indices of non-zero coefficients, then we differentiate the objective function w.r.t. those coefficients in \(\mathcal{B}\) and set the gradient to zero. We have
+\[\mathbf{x}_j^T(\mathbf{y} - \mathbf{X}\beta) = \lambda \cdot sign(\beta_j), \quad \forall j \in \mathcal{B}\]</p></li>
+<li><p>They are identical only if \(sign(\beta_j)\) matches \(s_j\). In \(\mathcal{A}\), we allow for the \(\beta_j\), where \(sign(\beta_j) \neq sign(\mathbf{x}_j^T(\mathbf{y} - \mathbf{X}\beta))\), while this is forbidden in \(\mathcal{B}\). </p></li>
 </ul>
 
   </article>
@@ -1690,11 +1686,32 @@ where \(s_j \in \{-1,1\}\) indicates the sign of the left hand inner product and
 
       <slide class="" id="slide-54" style="background:;">
   <hgroup>
+    <h2>LAR</h2>
+  </hgroup>
+  <article>
+    <h3>Some heuristic analysis</h3>
+
+<ul>
+<li> For LAR, we have 
+\[|\mathbf{x}_j^T(\mathbf{y} - \mathbf{X}\beta)| \leq \gamma, \quad \forall j \not\in \mathcal{A}\]</li>
+<li>According to the stationary conditions, for LASSO, we have
+\[
+|\mathbf{x}_j^T(\mathbf{y} - \mathbf{X}\beta)| \leq \lambda, \quad \forall j \not\in \mathcal{B}
+\]</li>
+<li>LAR and LASSO match for variables with zero coefficients too.</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-55" style="background:;">
+  <hgroup>
     <h2>LASSO</h2>
   </hgroup>
   <article>
     <ul>
-<li>Introduction to Dimension Reduction</li>
+<li>Introduction to Dimensionality Reduction</li>
 <li>Linear Regression and Least Squares (Review)</li>
 <li>Subset Selection</li>
 <li><b>Shrinkage Methods</b>
@@ -1718,7 +1735,7 @@ where \(s_j \in \{-1,1\}\) indicates the sign of the left hand inner product and
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-55" style="background:;">
+      <slide class="" id="slide-56" style="background:;">
   <hgroup>
     <h2>Viewed as approximation for \(l_0\)-regularization</h2>
   </hgroup>
@@ -1741,7 +1758,7 @@ where \(s_j \in \{-1,1\}\) indicates the sign of the left hand inner product and
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-56" style="background:;">
+      <slide class="" id="slide-57" style="background:;">
   <hgroup>
     <h2>Viewed as approximation for \(l_0\)-regularization</h2>
   </hgroup>
@@ -1761,13 +1778,13 @@ where \(s_j \in \{-1,1\}\) indicates the sign of the left hand inner product and
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-57" style="background:;">
+      <slide class="" id="slide-58" style="background:;">
   <hgroup>
     <h2>Part 5: Beyond LASSO</h2>
   </hgroup>
   <article>
     <ol>
-<li>Introduction to Dimension Reduction</li>
+<li>Introduction to Dimensionality Reduction</li>
 <li>Linear Regression and Least Squares (Review)</li>
 <li>Subset Selection</li>
 <li>Shrinkage Methods</li>
@@ -1786,7 +1803,7 @@ where \(s_j \in \{-1,1\}\) indicates the sign of the left hand inner product and
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-58" style="background:;">
+      <slide class="" id="slide-59" style="background:;">
   <hgroup>
     <h2>Beyond LASSO - Elastic Net</h2>
   </hgroup>
@@ -1795,7 +1812,7 @@ where \(s_j \in \{-1,1\}\) indicates the sign of the left hand inner product and
 
 <ul>
 <li>LASSO tends to rather arbitrarily select one of a group of highly correlated variables (see how LAR works). Sometimes, it is better to select <b>ALL</b> the relevant varibles in a group</li>
-<li>LASSO selects at most \(N\) variables, when \(p > N\), which may be undisirable when \(p >> N\)</li>
+<li>LASSO selects at most \(N\) variables, when \(p > N\), which may be undesirable when \(p >> N\)</li>
 <li>The performance of Ridge dominates that of LASSO, when \(N > p\) and variables are correlated</li>
 </ul>
 
@@ -1823,7 +1840,7 @@ which is a compromise between ridge regression and LASSO and \(\alpha \in [0,1]\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-59" style="background:;">
+      <slide class="" id="slide-60" style="background:;">
   <hgroup>
     <h2>Beyond LASSO - Elastic Net</h2>
   </hgroup>
@@ -1864,7 +1881,7 @@ which is a compromise between ridge regression and LASSO and \(\alpha \in [0,1]\
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-60" style="background:;">
+      <slide class="" id="slide-61" style="background:;">
   <hgroup>
     <h2>Elastic Net - A simple illustration</h2>
   </hgroup>
@@ -1885,7 +1902,7 @@ where \(\epsilon\) is \(i.i.d.\) random noise.</li>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-61" style="background:;">
+      <slide class="" id="slide-62" style="background:;">
   <hgroup>
     <h2>Elastic Net - A simple illustration</h2>
   </hgroup>
@@ -1896,7 +1913,7 @@ where \(\epsilon\) is \(i.i.d.\) random noise.</li>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-62" style="background:;">
+      <slide class="" id="slide-63" style="background:;">
   <hgroup>
     <h2>Elastic Net - A simple illustration</h2>
   </hgroup>
@@ -1911,7 +1928,7 @@ where \(\epsilon\) is \(i.i.d.\) random noise.</li>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-63" style="background:;">
+      <slide class="" id="slide-64" style="background:;">
   <hgroup>
     <h2>Beyond LASSO - Fused LASSO</h2>
   </hgroup>
@@ -1940,7 +1957,7 @@ where \(\epsilon\) is \(i.i.d.\) random noise.</li>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-64" style="background:;">
+      <slide class="" id="slide-65" style="background:;">
   <hgroup>
     <h2>Beyond LASSO - Fused LASSO</h2>
   </hgroup>
@@ -1953,7 +1970,7 @@ where \(\epsilon\) is \(i.i.d.\) random noise.</li>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-65" style="background:;">
+      <slide class="" id="slide-66" style="background:;">
   <hgroup>
     <h2>Fused LASSO - Simulation results</h2>
   </hgroup>
@@ -1972,7 +1989,7 @@ where \(\epsilon\) is \(i.i.d.\) random noise.</li>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-66" style="background:;">
+      <slide class="" id="slide-67" style="background:;">
   <hgroup>
     <h2>Beyond LASSO - Group LASSO</h2>
   </hgroup>
@@ -1999,7 +2016,7 @@ where \(\epsilon\) is \(i.i.d.\) random noise.</li>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-67" style="background:;">
+      <slide class="" id="slide-68" style="background:;">
   <hgroup>
     <h2>Group LASSO - Simulation Results</h2>
   </hgroup>
@@ -2025,7 +2042,7 @@ where \(\epsilon\) is \(i.i.d.\) random noise.</li>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-68" style="background:;">
+      <slide class="" id="slide-69" style="background:;">
   <hgroup>
     <h2>Group LASSO - Simulation Results</h2>
   </hgroup>
@@ -2036,7 +2053,7 @@ where \(\epsilon\) is \(i.i.d.\) random noise.</li>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-69" style="background:;">
+      <slide class="" id="slide-70" style="background:;">
   <hgroup>
     <h2>Beyond LASSO - \(l_1\)-\(l_p\) penalization</h2>
   </hgroup>
@@ -2065,7 +2082,7 @@ where \(\epsilon\) is \(i.i.d.\) random noise.</li>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-70" style="background:;">
+      <slide class="" id="slide-71" style="background:;">
   <hgroup>
     <h2>Beyond LASSO - \(l_1\)-\(l_p\) penalization</h2>
   </hgroup>
@@ -2093,7 +2110,7 @@ where \(J\) is some loss function and \(\sum_{j = 1}^p \|\beta_{:j}\|_2\) is the
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-71" style="background:;">
+      <slide class="" id="slide-72" style="background:;">
   <hgroup>
     <h2>Beyond LASSO - \(l_1-l_p\) penalization</h2>
   </hgroup>
@@ -2106,7 +2123,7 @@ where \(J\) is some loss function and \(\sum_{j = 1}^p \|\beta_{:j}\|_2\) is the
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-72" style="background:;">
+      <slide class="" id="slide-73" style="background:;">
   <hgroup>
     <h2>\(l_1-l_p\) penalization - Experiment Result</h2>
   </hgroup>
@@ -2129,7 +2146,7 @@ where \(J\) is some loss function and \(\sum_{j = 1}^p \|\beta_{:j}\|_2\) is the
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-73" style="background:;">
+      <slide class="" id="slide-74" style="background:;">
   <hgroup>
     <h2>\(l_1-l_p\) penalization - Experiment Result</h2>
   </hgroup>
@@ -2153,7 +2170,7 @@ where \(J\) is some loss function and \(\sum_{j = 1}^p \|\beta_{:j}\|_2\) is the
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-74" style="background:;">
+      <slide class="" id="slide-75" style="background:;">
   <hgroup>
     <h2>\(l_1-l_p\) penalization - Experiment Result</h2>
   </hgroup>
@@ -2169,7 +2186,7 @@ where \(J\) is some loss function and \(\sum_{j = 1}^p \|\beta_{:j}\|_2\) is the
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-75" style="background:;">
+      <slide class="" id="slide-76" style="background:;">
   <hgroup>
     <h2>Beyond LASSO - Graph-Guided Fused LASSO</h2>
   </hgroup>
@@ -2189,7 +2206,7 @@ where \(r_{a,b} \in \mathbb{R}\) denotes the weight of the edge and \(\tau(r)\) 
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-76" style="background:;">
+      <slide class="" id="slide-77" style="background:;">
   <hgroup>
     <h2>Beyond LASSO - Graph-Guided Fused LASSO</h2>
   </hgroup>
@@ -2218,7 +2235,7 @@ where \(r_{a,b} \in \mathbb{R}\) denotes the weight of the edge and \(\tau(r)\) 
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-77" style="background:;">
+      <slide class="" id="slide-78" style="background:;">
   <hgroup>
     <h2>Summary</h2>
   </hgroup>
@@ -2226,7 +2243,7 @@ where \(r_{a,b} \in \mathbb{R}\) denotes the weight of the edge and \(\tau(r)\) 
     <h3>Outline</h3>
 
 <ul>
-<li><h3>Introduction to Dimension Reduction</h3></li>
+<li><h3>Introduction to Dimensionality Reduction</h3></li>
 <li><h3>Linear Regression and Least Squares (Review)</h3></li>
 <li><h3>Subset Selection</h3></li>
 <li><h3>Shrinkage Methods</h3></li>
@@ -2237,7 +2254,7 @@ where \(r_{a,b} \in \mathbb{R}\) denotes the weight of the edge and \(\tau(r)\) 
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-78" style="background:;">
+      <slide class="" id="slide-79" style="background:;">
   <hgroup>
     <h2>Summary</h2>
   </hgroup>
@@ -2269,7 +2286,7 @@ where \(r_{a,b} \in \mathbb{R}\) denotes the weight of the edge and \(\tau(r)\) 
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-79" style="background:;">
+      <slide class="" id="slide-80" style="background:;">
   <hgroup>
     <h2>Summary</h2>
   </hgroup>
@@ -2292,7 +2309,7 @@ where \(r_{a,b} \in \mathbb{R}\) denotes the weight of the edge and \(\tau(r)\) 
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-80" style="background:;">
+      <slide class="" id="slide-81" style="background:;">
   <hgroup>
     <h2>More on the topics skipped here</h2>
   </hgroup>
@@ -2302,8 +2319,8 @@ where \(r_{a,b} \in \mathbb{R}\) denotes the weight of the edge and \(\tau(r)\) 
 
 <ul>
 <li><a href="http://www.cs.otago.ac.nz/cosc453/student_tutorials/principal_components.pdf">http://www.cs.otago.ac.nz/cosc453/student_tutorials/principal_components.pdf</a></li>
-<li>Imola K. Fodor, A survey of dimension reduction techniques</li>
-<li>Christopher J. C. Burges, Dimension Reduction: A Guided Tour</li>
+<li>Imola K. Fodor, A survey of Dimensionality Reduction techniques</li>
+<li>Christopher J. C. Burges, Dimensionality Reduction: A Guided Tour</li>
 </ul></li>
 <li>Mutual-info-based feature selection: 
 
@@ -2328,7 +2345,7 @@ where \(r_{a,b} \in \mathbb{R}\) denotes the weight of the edge and \(\tau(r)\) 
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-81">
+      <slide class="" id="slide-82">
 <hgroup>
   <h2>Sparse Models</h2>
 </hgroup>
@@ -2338,7 +2355,7 @@ where \(r_{a,b} \in \mathbb{R}\) denotes the weight of the edge and \(\tau(r)\) 
 </article>
 <!-- Presenter Notes -->
 </slide>
-      <slide class="" id="slide-82" style="background:;">
+      <slide class="" id="slide-83" style="background:;">
   <hgroup>
     <h2>Reference</h2>
   </hgroup>
@@ -2353,13 +2370,14 @@ where \(r_{a,b} \in \mathbb{R}\) denotes the weight of the edge and \(\tau(r)\) 
 <li><a href="http://en.wikipedia.org/wiki/Laplacian_distribution">http://en.wikipedia.org/wiki/Laplacian_distribution</a> <font color = 'green'>[p38]</font></li>
 <li><a href="http://webdocs.cs.ualberta.ca/%7Emahdavif/ReadingGroup/Papers/larS.pdf">http://webdocs.cs.ualberta.ca/~mahdavif/ReadingGroup/Papers/larS.pdf</a> <font color = 'green'>[p20]</font></li>
 <li>Bradley Efron, Trevor Hastie, Iain Johnstone and Robert Tibshirani. Least Angle Regression <font color = 'green'>[p20]</font></li>
+<li><a href="http://www.stanford.edu/%7Ehastie/TALKS/larstalk.pdf">http://www.stanford.edu/~hastie/TALKS/larstalk.pdf</a></li>
 </ul>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-83" style="background:;">
+      <slide class="" id="slide-84" style="background:;">
   <hgroup>
     <h2>Reference</h2>
   </hgroup>

@@ -1,5 +1,5 @@
 ---
-title       : Sparse Models
+title       : Dimensionality Reduction
 subtitle    : CMPUT 466/551
 author      : Ping Jin (pjin1@ualberta.ca)
 job         : 
@@ -13,7 +13,7 @@ mode        : selfcontained # {standalone, draft}
 
 ## Outline
 
-- <h3>Introduction to Dimension Reduction</h3>
+- <h3>Introduction to Dimensionality Reduction</h3>
 
 - <h3>Linear Regression and Least Squares (Review)</h3>
 
@@ -25,9 +25,9 @@ mode        : selfcontained # {standalone, draft}
 
 --- 
 
-## Part 1: Introduction to Dimension Reduction
+## Part 1: Introduction to Dimensionality Reduction
 
-1. <b>Introduction to Dimension Reduction</b>
+1. <b>Introduction to Dimensionality Reduction</b>
     - <b>General notations</b>
     - <b>Motivations</b>
     - <b>Feature selection and feature extraction</b>
@@ -45,8 +45,6 @@ mode        : selfcontained # {standalone, draft}
 ---&triple w1:50% w2:50%
 
 ## General Notations
-
-
 
 ### Dataset
 
@@ -66,14 +64,14 @@ mode        : selfcontained # {standalone, draft}
 ### Basic Model
 - Linear Regression
   - Assumption: the regression function $E(Y|X)$ is linear
-  $$f(X) = X\beta$$
+  $$f(X) = X^T\beta$$
   - $\beta$: $(p+1) \times 1$ vector of coefficients
 
 ---&twocolportion w1:53% w2:47% 
 
 ## Motivations
 
-- Dimension reduction is about transforming data with high dimensionality into data of much lower dimensionality
+- Dimensionality Reduction is about transforming data with high dimensionality into data of much lower dimensionality
     - <b>Computational efficiency</b>: less dimensions require less computations
     - <b>Accuracy</b>: lower risk of overfitting
 
@@ -90,10 +88,10 @@ mode        : selfcontained # {standalone, draft}
 
 <br>
 
-<center>![fs](assets/img/fs.png "fs")</center>
+<center>![fs](assets/img/fs.gif "fs")</center>
 
 
-<center>![fe](assets/img/fe.png "fe")</center>
+<center>![fe](assets/img/fe.gif "fe")</center>
 
 
 --- &twocolportion w1:50% w2:50%
@@ -110,7 +108,7 @@ mode        : selfcontained # {standalone, draft}
 <br>
 <br>
 <br>
-<center>![fs2](assets/img/fs2.png "fs2")</center>
+<center>![fs2](assets/img/fs2.gif "fs2")</center>
 
 
 
@@ -125,7 +123,7 @@ mode        : selfcontained # {standalone, draft}
 <br>
 
 
-<center>![fe2](assets/img/fe2.png "fe2")</center>
+<center>![fe2](assets/img/fe2.gif "fe2")</center>
 
 ---
 
@@ -169,8 +167,9 @@ Feature extraction
 
 ### Wrapper Methods
 
-- search the space of feature subsets
-- use the training/validation accuracy of a particular classifier as the measure of utility for a candidate subset
+- Search the space of feature subsets
+- Use the cross validation accuracy w.r.t. a specific classifier as the measure of utility for a candidate subset
+- e.g. see how it works for a feature set {1, 2, 3} in the figure below
 
 <center>![wrapper](assets/img/wrapper.png "wrapper")</center>
 
@@ -204,11 +203,13 @@ Feature extraction
 
 |               | Wrapper       | Filter| Embedded|
 | ----------- |:-------------:| -----:|-----:|
-| Speed               | Low     | High  | Mid|
+| Computational Speed               | Low     | High  | Mid|
 | Chance of Overfitting| High   | Low   | Mid|
 | Classifier-Independent | No   | Yes   | No  |
 
---- &twocolportion w1:40% w2:60%
+Wrapper methods has the strongest learning capability among the three, which requires more data to reliably get a near-optimal approximation. For small datasets, it is prone to overfitting.
+
+--- &twocolportion w1:50% w2:48%
 
 ## Feature Extraction   
 
@@ -226,14 +227,16 @@ Feature extraction
 
 *** right
 
-![alt text](assets/img/pca.png "Principle component analysis")
+<center>![alt text](assets/img/pca.png "Principle component analysis")</center>
+
+<center>![alt text](assets/img/pca_var.png "Principle component analysis")</center>
 
 
 ---
 
 ## Part 2: Linear Regression and Least Squares (Review)
 
-1. Introduction to Dimension Reduction
+1. Introduction to Dimensionality Reduction
 2. <b>Linear Regression and Least Squares (Review)</b>
     - <b>Least Square Fit</b>
     - <b>Gauss Markov</b>
@@ -305,7 +308,7 @@ Better to have SIMPLER linear model, that involves only a few features...
 
 ## Part 3: Subset Selection Methods
 
-1. Introduction to Dimension Reduction
+1. Introduction to Dimensionality Reduction
 2. Linear Regression and Least Squares (Review)
 3. <b>Subset Selection</b>
   - <b>Best-subset selection</b>
@@ -344,7 +347,7 @@ Instead of searching all possible subsets, we can seek a good path through them.
 - At each step, it
     - identifies the best variable (with the highest correlation with the residual error)
 $$\mathbf{k} = argmax_{j}(|correlation(\mathbf{x}_j, \mathbf{r})|)$$
-    - $A = A \cup \mathbf{k}$
+    - $A = A \cup \{\mathbf{k}\}$
     - then updates the least squares fit $\beta$, $\mathbf{r}$ to include all the active variables
 
 --- &twocolportion w1:55% w2:43%
@@ -408,7 +411,7 @@ where $\alpha$ is the learning rate
 
 ## Part 4: Shrinkage Methods
 
-1. Introduction to Dimension Reduction
+1. Introduction to Dimensionality Reduction
 2. Linear Regression and Least Squares (Review)
 3. Subset Selection
 4. <b>Shrinkage Methods</b>
@@ -431,22 +434,29 @@ $$
 $$
 
 - Simulation Experiment
-    - $N = 30$
-    - $\mathbf{x}_1 \sim N(0, 1)$, $\mathbf{x}_2 = \mathbf{x}^2_1$
-    - $\beta \sim U(-0.5,0.5)$
-    - $Y = (\mathbf{x}_1, \mathbf{x}_2) \times \beta$
-    - $\mathbf{X} = (\mathbf{x}_1, \mathbf{x}^2_1, ..., \mathbf{x}^8_1)$
-    
----
+    - See next slide
 
----
+
+---&triple w1:50% w2:50%
 
 ## Ridge Regression
 
-- Simulation Experiment
+### Simulation Experiment
+
+***left
+
+- $N = 30$
+- $\mathbf{x}_1 \sim N(0, 1)$
+- $\beta \sim (U(-0.5,0.5), U(-0.5,0.5))$
+
+***right
+
+- $\mathbf{y} = (\mathbf{x}_1, \mathbf{x}_1^2) \times \beta$
+- $\mathbf{X} = (\mathbf{x}_1, \mathbf{x}^2_1, ..., \mathbf{x}^8_1)$
+
+*** down
 
 <center>![lst](assets/img/lst.png "lst")</center>
-
 
 ---
 
@@ -556,7 +566,7 @@ the smaller $d_j$ is and the larger $\lambda$ is, the more shrinkage we have.
 
 
 
---- &twocolportion w1:40% w2:55%
+--- &twocolportion w1:50% w2:48%
 
 ## Ridge Regression
 
@@ -574,7 +584,7 @@ df(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
 \end{equation}
 $$
 - [larger $\lambda$] $\rightarrow$ [smaller $df(\lambda)$] $\rightarrow$ [more constrained model]
-- The redline gives the best $df(\lambda)$ identified from cross validation
+- The red line gives the best $df(\lambda)$ identified from cross validation
 
 *** right
 
@@ -587,12 +597,11 @@ $$
 #### Advantages 
 
 -  w.r.t. Least Squares
-    - $(\mathbf{X^TX + \lambda I})$ is always inveritible and thus the closed form solution always exist
+    - $(\mathbf{X^TX + \lambda I})$ is always invertible and thus the closed form solution always exist
     - Ridge regression controls the complexity with regularization term via $\lambda$, which is less prone to overfitting compared with least squares fit, 
-        - e.g. sometimes a wildly large coefficient on one variable can be cancelled by another wildly large coefficient of a correlated variable
     - Possibly higher prediction accuracy, as the estimates of ridge regression trade a little bias for less variance
 -  w.r.t. Subset Selection Methods
-    - Ridge regression is a continous shrinkage method which has less variance than subset selection methods
+    - Ridge regression is a continuous shrinkage method that has less variance than subset selection methods
     
 #### Disadvantages w.r.t. Subset Selection Methods
 
@@ -602,7 +611,7 @@ $$
 
 ## Part 4: Shrinkage Methods - LASSO
 
-1. Introduction to Dimension Reduction
+1. Introduction to Dimensionality Reduction
 2. Linear Regression and Least Squares (Review)
 3. Subset Selection
 4. <b>Shrinkage Methods</b>
@@ -661,7 +670,7 @@ $$
 
 ## LASSO
 
-- Introduction to Dimension Reduction
+- Introduction to Dimensionality Reduction
 - Linear Regression and Least Squares (Review)
 - Subset Selection
 - <b>Shrinkage Methods</b>
@@ -752,7 +761,7 @@ $|\beta_j|^q$ can be viewed as the log-prior density for $\beta_j$, these three 
 
 ## LASSO
 
-- Introduction to Dimension Reduction
+- Introduction to Dimensionality Reduction
 - Linear Regression and Least Squares (Review)
 - Subset Selection
 - <b>Shrinkage Methods</b>
@@ -796,7 +805,7 @@ $$
 
 ## LASSO
 
-- Introduction to Dimension Reduction
+- Introduction to Dimensionality Reduction
 - Linear Regression and Least Squares (Review)
 - Subset Selection
 - <b>Shrinkage Methods</b>
@@ -810,69 +819,37 @@ $$
 - Beyond LASSO
 
 
----&tripcolportion w1:54% w2:2% w3:44%
+---&twocolportion w1:44%  w2:44%
 
-#### LAR Algorithm
+## LAR Algorithm
 
 *** left
 
-- Initialization: 
-    - Standardized all predictors s.t. $\bar{\mathbf{x}_j} = 0, \mathbf{x}_j^T\mathbf{x}_j = 1$; $\mathbf{r}_0 = \mathbf{y} - \bar{\mathbf{y}}$; $\beta = \mathbf{0}$; $\mathbf{f}_0 = \mathbf{0}$;
-    - $k = argmax_{j} |\mathbf{x}_j^T \mathbf{r}_0|$, $\mathcal{A}_1 = \{k\}$    
-- Main
-    - for time step $t = 1,2,...min(N-1,p)$
-      - $\mathbf{r}_t = \mathbf{y} - \mathbf{X}_{\mathcal{A}_t} \beta_{\mathcal{A}_t}$, $\quad \mathbf{f}_t = \mathbf{X}_{\mathcal{A}_t} \beta_{\mathcal{A}_t}$
-      - $\delta_t = \mathbf{(X^T_{\mathcal{A}_t} X_{\mathcal{A}_t})^{-1} X^T_{\mathcal{A}_t}r_t}$, $\quad \mathbf{u}_t = \mathbf{X}_{\mathcal{A}_t} \delta_t$
-      - Search $\alpha$
-          - $\beta_{\mathcal{A}_t}(\alpha) = \beta_{\mathcal{A}_t} + \alpha \cdot \delta_t$
-          - Concurrently, $\mathbf{f}_t(\alpha) = \mathbf{f}_t + \alpha \cdot \mathbf{u}_t$
-      - Until $|\mathbf{X}_{\mathcal{A}_t} \mathbf{r}_t(\alpha)| = max_{\mathbf{x}_j \in \bar{\mathcal{A}_t}} |\mathbf{x}_j^T \mathbf{r}_t(\alpha)|$
-      - $k = argmax_{j \in \bar{\mathcal{A}_t}} |\mathbf{x}_j \mathbf{r}_t(\alpha)|$, 
-      - $\mathcal{A}_{t+1} = \mathcal{A}_{t} \cup \{k\}$
-
-*** middle
-
-\|
-
-\|
-
-\|
-
-\|
-
-\|
-
-\|
-
-\|
-
-\|
-
-\|
-
-\|
-
-\|
-
+### Algorithm
+- Standardized all predictors; 
+- $\mathbf{r}_0 = \mathbf{y} - \bar{\mathbf{y}}$; $\beta = \mathbf{0}$;
+- $k = argmax_{j} |corr(\mathbf{x}_j, \mathbf{r}_0)|$, $\mathcal{A}_1 = \{k\}$    
+- For time step $t = 1,2,...min(N-1,p)$
+    - Move $\beta_{\mathcal{A}_t}$ in the joint least squares direction for $\mathcal{A}_t$, until some other $k \not\in \mathcal{A}_t$ has as much correlation with the current residual
+    - $\mathcal{A}_{t+1} = \mathcal{A}_{t} \cup \{k\}$
 
 *** right
 
-________________________________
+### Notations
 
+- $\beta$:$p \times 1$ coefficient vector
 - $\mathcal{A}_t$: <i>active set</i>, the set indices of features we already included in the model at time step $t$.
     - $\bar{\mathcal{A}_t} = \{1,2,...,p\} - \mathcal{A}_t$
-- $\alpha$: searching parameter within a time step
-- $\beta_{\mathcal{A}_t}$: coefficients vector at the beginning of time step $t$
-- $\beta_{\mathcal{A}_t}(\alpha)$: coefficients vector in time step $t$ w.r.t. $\alpha$
-- $\mathbf{f}_t$: the fit vector at the beginning of time step $t$, $\mathbf{f}_0 = 0$
-- $\mathbf{f}_t(\alpha)$: the fit vector in time step $t$ w.r.t. $\alpha$
-- $\mathbf{r}_t$: residual vector at the beginning of time step $t$, $\mathbf{r}_0 = \mathbf{y} - \bar{\mathbf{y}}$, where $\bar{\mathbf{y}} = average(\mathbf{y})$
-- $\mathbf{r}_t(\alpha)$: residual vector in time step $t$, w.r.t. $\alpha$
-
-___________________________________
+- $\beta_{\mathcal{A}_t}$: $|\mathcal{A}_t| \times 1$ vector of coefficients, w.r.t $\mathcal{A}_t$
+    - Contains the $\beta_j, j \in \mathcal{A}_t$
+- $\mathbf{X}_{\mathcal{A}_t}$: $N \times |\mathcal{A}_t|$ matrix
+    - Contains $\mathbf{x}_j, j \in \mathcal{A}_t$
+    
 
 
----&twocolportion w1:55% w2:45%
+
+
+---&twocolportion w1:50% w2:48%
 
 ## LAR - Example
 
@@ -881,15 +858,16 @@ ___________________________________
 <center>![lars1](assets/img/lars1.png "lars1")</center>
 
 *** right
+- Example Setting:
+    - $N = 2$, $p = 2$
+- Standardized each columns of $\mathbf{X}$ 
+    - s.t. $mean\{\mathbf{x}_j\} = 0$, $std\{\mathbf{x}_j\} = 1$
+    - Thus we know $\|\mathbf{x}_1\| = \|\mathbf{x}_2\| = ... = \|\mathbf{x}_p\|$
+    - Two standardized column vectors $\mathbf{x}_1$ and $\mathbf{x}_2$ are shown in the left figure    
+- $\mathcal{A}_0 = \emptyset$, which means that we have not chosen any feature yet    
+- $\beta = (0, 0)^T$
+- The $N\times 1$ fit vector $\mathbf{f}_0 = \mathbf{X} \beta_{\mathcal{A}_t } = 0$
 
-- Initialization: 
-    - Standardized each columns of $\mathbf{X}$ 
-        - s.t. $\bar{\mathbf{x}_j} = 0$, $\mathbf{x}_j^T\mathbf{x}_j = 1$
-    - $\mathbf{r}_0 = \mathbf{y} - \bar{\mathbf{y}}$; 
-    - $\beta = (0, 0)^T$; 
-    - $\mathcal{A}_0 = \emptyset$
-    - $\mathbf{f}_0$ is the current fit at time $0$ 
-        - $\mathbf{f}_0 = (0, 0)^T$
     
 
 ---&twocolportion w1:55% w2:45%
@@ -902,8 +880,8 @@ ___________________________________
 
 *** right
 
-- $k = argmax_{j} |\mathbf{x}_j^T \mathbf{r}_0| = 1$
-- $\mathcal{A}_1 = \{1\}$
+- $k = argmax_{j} |corr(\mathbf{x}_j, \mathbf{r}_0)| = 1$
+- $\mathcal{A}_1 = \mathcal{A}_0 \cup \{1\} = \{1\}$
 
 
 ---&twocolportion w1:55% w2:45%
@@ -915,9 +893,34 @@ ___________________________________
 <center>![lars3](assets/img/lars3.png "lars3")</center>
 
 *** right
-- $\mathbf{r}_1 = \mathbf{y} - \mathbf{X}_{\mathcal{A}_1} \beta_{\mathcal{A}_1}$
-- $\delta_1 = \mathbf{(X^T_{\mathcal{A}_1} X_{\mathcal{A}_1})^{-1}X^T_{\mathcal{A}_1}r_1}$
+
+### Explanations
+
+- $\mathbf{r}_1 = \mathbf{y} - \mathbf{X}_{\mathcal{A}_1} \beta_{\mathcal{A}_1}$ is the residual error at the beginning of time $1$
+- $\delta_1 = \mathbf{(X^T_{\mathcal{A}_1} X_{\mathcal{A}_1})^{-1}X^T_{\mathcal{A}_1}r_1}$ is the least square estimates of the coefficients whose corresponding features in $\mathcal{A}_1 = \{1\}$ w.r.t. residual error $\mathbf{r}_1$
+    - $\delta_1$ is the direction that coefficients $\beta_{\mathcal{A}_1}$ changes along
 - $\mathbf{u}_1 = \mathbf{X}_{\mathcal{A}_1} \delta_1$
+    - As $\beta_{\mathcal{A}_1}$ changes along $\delta_1$, the fit $\mathbf{f}$ changes along $\mathbf{u}_1$
+
+---&twocolportion w1:55% w2:45%
+
+## LAR - Example
+
+*** left
+
+<center>![lars3](assets/img/lars3.png "lars3")</center>
+
+*** right
+
+### Comparison
+
+- $\mathbf{r}_1$
+    - $\delta_1 = \mathbf{(X^T_{\mathcal{A}_1} X_{\mathcal{A}_1})^{-1}X^T_{\mathcal{A}_1}r_1}$
+    - $\mathbf{u}_1 = \mathbf{X}_{\mathcal{A}_1} \delta_1$
+- $\mathbf{y}$
+    - $\hat{\beta} = \mathbf{(X^T X)^{-1}X^Ty}$
+    - $\hat{\mathbf{y}} = \mathbf{X} \hat{\beta}$
+
 
 
 ---&twocolportion w1:55% w2:45%
@@ -932,17 +935,11 @@ ___________________________________
 
 ### Explanations
 
-- Search $\alpha$
-    - $\beta_{\mathcal{A}_1}(\alpha) = \beta_{\mathcal{A}_1} + \alpha \cdot \delta_1$, 
-    - $\mathbf{f}_1(\alpha) = \mathbf{f}_1 + \alpha \cdot \mathbf{u}_1$
-    - $\mathbf{r}_1(\alpha) = \mathbf{y} - \mathbf{X}_{\mathcal{A}_1} \beta_{\mathcal{A}_1}(\alpha)$
-- Until $|\mathbf{X}_{\mathcal{A}_1} \mathbf{r}_1(\alpha)| = max_{j \in \bar{\mathcal{A}_1}} |\mathbf{x}_j^T \mathbf{r}_1(\alpha)|$
-- $2 = argmax_{j \in \bar{\mathcal{A}_1}} |\mathbf{x}_j^T \mathbf{r}_1(\alpha)|$
-- $\mathcal{A}_2 = \{1, 2\}$
-
-### Comments
-
-- $\mathbf{f}_t$ is approaching $\mathbf{f}_t^{ls}$, but never reaches it, except for the final step of LAR
+- As $\beta_{\mathcal{A}_1}$ moves along $\delta_1$, the correlation between the coefficient of the feature in $\mathcal{A}_1 = \{1\}$ with the residual error decreases
+- $\mathbf{f}_1$, intialized as $\mathbf{f}_0$, moves along $\mathbf{u}_1$
+- At last, the correlation between the coefficient of feature $k = 2$ and residual error catches up
+- $\mathcal{A}_2 = \mathcal{A}_1 \cup \{2\} = \{1, 2\}$
+- Note that the fit $\mathbf{f}_1$ approaches the least squares fit $\mathbf{f}_1^{ls}$, but not reach it
 
 ---&twocolportion w1:55% w2:45%
 
@@ -956,13 +953,11 @@ ___________________________________
 
 ### Explanations
 
-- $\mathbf{r}_2 = \mathbf{y} - \mathbf{X}_{\mathcal{A}_2} \beta_{\mathcal{A}_2}$
-- $\delta_2 = \mathbf{(X^T_{\mathcal{A}_2} X_{\mathcal{A}_2})^{-1}X^T_{\mathcal{A}_2}r_2}$
-- $\mathbf{u}_2 = \mathbf{X}_{\mathcal{A}_2} \delta_2$
-
-### Comments
-
-* the direction $\mathbf{u}_k = \mathbf{X}_{\mathcal{A}_k} \delta_k$ that our fit $\mathbf{f}_k(\alpha)$ increases actually has the same angle with any $\mathbf{x}_j \in \mathcal{A}_k$.
+- The joint least squares direction, which $\beta_{\mathcal{A}_2}$ moves along, is $\delta_2 = \mathbf{(X^T_{\mathcal{A}_2} X_{\mathcal{A}_2})^{-1}X^T_{\mathcal{A}_2}r_2}$
+    - $\mathbf{r}_2 = \mathbf{y} - \mathbf{X}_{\mathcal{A}_2} \beta_{\mathcal{A}_2}$
+- The direction our fit move along is $\mathbf{u}_2 = \mathbf{X}_{\mathcal{A}_2} \delta_2$
+    - Note that $\mathbf{u}_2$ is the bisector of $\mathbf{x}_1$ and $\mathbf{x}_2$
+    - Furthermore, $\mathbf{u}_t$ is the "bisector" of (hase the same angle with) all $\mathbf{x}_j, j \in \mathcal{A}_t$
 
 
 ---&twocolportion w1:55% w2:45%
@@ -975,9 +970,13 @@ ___________________________________
 
 *** right
 
-- If $p = 2$
-    - $\mathbf{f}_2 = \mathbf{f}_2^{ls}$
-- The absolute values of correlations of $\mathbf{x}_j \in \mathcal{A}_k, \forall j$ with the residual error $\mathbf{r}_t{\alpha}$ are tied and decrease at the same rate during searching $\alpha$.
+### Explanations
+
+- As $\beta_{\mathcal{A}_2}$ moves along $\delta_2$, the fit $\mathbf{f}_2$, initialized as $\mathbf{f}_1$,
+    - moves along $\mathbf{u}_2$
+    - approaches $\mathbf{f}_2^{ls}$
+- As we only have $p = 2$ features, finally
+    - $\mathbf{f}_2 = \mathbf{f}^{ls}_2$
 
 
 
@@ -988,11 +987,10 @@ ___________________________________
 
 ### More Comments
 
-
-- The procedure of searching is approaching the least-squares coefficients of fitting $\mathbf{y}$ on $\mathcal{A}_k$
 - LAR solves the subset selection problem for all $t, s.t. \|\beta\| \leq t$
-- Actually, $\alpha$ can be computed instead of searching
 - LAR algorithm ends in $min(p, N-1)$ steps
+
+<center>![corr](assets/img/lar_corr.png "cor")</center>
 
 
 
@@ -1017,7 +1015,7 @@ When the blue line coefficient cross zero, LAR and LASSO become different.
 
 ### Modification for LASSO
 
-During the searching procedure, if a non-zero coefficient hits zero, drop this variable from $\mathcal{A}_k$, and recompute the direction $\delta_k$
+During the searching procedure, if a non-zero coefficient hits zero, drop this variable from $\mathcal{A}_t$, and recompute the direction $\delta_t$
 
 
 <center>![comp4](assets/img/comp4.png "comp4")</center>
@@ -1032,13 +1030,13 @@ During the searching procedure, if a non-zero coefficient hits zero, drop this v
 
 - At a certain time point, we know that all $\mathbf{x}_j \in \mathcal{A}$ share the same absolute values of correlations with the residual error. That is
 $$\mathbf{x}_j^T(\mathbf{y} - \mathbf{X}\beta) = \gamma \cdot s_j, \quad \forall j \ \in \mathcal{A}$$
-where $s_j \in \{-1,1\}$ indicates the sign of the left hand inner product and $\gamma$ is the common value. 
-    - We also know that $|\mathbf{x_j}(\mathbf{y} - \mathbf{X}\beta)| \leq \gamma, \quad \forall \mathbf{x}_j \not\in \mathcal{A}$
+where $s_j \in \{-1,1\}$ and $s_j = sign(\mathbf{x}_j^T(\mathbf{y} - \mathbf{X}\beta))$ and $\gamma$ is the common value. 
+    - We also know that $|\mathbf{x_j}(\mathbf{y} - \mathbf{X}\beta)| \leq \gamma, \quad \forall j \not\in \mathcal{A}$
 
 - Consider LASSO for a fixed $\lambda$. Let $\mathcal{B}$ be the set of indices of non-zero coefficients, then we differentiate the objective function w.r.t. those coefficients in $\mathcal{B}$ and set the gradient to zero. We have
 $$\mathbf{x}_j^T(\mathbf{y} - \mathbf{X}\beta) = \lambda \cdot sign(\beta_j), \quad \forall j \in \mathcal{B}$$
 
-- They are identical only if $sign(\beta_j)$ matches the sign of the lefthand side. In $\mathcal{A}$, we allow for the $\beta_j$, where $sign(\beta_j) \neq sign(\mathbf{x}_j^T(\mathbf{y} - \mathbf{X}\beta))$, while this is forbidden in $\mathcal{B}$. 
+- They are identical only if $sign(\beta_j)$ matches $s_j$. In $\mathcal{A}$, we allow for the $\beta_j$, where $sign(\beta_j) \neq sign(\mathbf{x}_j^T(\mathbf{y} - \mathbf{X}\beta))$, while this is forbidden in $\mathcal{B}$. 
 
 
 ---
@@ -1048,10 +1046,10 @@ $$\mathbf{x}_j^T(\mathbf{y} - \mathbf{X}\beta) = \lambda \cdot sign(\beta_j), \q
 ### Some heuristic analysis
 
 -  For LAR, we have 
-$$|\mathbf{x}_j^T(\mathbf{y} - \mathbf{X}\beta)| \leq \gamma, \quad \forall \mathbf{x}_j \not\in \mathcal{A}$$
+$$|\mathbf{x}_j^T(\mathbf{y} - \mathbf{X}\beta)| \leq \gamma, \quad \forall j \not\in \mathcal{A}$$
 - According to the stationary conditions, for LASSO, we have
 $$
-|\mathbf{x}_j^T(\mathbf{y} - \mathbf{X}\beta)| \leq \lambda, \quad \forall \mathbf{x}_j \not\in \mathcal{B}
+|\mathbf{x}_j^T(\mathbf{y} - \mathbf{X}\beta)| \leq \lambda, \quad \forall j \not\in \mathcal{B}
 $$
 - LAR and LASSO match for variables with zero coefficients too.
 
@@ -1061,7 +1059,7 @@ $$
 
 ## LASSO
 
-- Introduction to Dimension Reduction
+- Introduction to Dimensionality Reduction
 - Linear Regression and Least Squares (Review)
 - Subset Selection
 - <b>Shrinkage Methods</b>
@@ -1109,7 +1107,7 @@ $l_0$-norm is not convex, which makes it very hard to optimize.
 
 ## Part 5: Beyond LASSO
 
-1. Introduction to Dimension Reduction
+1. Introduction to Dimensionality Reduction
 2. Linear Regression and Least Squares (Review)
 3. Subset Selection
 4. Shrinkage Methods
@@ -1128,7 +1126,7 @@ $l_0$-norm is not convex, which makes it very hard to optimize.
 ### Problems with LASSO
 
 - LASSO tends to rather arbitrarily select one of a group of highly correlated variables (see how LAR works). Sometimes, it is better to select <b>ALL</b> the relevant varibles in a group
-- LASSO selects at most $N$ variables, when $p > N$, which may be undisirable when $p >> N$
+- LASSO selects at most $N$ variables, when $p > N$, which may be undesirable when $p >> N$
 - The performance of Ridge dominates that of LASSO, when $N > p$ and variables are correlated
 
 ### Elastic Net
@@ -1389,7 +1387,7 @@ where $r_{a,b} \in \mathbb{R}$ denotes the weight of the edge and $\tau(r)$ can 
 
 ### Outline
 
-- <h3>Introduction to Dimension Reduction</h3>
+- <h3>Introduction to Dimensionality Reduction</h3>
 
 - <h3>Linear Regression and Least Squares (Review)</h3>
 
@@ -1440,8 +1438,8 @@ where $r_{a,b} \in \mathbb{R}$ denotes the weight of the edge and $\tau(r)$ can 
 
 - More on feature extraction methods: 
     - http://www.cs.otago.ac.nz/cosc453/student_tutorials/principal_components.pdf
-    - Imola K. Fodor, A survey of dimension reduction techniques
-    - Christopher J. C. Burges, Dimension Reduction: A Guided Tour
+    - Imola K. Fodor, A survey of Dimensionality Reduction techniques
+    - Christopher J. C. Burges, Dimensionality Reduction: A Guided Tour
 - Mutual-info-based feature selection: 
     - Gavin Brown, Adam Pocock, Ming-Jie Zhao, Mikel Luján; Conditional Likelihood Maximisation: A Unifying Framework for Information Theoretic Feature Selection
     - Howard Hua Yang, John Moody. Feature Selection Based on Joint Mutual Information
@@ -1474,6 +1472,7 @@ where $r_{a,b} \in \mathbb{R}$ denotes the weight of the edge and $\tau(r)$ can 
 - http://en.wikipedia.org/wiki/Laplacian_distribution <font color = 'green'>[p38]</font>
 - http://webdocs.cs.ualberta.ca/~mahdavif/ReadingGroup/Papers/larS.pdf <font color = 'green'>[p20]</font>
 - Bradley Efron, Trevor Hastie, Iain Johnstone and Robert Tibshirani. Least Angle Regression <font color = 'green'>[p20]</font>
+- http://www.stanford.edu/~hastie/TALKS/larstalk.pdf
 
 ---
 
