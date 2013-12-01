@@ -1,7 +1,7 @@
 ---
 title       : Dimensionality Reduction
 subtitle    : CMPUT 466/551
-author      : Ping Jin (pjin1@ualberta.ca)
+author      : Ping Jin (pjin1@ualberta.ca) and Prof. Russell Greiner (rgreiner@ualberta.ca)
 job         : 
 framework   : io2012       # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
@@ -207,7 +207,7 @@ Feature extraction
 | Chance of Overfitting| High   | Low   | Mid|
 | Classifier-Independent | No   | Yes   | No  |
 
-Wrapper methods has the strongest learning capability among the three, which requires more data to reliably get a near-optimal approximation. For small datasets, it is prone to overfitting.
+Wrapper methods have the strongest learning capability among the three, which require more data to reliably get a near-optimal approximation. For small datasets, wrapper methods are prone to overfitting.
 
 --- &twocolportion w1:50% w2:48%
 
