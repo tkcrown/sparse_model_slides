@@ -575,7 +575,7 @@ df(\lambda) &= tr[\mathbf{X(X^TX + \lambda I)^{-1}X^T}]\\
 \end{equation}
 $$
 - [larger $\lambda$] $\rightarrow$ [smaller $df(\lambda)$] $\rightarrow$ [more constrained model]
-- The red line gives the best $df(\lambda)$ identified from cross validation
+- The red line gives the best $df(\lambda)$ identified from cross validation w.r.t RSS
 
 *** right
 
