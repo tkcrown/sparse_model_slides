@@ -1177,7 +1177,7 @@ where $\epsilon$ is $i.i.d.$ random noise.
 
 ## Elastic Net - A simple illustration
 
-<center>![enet_LASSO](assets/img/enet_LASSO.png "enet_LASSO")</center>
+<center>![enet_LASSO](assets/img/enet_LASSO.png "enet_lasso")</center>
 
 
 ---
