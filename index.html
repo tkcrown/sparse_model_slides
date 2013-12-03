@@ -1900,7 +1900,7 @@ where \(\epsilon\) is \(i.i.d.\) random noise.</li>
     <h2>Elastic Net - A simple illustration</h2>
   </hgroup>
   <article>
-    <p><center><img src="assets/img/enet_LASSO.png" alt="enet_LASSO" title="enet_lasso"></center></p>
+    <p><center><img src="assets/img/enet_lasso.png" alt="enet_LASSO" title="enet_lasso"></center></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -2221,7 +2221,11 @@ where \(J\) is some loss function and \(\sum_{j = 1}^p \|\beta_{:j}\|_2\) is the
 <li>Pool \(l_1\): a classifier is trained on all data regardless of writers</li>
 <li>Independent \(l_1\) regularization: For each writer, a classifier is trained</li>
 <li>\(l_1/l_1\)-regularization:
-\[obj = \sum_{l= 1}^L J(\beta_{:l}, \mathbf{X}_l, \mathbf{y}_{:l}) + \lambda \sum_{l = 1}^L \|\beta_{:l}\|_1\]</li>
+\[obj = \sum_{l= 1}^L J(\beta_{:l}, \mathbf{X}_l, \mathbf{y}_{:l}) + \lambda \sum_{l = 1}^L \|\beta_{:l}\|_1\]
+
+<ul>
+<li>purely adding up the objective functions with \(l_1\) regularization of \(L\) tasks</li>
+</ul></li>
 <li>\(l_1/l_2\)-regularization:
 \[obj = \sum_{l= 1}^L J(\beta_{:l}, \mathbf{X}_l, \mathbf{y}_{:l}) + \lambda \sum_{j = 1}^p \|\beta_{j:}\|_2\]<br></li>
 </ul></li>

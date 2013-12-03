@@ -1177,7 +1177,7 @@ where $\epsilon$ is $i.i.d.$ random noise.
 
 ## Elastic Net - A simple illustration
 
-<center>![enet_LASSO](assets/img/enet_LASSO.png "enet_lasso")</center>
+<center>![enet_LASSO](assets/img/enet_lasso.png "enet_lasso")</center>
 
 
 ---
@@ -1376,6 +1376,7 @@ $l_1$-$l_p$ penalization solves the $4th$ problem by dealing with prior informat
     - Independent $l_1$ regularization: For each writer, a classifier is trained
     - $l_1/l_1$-regularization:
     $$obj = \sum_{l= 1}^L J(\beta_{:l}, \mathbf{X}_l, \mathbf{y}_{:l}) + \lambda \sum_{l = 1}^L \|\beta_{:l}\|_1$$
+        - purely adding up the objective functions with $l_1$ regularization of $L$ tasks
     - $l_1/l_2$-regularization:
     $$obj = \sum_{l= 1}^L J(\beta_{:l}, \mathbf{X}_l, \mathbf{y}_{:l}) + \lambda \sum_{j = 1}^p \|\beta_{j:}\|_2$$    
    
