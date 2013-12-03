@@ -32,15 +32,12 @@ mode        : selfcontained # {standalone, draft}
     - <b>Motivations</b>
     - <b>Feature selection and feature extraction</b>
     - <b>Feature Selection</b>
-        - <b>Wrapper method</b>
-        - <b>Filter method</b>
-        - <b>Embedded method</b>
     - <b>Feature Extraction</b>
-        - <b>PCA, ICA...</b>
 2. Linear Regression and Least Squares (Review)
 3. Subset Selection
 4. Shrinkage Methods
-5. Beyond LASSO
+5. Beyond LASSO        
+
 
 ---&triple w1:50% w2:50%
 
@@ -170,6 +167,7 @@ Feature extraction
 - Search the space of feature subsets
 - Use the cross validation accuracy w.r.t. a specific classifier as the measure of utility for a candidate subset
 - e.g. see how it works for a feature set {1, 2, 3} in the figure below
+    - $1,2$, and $3$ represent the $1st$, $2nd$ and $3rd$ feature respectively
 
 <center>![wrapper](assets/img/wrapper.png "wrapper")</center>
 
@@ -207,7 +205,10 @@ Feature extraction
 | Chance of Overfitting| High   | Low   | Mid|
 | Classifier-Independent | No   | Yes   | No  |
 
-Wrapper methods have the strongest learning capability among the three, which require more data to reliably get a near-optimal approximation. For small datasets, wrapper methods are prone to overfitting.
+- Wrapper methods have the strongest learning/representation capability among the three
+    - often fit training dataset better than the other two
+    - prone to overfitting for small datasets
+    - require more data to reliably get a near-optimal approximation. 
 
 --- &twocolportion w1:50% w2:48%
 
@@ -293,11 +294,13 @@ MSE(\hat{\mathbf{y}}) &= E[(\hat{\mathbf{y}} - Y)^2]\\
 \end{equation}
 $$
 
-where $Y = X^T\beta$. We can trade some bias for much less variance.
+   
+   
+where $Y = X^T\beta$. We can trade increase in bias for much less variance.
 
 ### Problems of Least Squares
 
-- <b>Prediction accuracy</b>: unbiased, but high variance compared to many biased estimators, overfitting noise and sensitive to outlier
+- <b>Prediction accuracy</b>: unbiased, but higher variance than many biased estimator (leading to higher MSE), overfitting noise and sensitive to outliers
 - <b>Interpretation</b>:  $\hat{\beta}$ involves all of the features.
 Better to have SIMPLER linear model, that involves only a few features...
 - Recall that $\hat{\beta}^{ls} = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}$
@@ -400,11 +403,10 @@ where $\alpha$ is the learning rate
 - More interpretable result
 - More compact model
 
-### Disadvantages
+### Disadvantages w.r.t. Continuos Process
 
-- It is a discrete process, and thus has high variance and sensitivity to changes in the dataset
-    - If the dataset changes a little, the feature selection result may be very different
-- Thus may not  lower prediction error as much    
+- It is a discrete process, and thus has high variance and is very sensitive to changes in the dataset
+    - If the dataset changes a little, the feature selection result may be very different   
 
 ---
 
@@ -421,42 +423,6 @@ where $\alpha$ is the learning rate
         - <b>Degree of Freedom</b>
     - LASSO
 5. Beyond LASSO
-
----
-
-## Ridge Regression
-
-- Least squares with quadratic constraints
-$$
-\begin{equation}
-\hat{\beta}^{ridge}= argmin_{\beta}\sum_{i=1}^N(y_i - \beta_0 - \sum_{j=1}^p\mathbf{x}_{ij}\beta_j)^2, \quad s.t. \quad \sum_{j = 1}^p \beta_j^2 \leq t
-\end{equation}
-$$
-
-- Simulation Experiment
-    - See next slide
-
-
----&triple w1:50% w2:50%
-
-## Ridge Regression
-
-### Simulation Experiment
-
-***left
-
-- $N = 30$
-- $\mathbf{x}_1 \sim N(0, 1)$
-- $\beta \sim (U(-0.5,0.5), U(-0.5,0.5))$
-
-***right
-
-- $\mathbf{y} = (\mathbf{x}_1, \mathbf{x}_1^2) \times \beta$
-- $\mathbf{X} = (\mathbf{x}_1, \mathbf{x}^2_1, ..., \mathbf{x}^8_1)$
-
-*** down
-
-<center>![lst](assets/img/lst.png "lst")</center>
 
 ---
 
@@ -484,6 +450,31 @@ $$
 \end{split}
 \end{equation}
 $$    
+
+
+
+---&triple w1:50% w2:50%
+
+## Ridge Regression
+
+### Simulation Experiment
+
+***left
+
+- $N = 30$
+- $\mathbf{x}_1 \sim N(0, 1)$
+- $\beta \sim (U(-0.5,0.5), U(-0.5,0.5))$
+
+***right
+
+- $\mathbf{y} = (\mathbf{x}_1, \mathbf{x}_1^2) \times \beta$
+- $\mathbf{X} = (\mathbf{x}_1, \mathbf{x}^2_1, ..., \mathbf{x}^8_1)$
+- Dataset avalible: {$\mathbf{X}$, $\mathbf{y}$}
+
+*** down
+
+<center>![lst](assets/img/lst.png "lst")</center>
+
 
 ---&twocolportion w1:50% w2:50%
 
@@ -546,7 +537,7 @@ the smaller $d_j$ is and the larger $\lambda$ is, the more shrinkage we have.
 
 
 
----&twocolportion w1:50% w2:50%
+---&twocolportion w1:55% w2:45%
 
 ## Ridge Regression
 
@@ -556,9 +547,9 @@ the smaller $d_j$ is and the larger $\lambda$ is, the more shrinkage we have.
 
 - $N = 100$, $p = 10$
 
-<center>![ls_pc](assets/img/ls_pc.png "ls_pc")</center>
+![ls_pc](assets/img/ls_pc.png "ls_pc")
 
-<center>![rr_pc](assets/img/rr_pc.png "rr_pc")</center>
+![rr_pc](assets/img/rr_pc.png "rr_pc")
 
 *** right
 
@@ -592,7 +583,7 @@ $$
 
 ---
 
-### Ridge Regression
+## Ridge Regression
 
 #### Advantages 
 
@@ -602,10 +593,19 @@ $$
     - Possibly higher prediction accuracy, as the estimates of ridge regression trade a little bias for less variance
 -  w.r.t. Subset Selection Methods
     - Ridge regression is a continuous shrinkage method that has less variance than subset selection methods
-    
+
+---
+
+## Ridge Regression
+
 #### Disadvantages w.r.t. Subset Selection Methods
 
-- Interpretability and compactness: Though coefficients are shrunk, but not to zero. Unlike methods that select part of the features, ridge regression may encounter efficiency issue and offer little interpretations in high dimensional problems.
+- Compactness: 
+    - Computational efficiency: 
+        - though we have a closed form solution, computing matrix inversions takes time and memory
+        - it takes longer to predict for future samples with more features
+- Interpretation        
+    - offers little interpretations 
 
 ---
 
@@ -619,8 +619,7 @@ $$
     - <b>LASSO</b>
         - <b>Formulations</b>
         - <b>Comparisons with ridge regression and subset selection</b>
-        - <b>Quadratic Programming</b>
-        - <b>Least Angle Regression</b>
+        - <b>Solution of LASSO</b>
         - <b>Viewed as approximation for $l_0$-regularization</b>
 5. Beyond LASSO
 
@@ -651,11 +650,11 @@ $$
 ## LASSO
 
 - $s = \frac{t}{\sum_{j=1}^p |\hat{\beta}_j|}$, where $\hat{\beta}$ is the least squares estimate
-- Redlines represent the $s$ and $df(\lambda)$ with the best cross validation error
+- red lines represent the $s$ and $df(\lambda)$ with the best cross validation error
 
 *** left
 
-<center>![LASSO](assets/img/LASSO.png "LASSO")</center>
+<center>![LASSO](assets/img/lasso.png "LASSO")</center>
 
 
 *** right
@@ -680,8 +679,7 @@ $$
         - <b>Comparisons with ridge regression and subset selection</b>
             - <b>Orthonormal inputs</b>
             - <b>Non-orthonormal inputs</b>
-        - Quadratic Programming
-        - Least Angle Regression
+        - Solution of LASSO
         - Viewed as approximation for $l_0$-regularization
 - Beyond LASSO
 
@@ -714,11 +712,11 @@ $$
 
 *** right
 
-<b>Solid blue area</b>: the constraints
-- left: $|\beta_1| + |\beta_1| \leq t$
-- right: $\beta_1^2 + \beta_1^2 \leq t^2$
-
-<b>$\hat{\beta}$</b>: least squares fit
+- <b>Solid blue area</b>: the constraints
+    - left: $|\beta_1| + |\beta_1| \leq t$
+    - right: $\beta_1^2 + \beta_1^2 \leq t^2$
+- <b>$\hat{\beta}$</b>: least squares fit
+- want to find the point that is nearest to  $\hat{\beta}$ , within blue region
 
 ---
 
@@ -769,8 +767,7 @@ $|\beta_j|^q$ can be viewed as the log-prior density for $\beta_j$, these three 
     - <b>LASSO</b>
         - Formulations
         - Comparisons with ridge regression and subset selection
-        - <b>Quadratic Programming</b>
-        - Least Angle Regression
+        - <b>Solution of LASSO</b>
         - Viewed as approximation for $l_0$-regularization
 - Beyond LASSO
 
@@ -799,24 +796,8 @@ s.t. &\beta_j \leq \xi_j\\
 $$
 
 - Note that QP can only solve LASSO for a given $\lambda$. 
-    - Later in these slides, a method called least angle regression can solve LASSO for all $\lambda$
+    - Next: method for solving for all $\lambda$ (LAR)
 
----
-
-## LASSO
-
-- Introduction to Dimensionality Reduction
-- Linear Regression and Least Squares (Review)
-- Subset Selection
-- <b>Shrinkage Methods</b>
-    - Ridge Regression
-    - <b>LASSO</b>
-        - Formulations
-        - Comparisons with ridge regression and subset selection
-        - Quadratic Programming
-        - <b>Least Angle Regression</b>
-        - Viewed as approximation for $l_0$-regularization
-- Beyond LASSO
 
 
 ---&twocolportion w1:44%  w2:44%
@@ -837,13 +818,12 @@ $$
 
 ### Notations
 
-- $\beta$:$p \times 1$ coefficient vector
-- $\mathcal{A}_t$: <i>active set</i>, the set indices of features we already included in the model at time step $t$.
+- $\beta$: $p \times 1$ coefficient vector
+- $\mathcal{A}_t$: <i>active set</i>, the set indices of features included in the model at time step $t$.
     - $\bar{\mathcal{A}_t} = \{1,2,...,p\} - \mathcal{A}_t$
 - $\beta_{\mathcal{A}_t}$: $|\mathcal{A}_t| \times 1$ vector of coefficients, w.r.t $\mathcal{A}_t$
-    - Contains the $\beta_j, j \in \mathcal{A}_t$
-- $\mathbf{X}_{\mathcal{A}_t}$: $N \times |\mathcal{A}_t|$ matrix
-    - Contains $\mathbf{x}_j, j \in \mathcal{A}_t$
+    - Contains the $\beta_j, \quad j \in \mathcal{A}_t$
+- $\mathbf{X}_{\mathcal{A}_t}$: $[ \mathbf{x}_j ]_{j\in \mathcal{A}_t}$
     
 
 
@@ -860,9 +840,9 @@ $$
 *** right
 - Example Setting:
     - $N = 2$, $p = 2$
-- Standardized each columns of $\mathbf{X}$ 
+- Columnwise-standardized data matrix $\mathbf{X}$ 
     - s.t. $mean\{\mathbf{x}_j\} = 0$, $std\{\mathbf{x}_j\} = 1$
-    - Thus we know $\|\mathbf{x}_1\| = \|\mathbf{x}_2\| = ... = \|\mathbf{x}_p\|$
+    - $\rightarrow \|\mathbf{x}_1\| = \|\mathbf{x}_2\| = ... = \|\mathbf{x}_p\|$
     - Two standardized column vectors $\mathbf{x}_1$ and $\mathbf{x}_2$ are shown in the left figure    
 - $\mathcal{A}_0 = \emptyset$, which means that we have not chosen any feature yet    
 - $\beta = (0, 0)^T$
@@ -957,7 +937,7 @@ $$
     - $\mathbf{r}_2 = \mathbf{y} - \mathbf{X}_{\mathcal{A}_2} \beta_{\mathcal{A}_2}$
 - The direction our fit move along is $\mathbf{u}_2 = \mathbf{X}_{\mathcal{A}_2} \delta_2$
     - Note that $\mathbf{u}_2$ is the bisector of $\mathbf{x}_1$ and $\mathbf{x}_2$
-    - Furthermore, $\mathbf{u}_t$ is the "bisector" of (hase the same angle with) all $\mathbf{x}_j, j \in \mathcal{A}_t$
+    - In general, $\mathbf{u}_t$ is the "bisector" of (has the same angle with) all $\mathbf{x}_j,\quad j \in \mathcal{A}_t$
 
 
 ---&twocolportion w1:55% w2:45%
@@ -1030,7 +1010,7 @@ During the searching procedure, if a non-zero coefficient hits zero, drop this v
 
 - At a certain time point, we know that all $\mathbf{x}_j \in \mathcal{A}$ share the same absolute values of correlations with the residual error. That is
 $$\mathbf{x}_j^T(\mathbf{y} - \mathbf{X}\beta) = \gamma \cdot s_j, \quad \forall j \ \in \mathcal{A}$$
-where $s_j \in \{-1,1\}$ and $s_j = sign(\mathbf{x}_j^T(\mathbf{y} - \mathbf{X}\beta))$ and $\gamma$ is the common value. 
+where $s_j = sign(\mathbf{x}_j^T(\mathbf{y} - \mathbf{X}\beta)) \in \{-1,1\}$ and $\gamma$ is the common value. 
     - We also know that $|\mathbf{x_j}(\mathbf{y} - \mathbf{X}\beta)| \leq \gamma, \quad \forall j \not\in \mathcal{A}$
 
 - Consider LASSO for a fixed $\lambda$. Let $\mathcal{B}$ be the set of indices of non-zero coefficients, then we differentiate the objective function w.r.t. those coefficients in $\mathcal{B}$ and set the gradient to zero. We have
@@ -1045,13 +1025,18 @@ $$\mathbf{x}_j^T(\mathbf{y} - \mathbf{X}\beta) = \lambda \cdot sign(\beta_j), \q
 
 ### Some heuristic analysis
 
--  For LAR, we have 
-$$|\mathbf{x}_j^T(\mathbf{y} - \mathbf{X}\beta)| \leq \gamma, \quad \forall j \not\in \mathcal{A}$$
-- According to the stationary conditions, for LASSO, we have
+-  LAR requires that
+$$|\mathbf{x}_k^T(\mathbf{y} - \mathbf{X}\beta)| \leq \gamma, \quad \forall k \not\in \mathcal{A}$$
+    - $\mathcal{A}$: set of the indices of the features with non-zero coefficients in LAR
+    - $\gamma = |\mathbf{x}_j^T(\mathbf{y} - \mathbf{X}\beta)|,\quad \forall j \in \mathcal{A}$
+- For LASSO, The stationary conditions require that
 $$
-|\mathbf{x}_j^T(\mathbf{y} - \mathbf{X}\beta)| \leq \lambda, \quad \forall j \not\in \mathcal{B}
+|\mathbf{x}_k^T(\mathbf{y} - \mathbf{X}\beta)| \leq \lambda, \quad \forall k \not\in \mathcal{B}
 $$
-- LAR and LASSO match for variables with zero coefficients too.
+    - $\mathcal{B}$: set of the indices of the features with non-zero coefficients in LASSO
+    - $\lambda$: regularization parameter
+- LAR agrees with LASSO for variables with zero coefficients too.
+
 
 
 
@@ -1067,8 +1052,8 @@ $$
     - <b>LASSO</b>
         - Formulations
         - Comparisons with ridge regression and subset selection
-        - Quadratic Programming
-        - Least Angle Regression
+        Solution of LASSO
+        
         - <b>Viewed as approximation for $l_0$-regularization</b>
 - Beyond LASSO
 
@@ -1119,15 +1104,25 @@ $l_0$-norm is not convex, which makes it very hard to optimize.
    - <b>Graph-guided LASSO</b>
 
 
+--- 
+
+## Beyond LASSO
+
+### Problems with LASSO
+
+1. LASSO tends to rather arbitrarily select one of a group of highly correlated variables (see how LAR works). Sometimes, it is better to select <b>ALL</b> the relevant varibles in a group
+2. LASSO selects at most $N$ variables, when $p > N$, which may be undesirable when $p >> N$
+3. The performance of Ridge dominates that of LASSO, when $N > p$ and variables are correlated
+4. LASSO does not consider about the prior information of the structure over input or output variables
+
 --- &triple w1:41% w2:55% 
 
 ## Beyond LASSO - Elastic Net
 
-### Problems with LASSO
-
-- LASSO tends to rather arbitrarily select one of a group of highly correlated variables (see how LAR works). Sometimes, it is better to select <b>ALL</b> the relevant varibles in a group
-- LASSO selects at most $N$ variables, when $p > N$, which may be undesirable when $p >> N$
-- The performance of Ridge dominates that of LASSO, when $N > p$ and variables are correlated
+### Problems solved by E-Net
+1. LASSO tends to rather arbitrarily select one of a group of highly correlated variables (see how LAR works). Sometimes, it is better to select <b>ALL</b> the relevant varibles in a group
+2. LASSO selects at most $N$ variables, when $p > N$, which may be undesirable when $p >> N$
+3. The performance of Ridge dominates that of LASSO, when $N > p$ and variables are correlated
 
 ### Elastic Net
 
@@ -1141,13 +1136,11 @@ which is a compromise between ridge regression and LASSO and $\alpha \in [0,1]$.
 
 <center>![enet](assets/img/enet.png "enet")</center>
 
-
 --- &triple w1:41% w2:55% 
 
 ## Beyond LASSO - Elastic Net
 
-### Advantages of E-Net
-- solves above problems
+### More Advantages of E-Net
 - selects variables like LASSO, and shrinks together the coefficients of correlated predictors like ridge.
 - has considerable computational advantages over the $l_q$ penalties. 
     - See 18.4 [Elements of Statistical Learning]
@@ -1193,7 +1186,20 @@ where $\epsilon$ is $i.i.d.$ random noise.
 
 <center>![enet_LASSO](assets/img/enet_re.png "enet_re")</center>
 
-- MSE(standard error)
+
+--- 
+
+## Beyond LASSO - Fused Lasso
+
+### Problems with LASSO
+
+1. LASSO tends to rather arbitrarily select one of a group of highly correlated variables (see how LAR works). Sometimes, it is better to select <b>ALL</b> the relevant varibles in a group
+2. LASSO selects at most $N$ variables, when $p > N$, which may be undesirable when $p >> N$
+3. The performance of Ridge dominates that of LASSO, when $N > p$ and variables are correlated
+4. LASSO does not consider about the prior information of the structure over input or output variables
+
+
+Fused LASSO can solve the $4th$ problem for a specific kind of prior.
 
 ---
 
@@ -1202,10 +1208,10 @@ where $\epsilon$ is $i.i.d.$ random noise.
 ### Fused LASSO
 
 - <b>Intuition</b>
-    - Fused LASSO is designed for problems with features that can be ordered in some meaningful way, where "adjacent features" should have similar importance. 
-    - The fused LASSO penalizes the $L_1$-norm of both the coefﬁcients and their successive differences.
+    - Fused LASSO is designed for problems with features that can be ordered in some meaningful way, where "adjacent features" should have similar importance
+    - Fused LASSO penalizes the $L_1$-norm of both the coefﬁcients and their successive differences
 - <b>Example</b>
-    - Classification with fMRI data: each voxel has about 200 measurements over time. The coeefficients for adjacent voxels should be similar
+    - Classification with fMRI data: each voxel has about 200 measurements over time. The coefficients for adjacent voxels should be similar
 - <b>Formulation</b>
 
 $$\hat{\beta} = argmin_{\beta}\{\|\mathbf{X\beta - y}\|_2^2\}$$
@@ -1228,10 +1234,28 @@ $$s.t. \|\beta\| \leq s_1 \quad and \quad \sum_{j = 2}^p |\beta_j - \beta_{j-1}|
 <center>![fLASSO](assets/img/fLASSO.png "fLASSO")</center>
 
 - $p = 100$. Black lines are the true coefficients.
-- (a) Univeriate regression coefficients (red), a soft threshold version of them (green)
+- (a) Univariate regression coefficients (red), a soft threshold version of them (green)
 - (b) LASSO solution (red), $s_1 = 35.6,\quad s_2 = \infty$
 - (c) Fusion estimate, $s_1 = \infty, \quad s_2 = 26$
 - (d) Fused LASSO, $s_1 = \sum |\beta_j|,\quad s_2 = \sum |\beta_j - \beta_{j-1}|$
+
+
+--- 
+
+## Beyond LASSO - Group LASSO
+
+### Problems with LASSO
+
+1. LASSO tends to rather arbitrarily select one of a group of highly correlated variables (see how LAR works). Sometimes, it is better to select <b>ALL</b> the relevant varibles in a group
+2. LASSO selects at most $N$ variables, when $p > N$, which may be undesirable when $p >> N$
+3. The performance of Ridge dominates that of LASSO, when $N > p$ and variables are correlated
+4. LASSO does not consider about the prior information of the structure over input or output variables
+
+
+Group LASSO can solve the $1st$ and the $4th$ problem for a specific kind of prior
+- Differences in the way Group LASSO and Elastic Net solve the $1st$ Problem
+    - Group LASSO: Prior information about group structures is needed
+    - Elastic Net: Prior information is not needed and the algorithm detects the group itself
 
 ---
 
@@ -1254,15 +1278,19 @@ $$obj = \left\|\mathbf{y} - \sum_{l = 1}^L \mathbf{X}_l \beta_l \right\|_2^2 + \
 
 - Generate $n = 200$ observations with $p = 100$, divided into ten blocks equally
 - The number of non-zero coefficients in blocks are 
-    - block 1: 10 out of 10
-    - block 2: 8 out of 10
-    - block 3: 6 out of 10
-    - block 4: 4 out of 10
-    - block 5: 2 out of 10
-    - block 6-10: 0 out of 10
+<center>![bl](assets/img/blocks.png "block")</center>
 - The coefficients are either -1 or +1, with the sign being chosen randomly.
 - The predictors are standard Gaussian with correlation 0.2 within a group and zero otherwise
 - A Gaussian noise with standard deviation 4.0 was added to each observation
+
+
+---
+
+## Group LASSO - Simulation Results
+
+<center>![gl](assets/img/gl.png "gl")</center>
+
+Group structures are not discovered by LASSO.
 
 ---
 
@@ -1270,6 +1298,20 @@ $$obj = \left\|\mathbf{y} - \sum_{l = 1}^L \mathbf{X}_l \beta_l \right\|_2^2 + \
 
 <center>![gl2](assets/img/gl2.png "gl2")</center>
 
+
+--- 
+
+## Beyond LASSO - $l_1-l_p$ penalization
+
+### Problems with LASSO
+
+1. LASSO tends to rather arbitrarily select one of a group of highly correlated variables (see how LAR works). Sometimes, it is better to select <b>ALL</b> the relevant varibles in a group
+2. LASSO selects at most $N$ variables, when $p > N$, which may be undesirable when $p >> N$
+3. The performance of Ridge dominates that of LASSO, when $N > p$ and variables are correlated
+4. LASSO does not consider about the prior information of the structure over input or output variables
+
+
+$l_1$-$l_p$ penalization solves the $4th$ problem by dealing with prior information of structures over output variables
 
 ---
 
@@ -1345,28 +1387,44 @@ $$obj = \left\|\mathbf{y} - \sum_{l = 1}^L \mathbf{X}_l \beta_l \right\|_2^2 + \
 
 <center>![l1lp_re](assets/img/l1lp_re.png "l1lp_re")</center>
 
-- Within a cell,  the first row contains results for feature selection, the second row uses random projections to obtain a common subspace (details omited, see paper: Multi-task feature selection)
+- Within a cell,  the first row contains results for feature selection, the second row uses random projections to obtain a common subspace (details omitted, see paper: Multi-task feature selection)
 - Bold: best of $l_1/l_2$,$l_1/l_1$, $sp.l_1$ or pooled $l_1$, Boxed : best of cell
 
 
+--- 
+
+## Beyond LASSO - Graph-Guided Fused Lasso
+
+### Problems with LASSO
+
+1. LASSO tends to rather arbitrarily select one of a group of highly correlated variables (see how LAR works). Sometimes, it is better to select <b>ALL</b> the relevant varibles in a group
+2. LASSO selects at most $N$ variables, when $p > N$, which may be undesirable when $p >> N$
+3. The performance of Ridge dominates that of LASSO, when $N > p$ and variables are correlated
+4. LASSO does not consider about the prior information of the structure over input or output variables
+
+
+Graph-Guided Fused LASSO (GFLASSO) solves the $4th$ problem by dealing with prior information of structures over output variables
+- More general than $l_1/l_p$, as abitrary graphical structures over the output variables can be encoded as priors in GFLASSO
+
 ---
 
-## Beyond LASSO - Graph-Guided Fused LASSO
+## Beyond LASSO - GFLASSO
 
-### Graph-Guided Fused LASSO (GFLASSO)
+### Graph-Guided Fused LASSO
 
 - <b>Example</b>
 <center>![gfLASSO](assets/img/gfLASSO.png "gfLASSO")</center>
 - <b>Formulation</b>
 Graph-Guided LASSO applies to multi-task settings
-$$obj = \sum_{l= 1}^L loss(\beta_{:l}, \mathbf{X}_l, \mathbf{y}_{:l}) + \lambda \|\beta\|_1+\gamma \sum_{e=(a,b)\in E}^p \tau(r_{ab}) \sum_{j = 1}^p |\beta_{ja} - sign(r_{a,b})\beta_{jb}|$$
-where $r_{a,b} \in \mathbb{R}$ denotes the weight of the edge and $\tau(r)$ can be any positive monotonically increasing function of $|r|$, e.g. $\tau(r) = |r|$.
+$$obj = \sum_{l= 1}^L loss(\beta_{:l}, \mathbf{X}_l, \mathbf{y}_{:l}) + \lambda \|\beta\|_1+\gamma \sum_{(a,b)\in E}^p \tau(r_{ab}) \sum_{j = 1}^p |\beta_{ja} - sign(r_{a,b})\beta_{jb}|$$
+where $r_{a,b} \in \mathbb{R}$ denotes the weight of the edge and $\tau(r)$ can be any user specified positive monotonically increasing function of $|r|$
+    - e.g. $\tau(r) = |r|$.
 
 ---&twocol
 
-## Beyond LASSO - Graph-Guided Fused LASSO
+## Beyond LASSO - GFLASSO
 
-### Graph-Guided Fused LASSO
+### GFLASSO
 
 <center>![gfLASSO_re](assets/img/gfLASSO_re.png "gfLASSO_re")</center>
 
@@ -1406,7 +1464,7 @@ where $r_{a,b} \in \mathbb{R}$ denotes the weight of the edge and $\tau(r)$ can 
     - Feature selection: can save cost, be interpreted
     - Feature extraction: more general, often leads to better performance
 - Linear models: Least Squares, Subset Selection, Ridge, LASSO:
-    - LS is unbiased, but can have high variance (as includes all features)
+    - Least Squares is unbiased, but can have high variance (as includes all features)
     - Ridge ($l_2$ regularization): constrains parameter values, to reduce variance
     - Subset Selection, LASSO: finds subset of features (to reduce variance)
     - LASSO uses $l_1$ regularization 
@@ -1416,7 +1474,7 @@ where $r_{a,b} \in \mathbb{R}$ denotes the weight of the edge and $\tau(r)$ can 
 
 ---
 
-## Summary
+## Summary II
 
 - QP solves LASSO for a single $\lambda$, while LAR can solve LASSO for all $\lambda$
 - Bayesian prior interpretation for Subset Selection, Ridge and LASSO
