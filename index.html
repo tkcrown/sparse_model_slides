@@ -1900,7 +1900,7 @@ where \(\epsilon\) is \(i.i.d.\) random noise.</li>
     <h2>Elastic Net - A simple illustration</h2>
   </hgroup>
   <article>
-    <p><center><img src="assets/img/enet_LASSO.png" alt="enet_LASSO" title="enet_LASSO"></center></p>
+    <p><center><img src="assets/img/enet_LASSO.png" alt="enet_LASSO" title="enet_lasso"></center></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -1984,7 +1984,7 @@ where \(\epsilon\) is \(i.i.d.\) random noise.</li>
     <h2>Fused LASSO - Simulation results</h2>
   </hgroup>
   <article>
-    <p><center><img src="assets/img/fLASSO.png" alt="fLASSO" title="fLASSO"></center></p>
+    <p><center><img src="assets/img/flasso.png" alt="fLASSO" title="fLASSO"></center></p>
 
 <ul>
 <li>\(p = 100\). Black lines are the true coefficients.</li>
@@ -2282,7 +2282,7 @@ where \(J\) is some loss function and \(\sum_{j = 1}^p \|\beta_{:j}\|_2\) is the
 
 <ul>
 <li><b>Example</b>
-<center><img src="assets/img/gfLASSO.png" alt="gfLASSO" title="gfLASSO"></center></li>
+<center><img src="assets/img/gflasso.png" alt="gfLASSO" title="gfLASSO"></center></li>
 <li><b>Formulation</b>
 Graph-Guided LASSO applies to multi-task settings
 \[obj = \sum_{l= 1}^L loss(\beta_{:l}, \mathbf{X}_l, \mathbf{y}_{:l}) + \lambda \|\beta\|_1+\gamma \sum_{(a,b)\in E}^p \tau(r_{ab}) \sum_{j = 1}^p |\beta_{ja} - sign(r_{a,b})\beta_{jb}|\]
@@ -2304,7 +2304,7 @@ where \(r_{a,b} \in \mathbb{R}\) denotes the weight of the edge and \(\tau(r)\) 
   <article>
     <h3>GFLASSO</h3>
 
-<p><center><img src="assets/img/gfLASSO_re.png" alt="gfLASSO_re" title="gfLASSO_re"></center></p>
+<p><center><img src="assets/img/gflasso_re.png" alt="gfLASSO_re" title="gfLASSO_re"></center></p>
 
 
 <div style='float:left;width:48%;' class='centered'>

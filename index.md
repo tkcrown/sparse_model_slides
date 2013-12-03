@@ -1177,7 +1177,7 @@ where $\epsilon$ is $i.i.d.$ random noise.
 
 ## Elastic Net - A simple illustration
 
-<center>![enet_LASSO](assets/img/enet_LASSO.png "enet_LASSO")</center>
+<center>![enet_LASSO](assets/img/enet_LASSO.png "enet_lasso")</center>
 
 
 ---
@@ -1231,7 +1231,7 @@ $$s.t. \|\beta\| \leq s_1 \quad and \quad \sum_{j = 2}^p |\beta_j - \beta_{j-1}|
 
 ## Fused LASSO - Simulation results
 
-<center>![fLASSO](assets/img/fLASSO.png "fLASSO")</center>
+<center>![fLASSO](assets/img/flasso.png "fLASSO")</center>
 
 - $p = 100$. Black lines are the true coefficients.
 - (a) Univariate regression coefficients (red), a soft threshold version of them (green)
@@ -1413,7 +1413,7 @@ Graph-Guided Fused LASSO (GFLASSO) solves the $4th$ problem by dealing with prio
 ### Graph-Guided Fused LASSO
 
 - <b>Example</b>
-<center>![gfLASSO](assets/img/gfLASSO.png "gfLASSO")</center>
+<center>![gfLASSO](assets/img/gflasso.png "gfLASSO")</center>
 - <b>Formulation</b>
 Graph-Guided LASSO applies to multi-task settings
 $$obj = \sum_{l= 1}^L loss(\beta_{:l}, \mathbf{X}_l, \mathbf{y}_{:l}) + \lambda \|\beta\|_1+\gamma \sum_{(a,b)\in E}^p \tau(r_{ab}) \sum_{j = 1}^p |\beta_{ja} - sign(r_{a,b})\beta_{jb}|$$
@@ -1426,7 +1426,7 @@ where $r_{a,b} \in \mathbb{R}$ denotes the weight of the edge and $\tau(r)$ can 
 
 ### GFLASSO
 
-<center>![gfLASSO_re](assets/img/gfLASSO_re.png "gfLASSO_re")</center>
+<center>![gfLASSO_re](assets/img/gflasso_re.png "gfLASSO_re")</center>
 
 *** left
 
