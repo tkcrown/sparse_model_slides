@@ -1231,7 +1231,7 @@ $$s.t. \|\beta\| \leq s_1 \quad and \quad \sum_{j = 2}^p |\beta_j - \beta_{j-1}|
 
 ## Fused LASSO - Simulation results
 
-<center>![fLASSO](assets/img/fLASSO.png "fLASSO")</center>
+<center>![fLASSO](assets/img/flasso.png "fLASSO")</center>
 
 - $p = 100$. Black lines are the true coefficients.
 - (a) Univariate regression coefficients (red), a soft threshold version of them (green)
